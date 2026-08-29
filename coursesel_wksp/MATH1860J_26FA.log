@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.5.11)  29 AUG 2026 17:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.5.11)  30 AUG 2026 01:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -932,7 +932,7 @@ Package pdftex.def Info: grading.png  used on input line 229.
 <group.jpg, id=634, 969.6225pt x 1523.6925pt>
 File: group.jpg Graphic file (type jpg)
 <use group.jpg>
-Package pdftex.def Info: group.jpg  used on input line 244.
+Package pdftex.def Info: group.jpg  used on input line 245.
 (pdftex.def)             Requested size: 143.76485pt x 225.91681pt.
  [18
 
@@ -961,15 +961,15 @@ Package rerunfilecheck Info: File `MATH1860J_26FA.out' has not changed.
 (rerunfilecheck)             Checksum: 225A167A1F875514B118DFF0379335EB;735.
  ) 
 Here is how much of TeX's memory you used:
- 23846 strings out of 467871
- 446400 string characters out of 5435199
- 834179 words of memory out of 5000000
- 52074 multiletter control sequences out of 15000+600000
+ 23845 strings out of 467871
+ 446383 string characters out of 5435199
+ 833178 words of memory out of 5000000
+ 52073 multiletter control sequences out of 15000+600000
  650040 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,527b,1081s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmss17.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu30.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu4e.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu4f.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu50.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu51.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu52.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu53.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu54.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu56.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu57.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu59.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu5b.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu5c.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu5d.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu5e.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu5f.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu60.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu61.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu62.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu63.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu65.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu66.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu67.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu69.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu6b.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu6c.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu6d.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu70.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu72.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu76.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu77.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu79.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu7a.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu7b.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu7d.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu7e.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu80.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu81.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu89.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu8b.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu8c.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu8d.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu8f.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu90.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu95.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu96.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu97.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu98.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnu9a.pfb><D:/MiKTeX/fonts/type1/arphic/gbsnu/gbsnuff.pfb>
-Output written on MATH1860J_26FA.pdf (21 pages, 1812867 bytes).
+Output written on MATH1860J_26FA.pdf (21 pages, 1812900 bytes).
 PDF statistics:
  984 PDF objects out of 1000 (max. 8388607)
  49 named destinations out of 1000 (max. 500000)
