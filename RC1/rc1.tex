@@ -1,0 +1,734 @@
+\documentclass[dvipsnames]{beamer}
+\usepackage[utf8]{inputenc}      % UTF-8编码支持
+\usepackage[T1]{fontenc}         % 字体编码
+\usepackage{amsmath,amssymb}  % 数学符号和环境（beamer自带proof/\qed，无需amsthm，避免冲突）
+\usepackage{graphicx}            % 图片插入
+\usepackage{xcolor}              % 颜色支持
+\usepackage{tikz}                % TikZ绘图
+\usepackage{framed}              % 框架环境
+\usepackage{tcolorbox}           % 彩色盒子（用于定理环境）
+\usepackage{verbatim}
+\tcbuselibrary{skins, breakable, theorems}   % tcolorbox的定理/皮肤库（enhanced、drop shadow 需要 skins）
+\renewcommand{\familydefault}{\sfdefault}
+\usetheme{Madrid}
+\usecolortheme{dolphin}
+\makeatletter
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.37\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor\expandafter\ifblank\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.37\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.26\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\usebeamertemplate{page number in head/foot}\hspace*{2ex}%
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+\setbeamercolor{titlelike}{bg=Emerald!20, fg=JungleGreen!75!NavyBlue}
+\setbeamerfont{title}{series=\bfseries}
+%title page
+\setbeamercolor{subtitle}{fg=Emerald!70!white}
+\setbeamercolor{author}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{institute}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{date}{fg=Emerald!70!white}
+% footline
+\setbeamercolor{footline}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{author in head/foot}{bg=Emerald!10, fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{title in head/foot}{bg=Emerald!18, fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{page number in head/foot}{bg=Emerald!25, fg=JungleGreen!60!NavyBlue}
+\setbeamercolor{date in head/foot}{fg=Emerald, bg=Emerald!25}
+\setbeamercolor{navigation symbols}{fg=NavyBlue!50}
+% table of contents / items
+\setbeamercolor{structure}{fg=JungleGreen!80!NavyBlue}
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamercolor{section in toc}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{section number projected}{bg=BlueGreen, fg=NavyBlue}
+\setbeamercolor{item projected}{bg=BlueGreen, fg=NavyBlue}
+\setbeamercolor{item}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{subitem}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{subsubitem}{fg=JungleGreen!80!NavyBlue}
+\AtBeginDocument{
+  \color{JungleGreen!80!NavyBlue}
+}
+
+% Theorem-like environments not predefined by beamer
+\theoremstyle{plain}
+\newtheorem{proposition}[theorem]{\translate{Proposition}}
+\theoremstyle{definition}
+\newtheorem{exercise}[theorem]{\translate{Exercise}}
+\newtheorem{remark}[theorem]{\translate{Remark}}
+
+\title{MATH1860J Recitation Class 01}
+\subtitle{Foundations: Ch.01-06}
+\author{Shuhan Yu}
+\institute{SJTU Global College}
+\date{Fall Term 2026}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+  {
+    \setbeamercolor{background canvas}{bg=Aquamarine!75}
+    \setbeamercolor{normal text}{fg=white}
+    \setbeamercolor{frametitle}{fg=white}
+
+    \begin{frame}[plain]
+      \vfill
+      {\bfseries\Large\color{white!60}
+        \thesection.~\insertsection
+
+        \vspace{0.3em}
+        \noindent
+        \textcolor{white}{\rule{0.58\paperwidth}{1pt}}%
+        \textcolor{white!45}{\rule{0.27\paperwidth}{1pt}}
+      }
+      \vfill
+    \end{frame}
+  }
+}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}{Introduction}
+About me:
+\begin{itemize}
+    \item \textbf{Shuhan Yu}: Sophomore student majoring in ECE at GC.
+    \item \textbf{Email:} \texttt{barca0927@sjtu.edu.cn}
+    \item \textbf{Office Hours:} 
+    \item \textbf{Interest:} Quantitative Trading, Machine Learning, and Geoscience.
+\end{itemize}
+\vspace{0.5em}
+About Honors Mathematics Sequence (8 series):
+\begin{itemize}
+    \item Emphasize on rigorous mathematical reasoning and proof.
+    \item Write every step of your solution clearly and logically.
+    \item Don't be frightened by ``Honor'' in the course title. Remember that 5 series is also an honor series.
+    \item Sample exams are of great help. Go through them before exams.
+\end{itemize}
+Feel free to interrupt and ask questions if you have any doubt during RCs!
+\end{frame}
+
+\section{Logic}
+\begin{frame}{Propositional Logic}
+
+\begin{definition}
+A \textbf{statement} (also called a \textbf{proposition}) is a declarative sentence 
+that can be unambiguously classified as either \emph{true} or \emph{false}.
+\end{definition}
+
+\begin{itemize}
+  \item \textbf{Logical operations:}
+    \begin{itemize}
+      \item Negation (unary operation): $\lnot A$
+      \item Conjunction: $A \land B$
+      \item Disjunction: $A \lor B$
+      \item Implication: $A \to B$
+      \item Converse: $B \to A$
+      \item Equivalence: $A \leftrightarrow B$
+    \end{itemize}
+    \textcolor{Aquamarine}{Binary operations return a compound statement.}
+  \item \textbf{Special propositions:}
+    \begin{itemize}
+      \item Tautology: always true
+      \item Contradiction: always false
+      \item Vacuous truth.
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Propositional Logic}
+
+The definition of logical operations is often given by a \textbf{truth table}.  Consider the implication $A \to B$.  
+It can be rewritten in several equivalent forms (where $\equiv$ denotes logical equivalence):
+\[
+A \to B \;\;\equiv\;\; \lnot A \lor B 
+\;\;\equiv\;\; \lnot(A \land \lnot B) 
+\;\;\equiv\;\; \lnot B \to \lnot A.
+\]
+
+\begin{table}[htbp]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c c | c c c c}
+\hline
+$A$ & $B$ & $A \to B$ & $\lnot A \lor B$ & $\lnot(A \land \lnot B)$ & $\lnot B \to \lnot A$ \\
+\hline
+T & T & T & T & T & T \\
+T & F & F & F & F & F \\
+F & T & T & T & T & T \\
+F & F & T & T & T & T \\
+\hline
+\end{tabular}
+\end{table}
+With the basic operation laws established, we can use them to simplify and analyze more complicated propositions.
+\end{frame}
+
+\begin{frame}{Propositional Logic}
+\textbf{Remark:} (Important for Proof)
+\begin{itemize}
+    \item $A \to B \equiv \lnot B \to \lnot A$: equivalence with the \textbf{contrapositive}.  
+    \item $A \to B \equiv \lnot(A \land \lnot B)$: useful in \textbf{proof by contradiction}.  
+    \item $A \to B \equiv \lnot A \lor B$: converts the implication into a disjunction, often used in algebraic manipulation.  
+\end{itemize}
+\vspace{0.5em}
+\textbf{Important logical equivalences and laws:}
+\begin{itemize}
+  %\item \textbf{Identity Laws:} $p \land \text{T} \equiv p, \; p \lor \text{F} \equiv p$
+  %\item \textbf{Domination Laws:} $p \lor \text{T} \equiv \text{T}, \; p \land \text{F} \equiv \text{F}$
+  %\item \textbf{Double Negation:} $\lnot(\lnot p) \equiv p$
+  \item \textbf{Commutativity:} $p \lor q \equiv q \lor p, \; p \land q \equiv q \land p$
+  \item \textbf{Associativity:} $(p \lor q) \lor r \equiv p \lor (q \lor r)$
+  \item \textbf{Distributivity:} 
+  \begin{align*}
+    p \lor (q \land r) &\equiv (p \lor q) \land (p \lor r)\\
+    p \land (q \lor r) &\equiv (p \land q) \lor (p \land r)
+  \end{align*}
+  \item \textbf{De Morgan's Laws:} 
+  \begin{align*}
+    \lnot(p \land q) &\equiv \lnot p \lor \lnot q\\
+    \lnot(p \lor q) &\equiv \lnot p \land \lnot q
+  \end{align*}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Predicate Logic}
+
+A \textbf{statement} can be expressed as:
+\[
+\textbf{statement} = \textbf{quantifier} + \textbf{predicate (statement frame)}.
+\]
+
+\begin{definition}
+A \textbf{predicate} is an expression $E(x)$ that becomes a statement when 
+$x$ is replaced by an object from \textbf{a specified class} of objects.
+\vspace{0.5em}
+\begin{itemize}
+    \item \textbf{Universal quantifier} $\forall$: ``for all''.  
+    The expression $\forall x \in X: E(x)$ means ``Every object $x$ in $X$ satisfies property $E$''.
+    \vspace{0.5em}
+    \item \textbf{Existential quantifier} $\exists$: ``there exists''.  
+    The expression $\exists x \in X: E(x)$ means ``There exists at least one object $x$ in $X$ with property $E$''.
+    \vspace{0.5em}
+    \item \textbf{Unique existential} $\exists!$: exactly one such object exists.
+\end{itemize}
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}{Predicate Logic}
+
+In all cases, \textbf{the order of the quantifiers is significant.}
+Thus, 
+$$
+\forall x \ \exists y:\, E(x,y) \quad \nLeftrightarrow  \quad \exists y \ \forall x:\, E(x,y)
+$$
+\begin{itemize}
+    \item Former, for all $x$ there exists some $y$ such that $E(x,y)$ is true. 
+    \item Latter, there exists a fixed $y$ such that $E(x,y)$ is true for all $x$. 
+\end{itemize}
+\vspace{0.5em}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Exercise}
+
+\begin{block}{Exercise 01}
+    \begin{enumerate}
+        \item Show that \[(A \land B) \to C \;\;\equiv\;\; A \to B \to C \;\;\equiv\;\; B \to A \to C.\]
+        \item Give the negations of the statements: $$ \forall x \in X, \exists y \in Y:\, E(x,y,z)$$
+        $$\forall \epsilon > 0, \exists \delta > 0:\, |x - a| < \delta \implies |f(x) - f(a)| < \epsilon$$
+    \end{enumerate}
+\end{block}
+\textbf{Remarks:}\\
+Using the quantifiers $\exists$ and $\forall$, negation becomes a purely “mechanical” process in which the symbols $\exists$ and $\forall$ (as well as $\wedge$ and $\vee$) are interchanged (without changing the order), and statements are negated.
+\end{frame}
+
+\section{Set Theory}
+
+\begin{frame}{Set Basics and Operations}
+    Sets are collections of objects, called \textbf{elements} or \textbf{members}.
+    \begin{itemize}
+    \item Define by Listing: \textit{A} = \{1, 2, 3, 4\}
+    \item Define by Predicate: \textit{A} = \{$x \in \mathbb{N} \mid 1 \leq x \leq 4$\}
+    \item Set $A = B$ iff $A\subseteq B$ and $B \subseteq A$. (Useful in Proof)
+    \end{itemize}
+\vspace{0.5em}
+Let \(A = \{x \mid P_1(x)\}\) and \(B = \{x \mid P_2(x)\}\).  
+\begin{itemize}
+\item \text{Union:} $A \cup B := \{x \mid P_1(x) \lor P_2(x)\}$
+\item \text{Intersection:} $A \cap B := \{x \mid P_1(x) \land P_2(x)\}$
+\item \text{Difference:} $A \setminus B := \{x \mid P_1(x) \land \lnot P_2(x)\}$.
+\item \text{Complement:} $A^c (\overline{A}) := \mathbb{U} \setminus A := \{x \in \mathbb{U} \mid \lnot P_1(x)\}$.
+\end{itemize}
+If \(A \cap B = \emptyset\), we say that \(A\) and \(B\) are \textbf{disjoint}.  \\
+\vspace{0.5em}
+\textbf{Remark:} Distinguish between \textbf{Difference}(\(A \setminus B\)) and \textbf{Quotient}(\(A / B\))    
+\end{frame}
+
+
+\begin{frame}{Set Basics and Operations}
+
+\begin{block}{Exercise 02}
+Verify the following set-theoretic identities:
+
+\begin{enumerate}
+    \item $(A \cup B)^c = A^c \cap B^c$
+    \item $(A \cap B)^c = A^c \cup B^c$
+    \item $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+    \item $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+    \item $(A \cup B) \setminus C = (A \setminus C) \cup (B \setminus C)$
+    \item $(A \cap B) \setminus C = (A \setminus C) \cap (B \setminus C)$
+    \item $A \setminus (B \cup C) = (A \setminus B) \cap (A \setminus C)$
+    \item $A \setminus (B \cap C) = (A \setminus B) \cup (A \setminus C)$
+\end{enumerate}
+
+\textbf{Hint:} Use element-wise reasoning and draw a Venn diagram.
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}{Power Set and Cardinality}
+
+\begin{itemize}
+    \item \textbf{Power Set:} $P(A) = \{ X \mid X \subseteq A \}$
+    \item \textbf{Cardinality:} $|A|$ is the number of elements in set $A$
+    \item \textbf{Finite Set:} A set with a finite number of elements
+    \item \textbf{Infinite Set:} A set with an infinite number of elements
+    \item \textbf{Countable Set:} A set that can be put into one-to-one correspondence with the natural numbers
+    \item \textbf{Uncountable Set:} A set that cannot be put into one-to-one correspondence with the natural numbers
+    \item \textbf{Cardinality of Power Set:} $|P(A)| = 2^{|A|}$ if $A$ is finite
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Ordered Pairs and Cartesian Product}
+\begin{itemize}
+    \item \textbf{Ordered Pair:} $(a,b)$
+    \item \textbf{Cartesian Product:} $A \times B = \{ (a,b) \mid a \in A, b \in B \}$
+    \item \textbf{n-tuple}: generalization of ordered pair, $(a_1, a_2, \ldots, a_n)$
+    \item Construction of ordered pair and natural numbers: $(a,b) = \{\{a\}, \{a,b\}\}; 0 = \{\emptyset\}, 1 = \{\emptyset\}, 2 = \{\emptyset, \{\emptyset\}\}, ...$
+\end{itemize}
+\vspace{0.5em}
+- Note that \((a,b) = (c,d) \iff a = c \wedge b = d\).\\
+- In general, $A \times B \neq B \times A$.
+\end{frame}
+
+\begin{frame}{Relation}
+
+\begin{definition}
+A \textbf{binary relation} on a set $X$ is a subset $R \subseteq X \times X$.  
+Instead of writing $(x,y) \in R$, we usually write $xRy$ or $x \sim_R y$.
+\end{definition}
+
+\textbf{Properties of Relations:}  
+\begin{itemize}
+    \item \textbf{Reflexive:} $R$ is reflexive if $xRx$ for all $x \in X$.
+    \item \textbf{Transitive:} $R$ is transitive if $(xRy) \wedge (yRz) \implies xRz$.
+    \item \textbf{Symmetric:} $R$ is symmetric if $xRy \implies yRx$.
+\end{itemize}
+
+Let $Y \subseteq X$ be nonempty. The \textbf{restriction} of $R$ to $Y$ is  
+\[
+R_Y := (Y \times Y) \cap R.
+\]  
+Clearly, $xRYy$ if and only if $x, y \in Y$ and $xRy$.  
+Usually, we simply write $R$ instead of $R_Y$ when the context is clear.
+
+\end{frame}
+
+\begin{frame}{Equivalence Relation}
+\begin{definition}[Equivalence Relation]
+A relation $\sim$ on a set $X$ is called an \textbf{equivalence relation} if it is:
+\begin{itemize}
+    \item \textbf{Reflexive:} $x \sim x$ for all $x \in X$,
+    \item \textbf{Symmetric:} $x \sim y \implies y \sim x$,
+    \item \textbf{Transitive:} $(x \sim y \wedge y \sim z) \implies x \sim z$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Equivalence Class and Quotient Set]
+For $x \in X$, the \textbf{equivalence class} of $x$ is
+\[
+[x] := \{ y \in X \mid y \sim x \}.
+\]  
+The set of all equivalence classes of $X$ is
+\[
+X / \sim := \{ [x] \mid x \in X \},
+\]
+called \textbf{$X$ modulo $\sim$}.
+\end{definition}
+\end{frame}
+
+\begin{frame}{Partition}
+\begin{definition}[Partition]
+A \textbf{partition} of a set $X$ is a subset $\mathcal{A} \subseteq \mathcal{P}(X) \setminus \{\emptyset\}$ such that:
+\begin{itemize}
+    \item For each $x \in X$, there is a unique $A \in \mathcal{A}$ with $x \in A$,
+    \item The elements of $\mathcal{A}$ are pairwise disjoint, and $\bigcup \mathcal{A} = X$.
+\end{itemize}
+\end{definition}
+
+\begin{proposition}
+Let $\sim$ be an equivalence relation on $X$. Then $X / \sim$ is a partition of $X$.
+\end{proposition}
+
+For all $x \in X$, $x \in [x]$, so $X = \bigcup_{x \in X} [x]$.  
+If $z \in [x] \cap [y]$, then $z \sim x$ and $z \sim y$, hence $x \sim y$, which implies $[x] = [y]$.  
+Thus, equivalence classes are either identical or disjoint.
+\end{frame}
+
+\begin{frame}{Order Relations}
+\begin{definition}[Partial Order]
+A relation $\le$ on a set $X$ is a \textbf{partial order} if it is:
+\begin{itemize}
+    \item \textbf{Reflexive:} $x \le x$ for all $x \in X$,
+    \item \textbf{Transitive:} $x \le y \wedge y \le z \implies x \le z$,
+    \item \textbf{Antisymmetric:} $x \le y \wedge y \le x \implies x = y$.
+\end{itemize}
+The pair $(X, \le)$ is called a \textbf{partially ordered set}. If the order is clear from context, we simply write $X$.
+\end{definition}
+
+\begin{definition}[Total Order]
+If, in addition, 
+\[
+\forall x, y \in X: (x \le y) \vee (y \le x),
+\] 
+then $\le$ is a \textbf{total order}, and $(X, \le)$ is called a \textbf{totally ordered set}.
+\end{definition}
+\end{frame}
+
+\begin{frame}{Order Relations}
+
+\textbf{Useful notations:}\quad
+$x \ge y \;:\iff\; y \le x$,\quad
+$x < y \;:\iff\; x \le y \wedge x \neq y$,\quad
+$x > y \;:\iff\; y < x$.
+
+\begin{remark}
+If \(X\) is \textbf{totally ordered}, then for each \(x, y \in X\), exactly one of
+\(x < y\), \(x = y\), \(x > y\) holds.
+\end{remark}
+
+\begin{remark}
+If \(X\) is \textbf{partially ordered} but not totally ordered, there exist elements \(x, y \in X\) which are \textbf{incomparable}, i.e., neither \(x \le y\) nor \(y \le x\) holds.
+\end{remark}
+
+\end{frame}
+
+\begin{frame}{Order Relations}
+
+\begin{definition}[Upper and Lower Bounds]
+Let $(X,\le)$ be a partially ordered set and $A \subseteq X$ nonempty.  
+\begin{itemize}
+    \item An element $s \in X$ is an \textbf{upper bound} of $A$ if $a \le s$ for all $a \in A$.
+    \item An element $s \in X$ is a \textbf{lower bound} of $A$ if $a \ge s$ for all $a \in A$.
+    \item $A$ is \textbf{bounded above} if it has an upper bound, \textbf{bounded below} if it has a lower bound, and \textbf{bounded} if both.
+\end{itemize}
+\end{definition}
+\end{frame}
+
+\begin{frame}{Bounded Set}
+
+\begin{definition}[Bounded and Unbounded Sets]
+A set $U \subset \mathbb{Q}$ is \textbf{bounded} if there exists a constant $c \in \mathbb{Q}$ such that
+\[
+|x| \le c \quad \text{for all } x \in U.
+\]
+If no such $c$ exists, we say that $U$ is \textbf{unbounded}.  
+
+Numbers $c_1$ and $c_2$ such that 
+\[
+c_1 \le x \le c_2 \quad \text{for all } x \in U
+\] 
+are called \textbf{lower and upper bounds} of $U$, respectively.  
+
+A set $U \subset \mathbb{Q}$ is \textbf{bounded above} if it has an upper bound, and \textbf{bounded below} if it has a lower bound.
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}{Maximum and Minimum}
+
+\begin{definition}[Maximum and Minimum]
+Let $U \subset \mathbb{Q}$.  
+\begin{itemize}
+    \item $x_1 \in U$ is the \textbf{minimum} of $U$, denoted $x_1 = \min U$, if
+    \[
+    x_1 \le x \quad \text{for all } x \in U.
+    \]
+    \item $x_2 \in U$ is the \textbf{maximum} of $U$, denoted $x_2 = \max U$, if
+    \[
+    x_2 \ge x \quad \text{for all } x \in U.
+    \]
+\end{itemize}
+
+A set not bounded below has no minimum, and a set not bounded above has no maximum. Even a bounded set may fail to have a maximum or minimum.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Supremum and Infimum}
+
+\begin{definition}[Supremum and Infimum]
+Let $U \subset \mathbb{Q}$.  
+\begin{itemize}
+    \item An upper bound $c_2 \in \mathbb{Q}$ of $U$ is the \textbf{least upper bound} or \textbf{supremum}, denoted $c_2 = \sup U$, if no $c \in \mathbb{Q}$ with $c < c_2$ is an upper bound.
+    \item A lower bound $c_1 \in \mathbb{Q}$ of $U$ is the \textbf{greatest lower bound} or \textbf{infimum}, denoted $c_1 = \inf U$, if no $c \in \mathbb{Q}$ with $c > c_1$ is a lower bound.
+\end{itemize}
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}{Naive Set Theory and Russell's Paradox}
+\textbf{Naive Set Theory:} You can define a set by any property. A set is any collection of distinct objects.
+\textbf{Problem: Russell's Paradox} arises when considering the set of all sets that do not contain themselves:
+\[
+S = \{ x \mid x \text{ is a set and } x \notin x \}
+\]
+
+\textbf{Question:} Is $S \in S$?
+
+\begin{itemize}
+    \item If $S \in S$, then by definition $S \notin S$.
+    \item If $S \notin S$, then by definition $S \in S$.
+\end{itemize}
+
+\textbf{Conclusion:} Contradiction arises. Not every property can define a set freely. $\Rightarrow$ \textbf{Implication:} Motivates axiomatic set theory (e.g., Zermelo-Fraenkel Set Theory, ZFC) to avoid such paradoxes.
+\end{frame}
+
+\begin{frame}{Cantor's Paradox ()}
+\textbf{Cantor's Theorem:} For any set $A$,
+\[
+|A| < |P(A)|,
+\]
+where $P(A)$ is the power set of $A$, i.e., the set of all subsets of $A$.
+
+\textbf{Consider:} The "set of all sets" $U$.
+
+\begin{itemize}
+    \item By definition, $U$ contains every set, so $P(U) \subseteq U$.
+    \item By Cantor's Theorem, $|U| < |P(U)|$.
+\end{itemize}
+
+\textbf{Contradiction:} $|U| \ge |P(U)|$ from definition, but $|U| < |P(U)|$ by Cantor.  
+
+\textbf{Conclusion:} There is no "set of all sets". This prevents the paradox.
+\end{frame}
+
+\begin{frame}{Zermelo-Fraenkel Set Theory (ZF)}
+\footnotesize
+\begin{enumerate}
+    \item \textbf{Axiom of Extensionality:} Two sets are equal if they have the same elements.
+    \item \textbf{Axiom of Empty Set:} There exists a set with no elements, denoted $\emptyset$.
+    \item \textbf{Axiom of Pairing:} For any sets $a$ and $b$, there exists a set $\{a,b\}$.
+    \item \textbf{Axiom of Union:} For any set of sets $A$, there exists a set $\bigcup A$ containing all elements of elements of $A$.
+    \item \textbf{Axiom of Power Set:} For any set $A$, there exists a set $P(A)$ of all subsets of $A$.
+    \item \textbf{Axiom of Infinity:} There exists a set containing $\emptyset$ and closed under successor.
+    \item \textbf{Axiom of Replacement:} The image of a set under any definable function is also a set.
+    \item \textbf{Axiom of Separation (Specification):} For any set $A$ and property $P$, $\{x \in A \mid P(x)\}$ is a set.
+    \item \textbf{Axiom of Regularity (Foundation):} Every non-empty set $A$ contains an element disjoint from $A$.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Exercise}
+\begin{block}{Exercise 03}
+    Let $A,B,C$ be three statements. Use truth table to prove that
+    $$
+    (A \lor B) \land C \equiv (A \land C) \lor (B \land C)
+    $$
+    Let $A,B,C$ be three sets. Prove that (may use Venn Diagram)
+    $$
+    (A \cup B) \cap C = (A \cap C) \cup (B \cap C)
+    $$
+\end{block}
+\end{frame}
+
+
+\section{The Natural Numbers}
+\begin{frame}{Algebra Structure}
+\begin{definition}[Internal and External Composition Laws]
+Let $S$ and $S'$ be two sets.
+\begin{enumerate}
+    \item An \textbf{internal composition law} $\circ$ is a map
+    \[
+        S \times S \to S, \quad (x,y) \mapsto x \circ y.
+    \]
+    \item An \textbf{external composition law} $\ast$ is a map
+    \[
+        S' \times S \to S, \quad (\alpha,x) \mapsto \alpha \ast x.
+    \]
+\end{enumerate}
+\end{definition}
+\end{frame}
+
+\begin{comment}
+\begin{frame}{Algebra Structure}
+\begin{definition}[Group]
+A \textbf{group} is a pair $(G,+)$ consisting of a set $G$ and an internal composition law $+$ such that:
+\begin{enumerate}
+    \item \textbf{Associativity:} $a + (b + c) = (a + b) + c$ for all $a,b,c \in G$.
+    \item \textbf{Existence of identity:} there exists $e_+ \in G$ such that $a + e_+ = e_+ + a = a$ for all $a \in G$.
+    \item \textbf{Existence of inverse:} for each $a \in G$ there exists $a^{-1} \in G$ such that $a + a^{-1} = a^{-1} + a = e_+$.
+\end{enumerate}
+A group is \textbf{abelian} if it also satisfies:
+\begin{enumerate}
+    \item[iv] \textbf{Commutativity:} $a + b = b + a$ for all $a,b \in G$.
+\end{enumerate}
+\end{definition}
+\end{frame}
+
+\begin{frame}{Algebra Structure}
+\begin{definition}[Ring]
+A \textbf{ring} is a triple $(R,+,\times)$ consisting of a set $R$ and two internal composition laws $+$ and $\times$, such that:
+\begin{enumerate}
+    \item $(R,+)$ is an abelian group.
+    \item \textbf{Associativity:} $a \times (b \times c) = (a \times b) \times c$ for all $a,b,c \in R$.
+    \item \textbf{Multiplicative identity:} there exists $e_\times \in R$ such that $a \times e_\times = e_\times \times a = a$ for all $a \in R$.
+    \item \textbf{Distributivity:} $a \times (b + c) = (a \times b) + (a \times c)$ and $(b + c) \times a = (b \times a) + (c \times a)$ for all $a,b,c \in R$.
+\end{enumerate}
+A ring is \textbf{commutative} if it also satisfies:
+\begin{enumerate}
+    \item[v] $a \times b = b \times a$ for all $a,b \in R$.
+\end{enumerate}
+\end{definition}
+\end{frame}
+
+\begin{frame}{Algebra Structure}
+\begin{definition}[Field]
+A \textbf{field} is a commutative ring $(F,+,\times)$ with additive identity $e_+$ and multiplicative identity $e_\times$ such that:
+\begin{enumerate}
+    \item $e_+ \neq e_\times$.
+    \item For every $a \in F \setminus \{ e_+ \}$, there exists $a^{-1} \in F$ such that $a \times a^{-1} = e_\times$.
+\end{enumerate}
+The \textbf{characteristic} of a field is the smallest $n \in \mathbb{N}^*$ such that $n \cdot 1 = 0$, if it exists.
+\end{definition}
+\end{frame}
+\end{comment}
+
+\begin{frame}{Natural Numbers:}
+\textbf{Natural Numbers from ZF Set Theory}
+
+\begin{itemize}
+    \item By the \textbf{Axiom of Infinity}, there exists a set $I$ such that:
+    \begin{itemize}
+        \item $\emptyset \in I$
+        \item For each $x \in I$, $S(x) := x \cup \{x\} \in I$
+    \end{itemize}
+    \item Define natural numbers recursively:
+    \[
+        0 := \emptyset, \quad 1 := S(0) = \{\emptyset\}, \quad 2 := S(1) = \{\emptyset, \{\emptyset\}\}, \dots
+    \]
+    \item The set of natural numbers $\mathbb{N}$ is the smallest set containing $0$ and closed under $S$.
+\end{itemize}
+\end{frame}
+
+%--------------------------------
+\begin{frame}{Natural Numbers}
+\textbf{Recursive Definition of Addition on $\mathbb{N}$}
+
+\begin{itemize}
+    \item \textbf{Base case:} 
+    \[
+        \forall n \in \mathbb{N}, \quad n + 0 := n
+    \]
+    \item \textbf{Successor step:} 
+    \[
+        \forall n,m \in \mathbb{N}, \quad n + S(m) := S(n + m)
+    \]
+    \item \textit{Explanation:} $S(m) = m \cup \{m\}$ is the successor of $m$, so addition recursively “adds 1” using the successor operation.
+\end{itemize}
+\end{frame}
+
+%--------------------------------
+\begin{frame}{Natural Numbers}
+\textbf{Recursive Definition of Multiplication on $\mathbb{N}$}
+
+\begin{itemize}
+    \item \textbf{Base case:} 
+    \[
+        \forall n \in \mathbb{N}, \quad n \cdot 0 := 0
+    \]
+    \item \textbf{Successor step:} 
+    \[
+        \forall n,m \in \mathbb{N}, \quad n \cdot S(m) := (n \cdot m) + n
+    \]
+    \item \textit{Explanation:} Multiplication is defined as repeated addition, consistent with the intuitive meaning of natural numbers.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Mathematical Induction}
+
+\begin{definition}[Principle of Mathematical Induction]
+Let $A(n)$ be a statement depending on $n \in \mathbb{N}$ and let $n_0 \in \mathbb{N}$.  
+To prove $A(n)$ for all $n \ge n_0$, it suffices to verify:
+
+\begin{enumerate}
+    \item \textbf{Base Case:} $A(n_0)$ is true.
+    \item \textbf{Inductive Step:} For all $n \ge n_0$, if $A(n)$ is true, then $A(n+1)$ is true:
+    \[
+    \forall n \in \mathbb{N},\; n \ge n_0 : \quad A(n) \implies A(n+1).
+    \]
+\end{enumerate}
+
+\textbf{Conclusion:} If both conditions hold, $A(n)$ is true for all $n \ge n_0$.
+
+\textit{Remark:} The principle of induction is essentially part of the definition of the natural numbers $\mathbb{N}$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Mathematical Induction}
+
+\begin{exercise}
+Suppose $M$ is a finite set of men.
+
+\textbf{Proposition:} For any $a,b \in M$, $a = b$.
+
+\textbf{Proof (by induction on $|M|$):}
+\begin{enumerate}
+    \item \textbf{Base Case:} If $|M|=1$, the claim is trivially true.
+    \item \textbf{Inductive Step:} Assume true for $n$ men.  
+    Let $|M| = n+1$ and $a,b \in M$.  
+    Define $M_a = M \setminus \{a\}$, $M_b = M \setminus \{b\}$.  
+    Take $c \in M_a \cap M_b$. Then $a = c$, $b = c \implies a = b$.
+\end{enumerate}
+
+\textbf{Question:} Where is the flaw in this proof?
+\end{exercise}
+
+\end{frame}
+
+
+\begin{frame}{References}
+\begin{itemize}
+  \item Horst Hohberger, \textit{math186\_all\_lecture\_slides (2026)}
+  \item Wenxin Chen, \textit{MATH1860J RC}, 25 Fall
+  \item Leqi Tang, \textit{MATH1860J RC}, 25 Fall
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \centering \huge Thanks for Listening! \\
+    \vspace{0.5cm}
+    \centering \large Any questions? Please feel free to ask!
+\end{frame}
+
+\end{document}
