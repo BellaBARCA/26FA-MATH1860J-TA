@@ -63,7 +63,7 @@
 \newtheorem{remark}[theorem]{\translate{Remark}}
 
 \title{MATH1860J Recitation Class 01}
-\subtitle{Foundations: Ch.01-06}
+\subtitle{Foundations: Chapters 01-05}
 \author{Shuhan Yu}
 \institute{SJTU Global College}
 \date{Fall Term 2026}
@@ -329,6 +329,7 @@ Verify the following set-theoretic identities:
 - In general, $A \times B \neq B \times A$.
 \end{frame}
 
+\begin{comment}
 \begin{frame}{Relation}
 
 \begin{definition}
@@ -430,72 +431,7 @@ If \(X\) is \textbf{partially ordered} but not totally ordered, there exist elem
 \end{remark}
 
 \end{frame}
-
-\begin{frame}{Order Relations}
-
-\begin{definition}[Upper and Lower Bounds]
-Let $(X,\le)$ be a partially ordered set and $A \subseteq X$ nonempty.  
-\begin{itemize}
-    \item An element $s \in X$ is an \textbf{upper bound} of $A$ if $a \le s$ for all $a \in A$.
-    \item An element $s \in X$ is a \textbf{lower bound} of $A$ if $a \ge s$ for all $a \in A$.
-    \item $A$ is \textbf{bounded above} if it has an upper bound, \textbf{bounded below} if it has a lower bound, and \textbf{bounded} if both.
-\end{itemize}
-\end{definition}
-\end{frame}
-
-\begin{frame}{Bounded Set}
-
-\begin{definition}[Bounded and Unbounded Sets]
-A set $U \subset \mathbb{Q}$ is \textbf{bounded} if there exists a constant $c \in \mathbb{Q}$ such that
-\[
-|x| \le c \quad \text{for all } x \in U.
-\]
-If no such $c$ exists, we say that $U$ is \textbf{unbounded}.  
-
-Numbers $c_1$ and $c_2$ such that 
-\[
-c_1 \le x \le c_2 \quad \text{for all } x \in U
-\] 
-are called \textbf{lower and upper bounds} of $U$, respectively.  
-
-A set $U \subset \mathbb{Q}$ is \textbf{bounded above} if it has an upper bound, and \textbf{bounded below} if it has a lower bound.
-\end{definition}
-
-\end{frame}
-
-
-\begin{frame}{Maximum and Minimum}
-
-\begin{definition}[Maximum and Minimum]
-Let $U \subset \mathbb{Q}$.  
-\begin{itemize}
-    \item $x_1 \in U$ is the \textbf{minimum} of $U$, denoted $x_1 = \min U$, if
-    \[
-    x_1 \le x \quad \text{for all } x \in U.
-    \]
-    \item $x_2 \in U$ is the \textbf{maximum} of $U$, denoted $x_2 = \max U$, if
-    \[
-    x_2 \ge x \quad \text{for all } x \in U.
-    \]
-\end{itemize}
-
-A set not bounded below has no minimum, and a set not bounded above has no maximum. Even a bounded set may fail to have a maximum or minimum.
-\end{definition}
-
-\end{frame}
-
-\begin{frame}{Supremum and Infimum}
-
-\begin{definition}[Supremum and Infimum]
-Let $U \subset \mathbb{Q}$.  
-\begin{itemize}
-    \item An upper bound $c_2 \in \mathbb{Q}$ of $U$ is the \textbf{least upper bound} or \textbf{supremum}, denoted $c_2 = \sup U$, if no $c \in \mathbb{Q}$ with $c < c_2$ is an upper bound.
-    \item A lower bound $c_1 \in \mathbb{Q}$ of $U$ is the \textbf{greatest lower bound} or \textbf{infimum}, denoted $c_1 = \inf U$, if no $c \in \mathbb{Q}$ with $c > c_1$ is a lower bound.
-\end{itemize}
-\end{definition}
-
-\end{frame}
-
+\end{comment}
 
 \begin{frame}{Naive Set Theory and Russell's Paradox}
 \textbf{Naive Set Theory:} You can define a set by any property. A set is any collection of distinct objects.
@@ -514,14 +450,16 @@ S = \{ x \mid x \text{ is a set and } x \notin x \}
 \textbf{Conclusion:} Contradiction arises. Not every property can define a set freely. $\Rightarrow$ \textbf{Implication:} Motivates axiomatic set theory (e.g., Zermelo-Fraenkel Set Theory, ZFC) to avoid such paradoxes.
 \end{frame}
 
-\begin{frame}{Cantor's Paradox ()}
+\begin{frame}{Cantor's Paradox (Supplement)}
+\textbf{Prove that ``the set of all sets'' does not exist.} \\
+\vspace{0.5em}
 \textbf{Cantor's Theorem:} For any set $A$,
 \[
 |A| < |P(A)|,
 \]
 where $P(A)$ is the power set of $A$, i.e., the set of all subsets of $A$.
 
-\textbf{Consider:} The "set of all sets" $U$.
+\textbf{Consider:} The ``set of all sets'' $U$.
 
 \begin{itemize}
     \item By definition, $U$ contains every set, so $P(U) \subseteq U$.
@@ -530,7 +468,7 @@ where $P(A)$ is the power set of $A$, i.e., the set of all subsets of $A$.
 
 \textbf{Contradiction:} $|U| \ge |P(U)|$ from definition, but $|U| < |P(U)|$ by Cantor.  
 
-\textbf{Conclusion:} There is no "set of all sets". This prevents the paradox.
+\textbf{Conclusion:} There is no ``set of all sets''. This prevents the paradox.
 \end{frame}
 
 \begin{frame}{Zermelo-Fraenkel Set Theory (ZF)}
@@ -562,7 +500,8 @@ where $P(A)$ is the power set of $A$, i.e., the set of all subsets of $A$.
 \end{frame}
 
 
-\section{The Natural Numbers}
+\section{Natural Numbers and Mathematical Induction}
+\begin{comment}
 \begin{frame}{Algebra Structure}
 \begin{definition}[Internal and External Composition Laws]
 Let $S$ and $S'$ be two sets.
@@ -579,7 +518,6 @@ Let $S$ and $S'$ be two sets.
 \end{definition}
 \end{frame}
 
-\begin{comment}
 \begin{frame}{Algebra Structure}
 \begin{definition}[Group]
 A \textbf{group} is a pair $(G,+)$ consisting of a set $G$ and an internal composition law $+$ such that:
@@ -623,7 +561,7 @@ The \textbf{characteristic} of a field is the smallest $n \in \mathbb{N}^*$ such
 \end{frame}
 \end{comment}
 
-\begin{frame}{Natural Numbers:}
+\begin{frame}{Natural Numbers}
 \textbf{Natural Numbers from ZF Set Theory}
 
 \begin{itemize}
@@ -632,12 +570,17 @@ The \textbf{characteristic} of a field is the smallest $n \in \mathbb{N}^*$ such
         \item $\emptyset \in I$
         \item For each $x \in I$, $S(x) := x \cup \{x\} \in I$
     \end{itemize}
-    \item Define natural numbers recursively:
+    \item \textbf{Define} natural numbers \textbf{recursively}:
     \[
         0 := \emptyset, \quad 1 := S(0) = \{\emptyset\}, \quad 2 := S(1) = \{\emptyset, \{\emptyset\}\}, \dots
     \]
     \item The set of natural numbers $\mathbb{N}$ is the smallest set containing $0$ and closed under $S$.
+    \item Ordering: The natural numbers are well-ordered.
 \end{itemize}
+\vspace{0.5em}
+\textbf{Comment:}
+$\{\cdot\}$ is packaging and $\cup$ is stacking. \\
+Each new number encompasses all its previous history and incorporates ``the previous self'' as a new element. This is why natural numbers have sequentiality.
 \end{frame}
 
 %--------------------------------
@@ -653,7 +596,14 @@ The \textbf{characteristic} of a field is the smallest $n \in \mathbb{N}^*$ such
     \[
         \forall n,m \in \mathbb{N}, \quad n + S(m) := S(n + m)
     \]
-    \item \textit{Explanation:} $S(m) = m \cup \{m\}$ is the successor of $m$, so addition recursively “adds 1” using the successor operation.
+\end{itemize}
+\textit{Explanation:} $S(m) = m \cup \{m\}$ is the successor of $m$, so addition recursively “adds 1” using the successor operation. \\
+\vspace{0.5em}
+\textbf{Properties of addition:}
+\begin{itemize}
+    \item Commutativity: $n + m = m + n$
+    \item Associativity: $(n + m) + k = n + (m + k)$
+    \item Identity/Existence of a neutral element: $n + 0 = n$     
 \end{itemize}
 \end{frame}
 
@@ -670,7 +620,15 @@ The \textbf{characteristic} of a field is the smallest $n \in \mathbb{N}^*$ such
     \[
         \forall n,m \in \mathbb{N}, \quad n \cdot S(m) := (n \cdot m) + n
     \]
-    \item \textit{Explanation:} Multiplication is defined as repeated addition, consistent with the intuitive meaning of natural numbers.
+\end{itemize}
+\textit{Explanation:} Multiplication is defined as repeated addition, consistent with the intuitive meaning of natural numbers. \\
+\vspace{0.5em}
+\textbf{Properties of multiplication:}
+\begin{itemize}
+    \item Commutativity: $n \cdot m = m \cdot n$
+    \item Associativity: $(n \cdot m) \cdot k = n \cdot (m \cdot k)$
+    \item Identity/Existence of a neutral element: $n \cdot 1 = n$  
+    \item Distributivity: $n \cdot (m + k) = (n \cdot m) + (n \cdot k)$   
 \end{itemize}
 \end{frame}
 
@@ -689,15 +647,13 @@ To prove $A(n)$ for all $n \ge n_0$, it suffices to verify:
 \end{enumerate}
 
 \textbf{Conclusion:} If both conditions hold, $A(n)$ is true for all $n \ge n_0$.
-
-\textit{Remark:} The principle of induction is essentially part of the definition of the natural numbers $\mathbb{N}$.
 \end{definition}
-
+\textbf{Remark:} The principle of induction is essentially part of the definition of the natural numbers $\mathbb{N}$.
 \end{frame}
 
 \begin{frame}{Mathematical Induction}
 
-\begin{exercise}
+\begin{block}{Exercise 04}
 Suppose $M$ is a finite set of men.
 
 \textbf{Proposition:} For any $a,b \in M$, $a = b$.
@@ -712,23 +668,323 @@ Suppose $M$ is a finite set of men.
 \end{enumerate}
 
 \textbf{Question:} Where is the flaw in this proof?
-\end{exercise}
+\end{block}
+\begin{block}{Exercise 05}
+    Use mathematical induction, find the general term formula for the Fibonacci sequence defined recursively by:
+    \[
+    F_0 = 0, \quad F_1 = 1, \quad F_n = F_{n-1} + F_{n-2} \text{ for } n \ge 2.
+    \]
+\end{block}
+\end{frame}
+
+\section{Rational Numbers}
+\begin{frame}{Rational Numbers and Basic Properties}
+    The set of rational numbers is introduced from set theory as
+    \[
+    \mathbb{Q} := \left\{ \frac{p}{q} \;\middle|\; p,q \in \mathbb{Z}, q \ne 0 \right\}.
+    \]
+    Recap the basic properties of rational numbers:
+    \vspace{0.2cm}
+    \begin{columns}[t]
+    \column{0.5\textwidth}
+    \textbf{Properties for Addition:}
+    \begin{itemize}
+        \item Commutativity: $a + b = b + a$
+        \item Associativity: $(a + b) + c = a + (b + c)$
+        \item Existence of additive identity: $a + 0 = a$
+        \item Existence of additive inverse: $a + (-a) = 0$
+    \end{itemize}
+    \column{0.5\textwidth}
+    \textbf{Properties for Multiplication:}
+    \begin{itemize}
+        \item Commutativity: $a \cdot b = b \cdot a$
+        \item Associativity: $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+        \item Existence of multiplicative identity: $a \cdot 1 = a$
+        \item Existence of multiplicative inverse: $a \cdot a^{-1} = 1$ for $a \ne 0$
+        \item Distributivity: $a \cdot (b + c) = a \cdot b + a \cdot c$
+    \end{itemize}
+    \end{columns}
+\end{frame}
+\begin{frame}{Absolute Value and Triangle Inequality}
+    \begin{definition}[Absolute Value]
+        The \textbf{absolute value} (also called the \textbf{modulus}) of a rational number $x$ is defined as
+        \[
+        |x| := \begin{cases}
+            x, & \text{if } x \ge 0, \\
+            -x, & \text{if } x < 0.
+        \end{cases}
+        \]
+    \end{definition}
+    \begin{theorem}[Triangle Inequality]
+        For any $x,y \in \mathbb{Q}$, the following inequality holds:
+        \[
+        |x + y| \le |x| + |y|.
+        \]
+        Inverse Triangle Inequality:
+        \[
+        ||x| - |y|| \le |x - y|.
+        \]
+    \end{theorem}
+\end{frame}
+\begin{frame}{Trichotomy Law and Closedness}
+    We assume that we know what a \textbf{strictly positive} rational number is, i.e., that there exists a set $P$ with the property that for every number $a \in \mathbb{Q}$, one and only one of the following holds:
+    \begin{enumerate}
+        \item $a \in P$ (i.e., $a$ is strictly positive),
+        \item $-a \in P$ (i.e., $a$ is strictly negative),
+        \item $a = 0$.
+    \end{enumerate}
+    This is known as the \textit{\textbf{trichotomy law}} for rational numbers \textbf{(P10)}. It allows us to compare any two rational numbers and determine their order. \\
+    \vspace{0.5cm}
+    We also assume that the set of positive numbers is \textbf{closed} under addition and multiplication:
+    \begin{enumerate}
+        \item If $a,b \in P$, then $a + b \in P$. \textbf{(P11)}
+        \item If $a,b \in P$, then $a \cdot b \in P$. \textbf{(P12)}
+    \end{enumerate}
+\end{frame}
+%--------------------------------
+\section{Real Numbers}
+
+\begin{frame}{Bounds and Boundedness}
+
+\begin{definition}[Upper and Lower Bounds]
+Let $(X,\le)$ be a partially ordered set and $A \subseteq X$ be nonempty.  
+\begin{itemize}
+    \item An element $s \in X$ is an \textbf{upper bound} of $A$ if $a \le s$ for all $a \in A$.
+    \item An element $s \in X$ is a \textbf{lower bound} of $A$ if $a \ge s$ for all $a \in A$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Bounded Sets in $\mathbb{Q}$]
+A set \( U \subset \mathbb{Q} \) is said to be \textbf{bounded} if there exists a constant \( c \in \mathbb{Q} \) such that
+\[
+|x| \le c \text{ for all } x \in U.
+\]
+If this is not the case, we say that \( U \) is \textbf{unbounded}.
+\end{definition}
+We say that a set \( U \subset \mathbb{Q} \) is \textbf{bounded above} if there exists an upper bound
+for \( U \), and \textbf{bounded below} if there exists a lower bound for \( U \).
+
+\end{frame}
+
+\begin{frame}{Maximum and Minimum, Supremum and Infimum}
+
+\begin{definition}[Maximum and Minimum]
+Let $U \subset \mathbb{Q}$.  
+\begin{itemize}
+    \item $x_1 \in U$ is the \textbf{minimum} of $U$ ($x_1 = \min U$), if $x_1 \le x$ for all $x \in U$.
+    \item $x_2 \in U$ is the \textbf{maximum} of $U$ ($x_2 = \max U$), if $x_2 \ge x$ for all $x \in U$.
+\end{itemize}
+\end{definition}
+\textbf{Note:} A set not bounded below has no minimum, and a set not bounded above has no maximum. \underline{Even a bounded set may not have a max or min.}
+\begin{definition}[Supremum and Infimum]
+Let $U \subset \mathbb{Q}$.  
+\begin{itemize}
+    \item An upper bound $c_2 \in \mathbb{Q}$ of $U$ is the \textbf{least upper bound} or \textbf{supremum}, denoted $c_2 = \sup U$, if no $c \in \mathbb{Q}$ with $c < c_2$ is an upper bound.
+    \item A lower bound $c_1 \in \mathbb{Q}$ of $U$ is the \textbf{greatest lower bound} or \textbf{infimum}, denoted $c_1 = \inf U$, if no $c \in \mathbb{Q}$ with $c > c_1$ is a lower bound.
+\end{itemize}
+\end{definition}
 
 \end{frame}
 
 
-\begin{frame}{References}
+\begin{frame}{Greatest Lower and Least Upper Bounds of Sets}
+
+\begin{definition}
+
+We say that an upper bound \( c_2 \in \mathbb{Q} \) of a set \( U \subset \mathbb{Q} \) is
+the \textbf{least upper bound} or \textbf{supremum} of \( U \) if no \( c \in \mathbb{Q} \) with \( c < c_2 \) is an
+upper bound. We then write \( c_2 =: \sup U \).
+
+\par\vspace{0.5em}
+We say that a lower bound \( c_1 \in \mathbb{Q} \) is the \textbf{greatest lower bound} or
+\textbf{infimum} of \( U \) if no \( c \in \mathbb{Q} \) with \( c > c_1 \) is a lower bound.
+We then write \( c_1 =: \inf U \).
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}{Naive Real Number}
+\textbf{Problem: \underline{Rational numbers are insufficient.}}\\
+\vspace{0.2cm}
+\begin{centering}
+    $\downarrow$ \\
+\end{centering}
+\vspace{0.2cm}
+We define the set of real numbers \( \mathbb{R} \) as the smallest extension of the
+rational numbers \( \mathbb{Q} \) such that the following property holds:
+
+\begin{block}{Least Upper Bound Property (P13)}
+If \( A \subset \mathbb{R} \), \( A \neq \emptyset \), and \( A \) is bounded above,  
+then there exists a least upper bound for \( A \) in \( \mathbb{R} \).
+\end{block}
+
+We call all real numbers that are not rational ``\textbf{irrational numbers}''.
+\end{frame}
+
+
+\begin{frame}{Subsets of the Real Numbers}
+
+\begin{definition}
+Let \( A \subset \mathbb{R} \) be any set.
+
+\begin{enumerate}[(i)]
+\item We call \( x \in \mathbb{R} \) an \textbf{interior point} of \( A \) if there exists some \( \varepsilon > 0 \)
+such that the interval \( (x - \varepsilon,\, x + \varepsilon) \subset A \).
+The set of all interior points of \( A \) is denoted by \( \mathrm{int}\,A \).
+
+\item We call \( x \in \mathbb{R} \) an \textbf{exterior point} of \( A \) if there exists some \( \varepsilon > 0 \)
+such that \( (x - \varepsilon,\, x + \varepsilon) \cap A = \emptyset \).
+
+\item We call \( x \in \mathbb{R} \) a \textbf{boundary point} of \( A \) if for every \( \varepsilon > 0 \),
+both \( (x - \varepsilon,\, x + \varepsilon) \cap A \neq \emptyset \) and
+\( (x - \varepsilon,\, x + \varepsilon) \cap A^{c} \neq \emptyset \).
+The set of all boundary points of \( A \) is denoted by \( \partial A \).
+
+\item We call \( x \in \mathbb{R} \) an \textbf{accumulation point} of \( A \) if for every \( \varepsilon > 0 \),
+\( (x - \varepsilon,\, x + \varepsilon) \cap (A \setminus \{x\}) \neq \emptyset \).
+\end{enumerate}
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}{Subsets of the Real Numbers}
+
+\begin{definition}
+\begin{enumerate}
+\item A set \( A \subset \mathbb{R} \) is called \textbf{open} if all points of \( A \) are interior points;  
+that is, if \( A = \mathrm{int}\,A \).
+
+\item A set \( A \subset \mathbb{R} \) is called \textbf{closed} if its complement \( \mathbb{R} \setminus A \) is open.
+
+\item The set
+\[
+\overline{A} := A \cup \partial A
+\]
+is called the \textbf{closure} of \( A \).  
+It can be shown that \( \overline{A} \) is the smallest closed set that contains \( A \).
+\end{enumerate}
+\end{definition}
+
+\begin{block}{Exercise 06}
+    Show that \(\mathbb{R} = \mathrm{int}\,A \;\cup\; \mathrm{ext}\,A \;\cup\; \partial A\), and think about the sets that are both open and closed.
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Subsets of the Real Numbers}
+
+\begin{block}{Exercise 07}
+    Proof that:
+\begin{enumerate}[(a)]
+\item For any collection \( \{ G_\alpha \} \) of open sets, the union \( \bigcup_\alpha G_\alpha \) is open.
+
+\item For any collection \( \{ F_\alpha \} \) of closed sets, the intersection \( \bigcap_\alpha F_\alpha \) is closed.
+\hfill (2.21)
+
+\item For any finite collection \( G_1, G_2, \dots, G_n \) of open sets, the intersection
+\(\bigcap_{i=1}^n G_i\) is open.
+
+\item For any finite collection \( F_1, F_2, \dots, F_n \) of closed sets, the union
+\(\bigcup_{i=1}^n F_i\) is closed.
+\end{enumerate}
+\end{block}
+\end{frame}
+\begin{comment}
+\section{Complex Numbers}
+\begin{frame}{Complex Numbers}
+We define addition in \(\mathbb{C}\) by
+\[
+(a_1, b_1) + (a_2, b_2) := (a_1 + a_2,\, b_1 + b_2),
+\]
+so in particular the sum of two real numbers is again a real number.  
+It is straightforward to verify that properties (P1)–(P4) hold for this addition.
+
+Multiplication is defined as
+\[
+(a_1, b_1) \cdot (a_2, b_2) := (a_1 a_2 - b_1 b_2,\, a_1 b_2 + a_2 b_1).
+\]
+This multiplication satisfies axioms (P5)–(P8), and together with addition also satisfies (P9).  
+The neutral element is \((1,0)\), as expected, while the inverse element is slightly more involved.
+
+\end{frame}
+
+
+\begin{frame}{Complex Numbers}
+
+\textbf{Recall:} A binary relation \(R\) on a set \(S\) is a \textbf{total order} if it is
+\begin{itemize}
+    \item \textbf{Reflexive:} \(x R x\) for all \(x \in S\)
+    \item \textbf{Anti-symmetric:} \(x R y\) and \(y R x \implies x = y\)
+    \item \textbf{Transitive:} \(x R y\) and \(y R z \implies x R z\)
+    \item \textbf{Connected:} For any \(x, y \in S\), either \(x R y\) or \(y R x\)
+\end{itemize}
+
+\textbf{Question:} Does there exist a total order on \(\mathbb{C}\)?  
+
+\textbf{Observation:} People often say \emph{complex numbers cannot be ordered}.  
+
+\textbf{Reason: Algebraic Compatibility}
+\begin{itemize}
+    \item Suppose there exists a total order \(\le\) on \(\mathbb{C}\) compatible with addition and multiplication.
+    \item Consider the imaginary unit \(i\):
+    \begin{itemize}
+        \item If \(0 \le i\), then \(0 \le i^2 = -1\) — contradiction.
+        \item If \(i \le 0\), then \(i^2 = -1 \ge 0\) — also contradiction.
+    \end{itemize}
+    \item Hence, no total order on \(\mathbb{C}\) can respect its algebraic structure.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Complex Numbers}
+
+\begin{definition}
+The \textbf{modulus} or \textbf{absolute value} of \(z\) is defined by
+\[
+|z| := \sqrt{a^2 + b^2} = \sqrt{z \cdot \overline{z}},
+\] 
+\end{definition}
+
+\begin{definition}
+The \textbf{open ball} of radius \(R\) centered at \(z_0\) is
+\[
+B_R(z_0) := \{ z \in \mathbb{C} : |z - z_0| < R \}.
+\]
+A set \(\mathcal{S} \subset \mathbb{C}\) is called \textbf{bounded} if there exists some \(R > 0\) such that
+\[
+\mathcal{S} \subset B_R(0).
+\]
+\end{definition}
+
+\end{frame}
+\end{comment}
+
+\begin{frame}{References and What's Next}
+\large \textbf{References:}
+\vspace{0.5em}
 \begin{itemize}
   \item Horst Hohberger, \textit{math186\_all\_lecture\_slides (2026)}
   \item Wenxin Chen, \textit{MATH1860J RC}, 25 Fall
   \item Leqi Tang, \textit{MATH1860J RC}, 25 Fall
 \end{itemize}
+\vspace{1cm}
+\large \textbf{To be continued...} \\
+\vspace{0.5em}
+\begin{itemize}
+    \item Complex Numbers
+    \item Functions and Maps
+    \item Sequences
+\end{itemize}
 \end{frame}
 
 \begin{frame}
-    \centering \huge Thanks for Listening! \\
+    \begin{center}
+    \huge \textbf{Thanks for Listening!} \\
     \vspace{0.5cm}
-    \centering \large Any questions? Please feel free to ask!
+    \large \textbf{Any questions? Please feel free to ask!} \\
+    \end{center}
 \end{frame}
 
 \end{document}
