@@ -106,8 +106,8 @@ About me:
 \begin{itemize}
     \item \textbf{Shuhan Yu}: Sophomore student majoring in ECE at GC.
     \item \textbf{Email:} \texttt{barca0927@sjtu.edu.cn}
-    \item \textbf{Office Hours:} 
-    \item \textbf{Interest:} Quantitative Trading, Machine Learning, and Geoscience.
+    \item \textbf{Office Hours:} Every Monday, 20:20-22:20, LBL 326E.
+    \item \textbf{Interest:} Machine Learning, optical communication and geoscience.
 \end{itemize}
 \vspace{0.5em}
 About Honors Mathematics Sequence (8 series):
@@ -181,7 +181,7 @@ With the basic operation laws established, we can use them to simplify and analy
 \begin{itemize}
     \item $A \to B \equiv \lnot B \to \lnot A$: equivalence with the \textbf{contrapositive}.  
     \item $A \to B \equiv \lnot(A \land \lnot B)$: useful in \textbf{proof by contradiction}.  
-    \item $A \to B \equiv \lnot A \lor B$: converts the implication into a disjunction, often used in algebraic manipulation.  
+    \item $A \to B \equiv \lnot A \lor B$: converts the implication into a disjunction, often used in algebraic manipulation (only using $\land,\lor,\lnot$).  
 \end{itemize}
 \vspace{0.5em}
 \textbf{Important logical equivalences and laws:}
@@ -242,6 +242,8 @@ $$
     \item Latter, there exists a fixed $y$ such that $E(x,y)$ is true for all $x$. 
 \end{itemize}
 \vspace{0.5em}
+Homework Exercise 1.3: 
+\includegraphics[width=0.9\textwidth]{E1_3.png}
 \end{frame}
 
 \begin{frame}[t]
@@ -249,7 +251,7 @@ $$
 
 \begin{block}{Exercise 01}
     \begin{enumerate}
-        \item Show that \[(A \land B) \to C \;\;\equiv\;\; A \to B \to C \;\;\equiv\;\; B \to A \to C.\]
+        \item Show that: $$A \Leftrightarrow  B \equiv \lnot((\lnot A \land B) \lor (\lnot B \land A)) $$
         \item Give the negations of the statements: $$ \forall x \in X, \exists y \in Y:\, E(x,y,z)$$
         $$\forall \epsilon > 0, \exists \delta > 0:\, |x - a| < \delta \implies |f(x) - f(a)| < \epsilon$$
     \end{enumerate}
@@ -280,29 +282,6 @@ If \(A \cap B = \emptyset\), we say that \(A\) and \(B\) are \textbf{disjoint}. 
 \textbf{Remark:} Distinguish between \textbf{Difference}(\(A \setminus B\)) and \textbf{Quotient}(\(A / B\))    
 \end{frame}
 
-
-\begin{frame}{Set Basics and Operations}
-
-\begin{block}{Exercise 02}
-Verify the following set-theoretic identities:
-
-\begin{enumerate}
-    \item $(A \cup B)^c = A^c \cap B^c$
-    \item $(A \cap B)^c = A^c \cup B^c$
-    \item $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
-    \item $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
-    \item $(A \cup B) \setminus C = (A \setminus C) \cup (B \setminus C)$
-    \item $(A \cap B) \setminus C = (A \setminus C) \cap (B \setminus C)$
-    \item $A \setminus (B \cup C) = (A \setminus B) \cap (A \setminus C)$
-    \item $A \setminus (B \cap C) = (A \setminus B) \cup (A \setminus C)$
-\end{enumerate}
-
-\textbf{Hint:} Use element-wise reasoning and draw a Venn diagram.
-\end{block}
-
-\end{frame}
-
-
 \begin{frame}{Power Set and Cardinality}
 
 \begin{itemize}
@@ -310,8 +289,8 @@ Verify the following set-theoretic identities:
     \item \textbf{Cardinality:} $|A|$ is the number of elements in set $A$
     \item \textbf{Finite Set:} A set with a finite number of elements
     \item \textbf{Infinite Set:} A set with an infinite number of elements
-    \item \textbf{Countable Set:} A set that can be put into one-to-one correspondence with the natural numbers
-    \item \textbf{Uncountable Set:} A set that cannot be put into one-to-one correspondence with the natural numbers
+    \item \textbf{Countable Set:} A set that can be put into one-to-one correspondence with the natural numbers (e.g., $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$)
+    \item \textbf{Uncountable Set:} A set that cannot be put into one-to-one correspondence with the natural numbers (e.g., $\mathbb{R}$)
     \item \textbf{Cardinality of Power Set:} $|P(A)| = 2^{|A|}$ if $A$ is finite
 \end{itemize}
 
@@ -327,6 +306,21 @@ Verify the following set-theoretic identities:
 \vspace{0.5em}
 - Note that \((a,b) = (c,d) \iff a = c \wedge b = d\).\\
 - In general, $A \times B \neq B \times A$.
+\end{frame}
+
+\begin{frame}{Set Theory}
+
+\begin{block}{Exercise 02 (True or False)}
+    Determine whether each statement is true or false. Justify your answer.
+    \begin{enumerate}
+        \item For any sets $A$, $B$, and $C$, $A \setminus (B \cup C) = (A \setminus B) \cap (A \setminus C)$
+        \item If $A$ and $B$ are finite sets, then $|A \times B| = |A| \cdot |B|$.
+        \item For any sets $A$, $B$, and $C$, if $A \times C = B \times C$ and $C \neq \emptyset$, then $A = B$.
+        \item For any set $A$, if $|A| = n$, then $|P(P(A))| = 2^{2^n}$.
+    \end{enumerate}
+
+\end{block}
+
 \end{frame}
 
 \begin{comment}
@@ -820,8 +814,11 @@ then there exists a least upper bound for \( A \) in \( \mathbb{R} \).
 \end{block}
 
 We call all real numbers that are not rational ``\textbf{irrational numbers}''.
-\end{frame}
 
+\begin{block}{Exercise 06}
+    Prove that $\sqrt{2}+\sqrt{3}$ is irrational.
+\end{block}
+\end{frame}
 
 \begin{frame}{Subsets of the Real Numbers}
 
@@ -867,7 +864,7 @@ It can be shown that \( \overline{A} \) is the smallest closed set that contains
 \end{enumerate}
 \end{definition}
 
-\begin{block}{Exercise 06}
+\begin{block}{Exercise 07}
     Show that \(\mathbb{R} = \mathrm{int}\,A \;\cup\; \mathrm{ext}\,A \;\cup\; \partial A\), and think about the sets that are both open and closed.
 \end{block}
 \end{frame}
@@ -875,7 +872,7 @@ It can be shown that \( \overline{A} \) is the smallest closed set that contains
 
 \begin{frame}{Subsets of the Real Numbers}
 
-\begin{block}{Exercise 07}
+\begin{block}{Exercise 08}
     Proof that:
 \begin{enumerate}[(a)]
 \item For any collection \( \{ G_\alpha \} \) of open sets, the union \( \bigcup_\alpha G_\alpha \) is open.
@@ -891,75 +888,17 @@ It can be shown that \( \overline{A} \) is the smallest closed set that contains
 \end{enumerate}
 \end{block}
 \end{frame}
-\begin{comment}
-\section{Complex Numbers}
-\begin{frame}{Complex Numbers}
-We define addition in \(\mathbb{C}\) by
-\[
-(a_1, b_1) + (a_2, b_2) := (a_1 + a_2,\, b_1 + b_2),
-\]
-so in particular the sum of two real numbers is again a real number.  
-It is straightforward to verify that properties (P1)–(P4) hold for this addition.
 
-Multiplication is defined as
-\[
-(a_1, b_1) \cdot (a_2, b_2) := (a_1 a_2 - b_1 b_2,\, a_1 b_2 + a_2 b_1).
-\]
-This multiplication satisfies axioms (P5)–(P8), and together with addition also satisfies (P9).  
-The neutral element is \((1,0)\), as expected, while the inverse element is slightly more involved.
-
-\end{frame}
-
-
-\begin{frame}{Complex Numbers}
-
-\textbf{Recall:} A binary relation \(R\) on a set \(S\) is a \textbf{total order} if it is
-\begin{itemize}
-    \item \textbf{Reflexive:} \(x R x\) for all \(x \in S\)
-    \item \textbf{Anti-symmetric:} \(x R y\) and \(y R x \implies x = y\)
-    \item \textbf{Transitive:} \(x R y\) and \(y R z \implies x R z\)
-    \item \textbf{Connected:} For any \(x, y \in S\), either \(x R y\) or \(y R x\)
-\end{itemize}
-
-\textbf{Question:} Does there exist a total order on \(\mathbb{C}\)?  
-
-\textbf{Observation:} People often say \emph{complex numbers cannot be ordered}.  
-
-\textbf{Reason: Algebraic Compatibility}
-\begin{itemize}
-    \item Suppose there exists a total order \(\le\) on \(\mathbb{C}\) compatible with addition and multiplication.
-    \item Consider the imaginary unit \(i\):
+\begin{frame}{Assignment Problems Q \& A}
     \begin{itemize}
-        \item If \(0 \le i\), then \(0 \le i^2 = -1\) — contradiction.
-        \item If \(i \le 0\), then \(i^2 = -1 \ge 0\) — also contradiction.
+        \item Format and English Usage
+        \item Disjunctive Normal Form
+        \item Truth Table
+        \item Functionally Complete 
+        \item Assignment Group Discussion
+        \item ...Interest in Cantor's Theorem?
     \end{itemize}
-    \item Hence, no total order on \(\mathbb{C}\) can respect its algebraic structure.
-\end{itemize}
-
 \end{frame}
-
-\begin{frame}{Complex Numbers}
-
-\begin{definition}
-The \textbf{modulus} or \textbf{absolute value} of \(z\) is defined by
-\[
-|z| := \sqrt{a^2 + b^2} = \sqrt{z \cdot \overline{z}},
-\] 
-\end{definition}
-
-\begin{definition}
-The \textbf{open ball} of radius \(R\) centered at \(z_0\) is
-\[
-B_R(z_0) := \{ z \in \mathbb{C} : |z - z_0| < R \}.
-\]
-A set \(\mathcal{S} \subset \mathbb{C}\) is called \textbf{bounded} if there exists some \(R > 0\) such that
-\[
-\mathcal{S} \subset B_R(0).
-\]
-\end{definition}
-
-\end{frame}
-\end{comment}
 
 \begin{frame}{References and What's Next}
 \large \textbf{References:}
