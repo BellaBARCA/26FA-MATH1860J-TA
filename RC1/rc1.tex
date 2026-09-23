@@ -738,66 +738,6 @@ Suppose $M$ is a finite set of men.
 %--------------------------------
 \section{Real Numbers}
 
-\begin{frame}{Bounds and Boundedness}
-
-\begin{definition}[Upper and Lower Bounds]
-Let $(X,\le)$ be a partially ordered set and $A \subseteq X$ be nonempty.  
-\begin{itemize}
-    \item An element $s \in X$ is an \textbf{upper bound} of $A$ if $a \le s$ for all $a \in A$.
-    \item An element $s \in X$ is a \textbf{lower bound} of $A$ if $a \ge s$ for all $a \in A$.
-\end{itemize}
-\end{definition}
-
-\begin{definition}[Bounded Sets in $\mathbb{Q}$]
-A set \( U \subset \mathbb{Q} \) is said to be \textbf{bounded} if there exists a constant \( c \in \mathbb{Q} \) such that
-\[
-|x| \le c \text{ for all } x \in U.
-\]
-If this is not the case, we say that \( U \) is \textbf{unbounded}.
-\end{definition}
-We say that a set \( U \subset \mathbb{Q} \) is \textbf{bounded above} if there exists an upper bound
-for \( U \), and \textbf{bounded below} if there exists a lower bound for \( U \).
-
-\end{frame}
-
-\begin{frame}{Maximum and Minimum, Supremum and Infimum}
-
-\begin{definition}[Maximum and Minimum]
-Let $U \subset \mathbb{Q}$.  
-\begin{itemize}
-    \item $x_1 \in U$ is the \textbf{minimum} of $U$ ($x_1 = \min U$), if $x_1 \le x$ for all $x \in U$.
-    \item $x_2 \in U$ is the \textbf{maximum} of $U$ ($x_2 = \max U$), if $x_2 \ge x$ for all $x \in U$.
-\end{itemize}
-\end{definition}
-\textbf{Note:} A set not bounded below has no minimum, and a set not bounded above has no maximum. \underline{Even a bounded set may not have a max or min.}
-\begin{definition}[Supremum and Infimum]
-Let $U \subset \mathbb{Q}$.  
-\begin{itemize}
-    \item An upper bound $c_2 \in \mathbb{Q}$ of $U$ is the \textbf{least upper bound} or \textbf{supremum}, denoted $c_2 = \sup U$, if no $c \in \mathbb{Q}$ with $c < c_2$ is an upper bound.
-    \item A lower bound $c_1 \in \mathbb{Q}$ of $U$ is the \textbf{greatest lower bound} or \textbf{infimum}, denoted $c_1 = \inf U$, if no $c \in \mathbb{Q}$ with $c > c_1$ is a lower bound.
-\end{itemize}
-\end{definition}
-
-\end{frame}
-
-
-\begin{frame}{Greatest Lower and Least Upper Bounds of Sets}
-
-\begin{definition}
-
-We say that an upper bound \( c_2 \in \mathbb{Q} \) of a set \( U \subset \mathbb{Q} \) is
-the \textbf{least upper bound} or \textbf{supremum} of \( U \) if no \( c \in \mathbb{Q} \) with \( c < c_2 \) is an
-upper bound. We then write \( c_2 =: \sup U \).
-
-\par\vspace{0.5em}
-We say that a lower bound \( c_1 \in \mathbb{Q} \) is the \textbf{greatest lower bound} or
-\textbf{infimum} of \( U \) if no \( c \in \mathbb{Q} \) with \( c > c_1 \) is a lower bound.
-We then write \( c_1 =: \inf U \).
-\end{definition}
-
-\end{frame}
-
-
 \begin{frame}{Naive Real Number}
 \textbf{Problem: \underline{Rational numbers are insufficient.}}\\
 \vspace{0.2cm}
@@ -887,6 +827,59 @@ It can be shown that \( \overline{A} \) is the smallest closed set that contains
 \(\bigcup_{i=1}^n F_i\) is closed.
 \end{enumerate}
 \end{block}
+\end{frame}
+
+\begin{frame}{Bounds and Boundedness}
+
+\begin{definition}[Upper and Lower Bounds]
+Let $(X,\le)$ be a partially ordered set and $A \subseteq X$ be nonempty.  
+\begin{itemize}
+    \item An element $s \in X$ is an \textbf{upper bound} of $A$ if $a \le s$ for all $a \in A$.
+    \item An element $s \in X$ is a \textbf{lower bound} of $A$ if $a \ge s$ for all $a \in A$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Bounded Sets in $\mathbb{Q}$]
+A set \( U \subset \mathbb{Q} \) is said to be \textbf{bounded} if there exists a constant \( c \in \mathbb{Q} \) such that
+\[
+|x| \le c \text{ for all } x \in U.
+\]
+If this is not the case, we say that \( U \) is \textbf{unbounded}.
+\end{definition}
+We say that a set \( U \subset \mathbb{Q} \) is \textbf{bounded above} if there exists an upper bound
+for \( U \), and \textbf{bounded below} if there exists a lower bound for \( U \).
+
+\end{frame}
+
+\begin{frame}{Maximum and Minimum, Supremum and Infimum}
+
+\begin{definition}[Maximum and Minimum]
+Let $U \subset \mathbb{Q}$.  
+\begin{itemize}
+    \item $x_1 \in U$ is the \textbf{minimum} of $U$ ($x_1 = \min U$), if $x_1 \le x$ for all $x \in U$.
+    \item $x_2 \in U$ is the \textbf{maximum} of $U$ ($x_2 = \max U$), if $x_2 \ge x$ for all $x \in U$.
+\end{itemize}
+\end{definition}
+\textbf{Note:} A set not bounded below has no minimum, and a set not bounded above has no maximum. \underline{Even a bounded set may not have a max or min.}
+\begin{definition}[Supremum and Infimum]
+Let $U \subset \mathbb{Q}$.  
+\begin{itemize}
+    \item An upper bound $c_2 \in \mathbb{Q}$ of $U$ is the \textbf{least upper bound} or \textbf{supremum}, denoted $c_2 = \sup U$, if no $c \in \mathbb{Q}$ with $c < c_2$ is an upper bound.
+    \item A lower bound $c_1 \in \mathbb{Q}$ of $U$ is the \textbf{greatest lower bound} or \textbf{infimum}, denoted $c_1 = \inf U$, if no $c \in \mathbb{Q}$ with $c > c_1$ is a lower bound.
+\end{itemize}
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Exercise}
+    \begin{definition}[Limit inferior and limit superior]
+        You will meet this in homework.
+    \end{definition}
+    \begin{block}{Exercise 09}
+        \centering
+        \includegraphics[width=1\textwidth]{Ex09.png}
+        Find $max~U, min~U, sup~U,inf~U$. State if one or more of them don't exist.
+    \end{block}
 \end{frame}
 
 \begin{frame}{Assignment Problems Q \& A}
