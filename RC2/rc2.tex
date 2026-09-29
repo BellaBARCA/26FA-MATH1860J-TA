@@ -1,0 +1,614 @@
+\documentclass[dvipsnames]{beamer}
+\usepackage[utf8]{inputenc}      % UTF-8编码支持
+\usepackage[T1]{fontenc}         % 字体编码
+\usepackage{amsmath,amssymb}  % 数学符号和环境（beamer自带proof/\qed，无需amsthm，避免冲突）
+\usepackage{graphicx}            % 图片插入
+\usepackage{xcolor}              % 颜色支持
+\usepackage{tikz}                % TikZ绘图
+\usepackage{framed}              % 框架环境
+\usepackage{tcolorbox}           % 彩色盒子（用于定理环境）
+\usepackage{verbatim}
+\tcbuselibrary{skins, breakable, theorems}   % tcolorbox的定理/皮肤库（enhanced、drop shadow 需要 skins）
+\renewcommand{\familydefault}{\sfdefault}
+\usetheme{Madrid}
+\usecolortheme{dolphin}
+\makeatletter
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.37\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor\expandafter\ifblank\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.37\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.26\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\usebeamertemplate{page number in head/foot}\hspace*{2ex}%
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+\setbeamercolor{titlelike}{bg=Emerald!20, fg=JungleGreen!75!NavyBlue}
+\setbeamerfont{title}{series=\bfseries}
+%title page
+\setbeamercolor{subtitle}{fg=Emerald!70!white}
+\setbeamercolor{author}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{institute}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{date}{fg=Emerald!70!white}
+% footline
+\setbeamercolor{footline}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{author in head/foot}{bg=Emerald!10, fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{title in head/foot}{bg=Emerald!18, fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{page number in head/foot}{bg=Emerald!25, fg=JungleGreen!60!NavyBlue}
+\setbeamercolor{date in head/foot}{fg=Emerald, bg=Emerald!25}
+\setbeamercolor{navigation symbols}{fg=NavyBlue!50}
+% table of contents / items
+\setbeamercolor{structure}{fg=JungleGreen!80!NavyBlue}
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamercolor{section in toc}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{section number projected}{bg=BlueGreen, fg=NavyBlue}
+\setbeamercolor{item projected}{bg=BlueGreen, fg=NavyBlue}
+\setbeamercolor{item}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{subitem}{fg=JungleGreen!80!NavyBlue}
+\setbeamercolor{subsubitem}{fg=JungleGreen!80!NavyBlue}
+\AtBeginDocument{
+  \color{JungleGreen!80!NavyBlue}
+}
+
+% Theorem-like environments not predefined by beamer
+\theoremstyle{plain}
+\newtheorem{proposition}[theorem]{\translate{Proposition}}
+\theoremstyle{definition}
+\newtheorem{exercise}[theorem]{\translate{Exercise}}
+\newtheorem{remark}[theorem]{\translate{Remark}}
+
+\title{MATH1860J Recitation Class 02}
+\subtitle{Foundations: Chapters 06-}
+\author{Shuhan Yu}
+\institute{SJTU Global College}
+\date{Fall Term 2026}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+  {
+    \setbeamercolor{background canvas}{bg=Aquamarine!75}
+    \setbeamercolor{normal text}{fg=white}
+    \setbeamercolor{frametitle}{fg=white}
+
+    \begin{frame}[plain]
+      \vfill
+      {\bfseries\Large\color{white!60}
+        \thesection.~\insertsection
+
+        \vspace{0.3em}
+        \noindent
+        \textcolor{white}{\rule{0.58\paperwidth}{1pt}}%
+        \textcolor{white!45}{\rule{0.27\paperwidth}{1pt}}
+      }
+      \vfill
+    \end{frame}
+  }
+}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+\section{Complex Numbers}
+\begin{frame}{Complex Numbers}
+  \textbf{Problem:} The equation \(x^2 + 1 = 0\) has no solution in \(\mathbb{R}\). \(\mathbb{R}\) is algebraically incomplete.
+
+\vspace{0.2cm}
+\begin{centering}
+    $\downarrow$ \\
+\end{centering}
+\vspace{0.2cm}
+  \textbf{Solution:} Introduce a new number \(i\) such that \(i^2 = -1\). Then the solutions are \(x = i\) and \(x = -i\).
+We define addition in \(\mathbb{C}\) by
+\[
+(a_1, b_1) + (a_2, b_2) := (a_1 + a_2,\, b_1 + b_2),
+\]
+so in particular the sum of two real numbers is again a real number.  
+
+Multiplication is defined as
+\[
+(a_1, b_1) \cdot (a_2, b_2) := (a_1 a_2 - b_1 b_2,\, a_1 b_2 + a_2 b_1).
+\]
+Neutral element: \((1,0)\)
+
+\end{frame}
+
+\begin{frame}{Complex Numbers}
+
+\begin{definition}
+The \textbf{modulus} or \textbf{absolute value} of \(z\) is defined by
+\[
+|z| := \sqrt{a^2 + b^2} = \sqrt{z \cdot \overline{z}},
+\] 
+\end{definition}
+
+\begin{definition}
+The \textbf{open ball} of radius \(R\) centered at \(z_0\) is
+\[
+B_R(z_0) := \{ z \in \mathbb{C} : |z - z_0| < R \}.
+\]
+A set \(\mathcal{S} \subset \mathbb{C}\) is called \textbf{bounded} if there exists some \(R > 0\) such that
+\[
+\mathcal{S} \subset B_R(0).
+\]
+\end{definition}
+
+\end{frame}
+
+\section{Functions and Maps}
+\begin{frame}{Functions}
+
+\begin{definition}
+Let \(X\) and \(Y\) be sets, and let \(P\) be a predicate with domain \(X \times Y\).  
+Define
+\[
+f := \{ (x, y) \in X \times Y : P(x, y) \}.
+\]
+
+Assume \(f\) satisfies the property:
+\[
+(x_1, y_1), (x_2, y_2) \in f, \quad x_1 = x_2 \implies y_1 = y_2.
+\]
+
+Define the \textbf{domain} of \(f\) by
+\[
+\mathrm{dom}\,f := \{ x \in X : \exists y \in Y,\, (x, y) \in f \}.
+\]
+
+Then \(f\) is called a \textbf{function} from \(\mathrm{dom}\,f\) to \(Y\).  
+The set \(Y\) is called the \textbf{codomain} of \(f\), and the \textbf{range} of \(f\) is defined by
+\[
+\mathrm{ran}\,f := \{ y \in Y : \exists x \in X,\, (x, y) \in f \}.
+\]
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Bounded Functions}
+
+\begin{definition}
+Let \(f : X \to \mathbb{R}\) (or \(f : X \to \mathbb{C}\)) be a function. We say that \(f\) is \textbf{bounded} if there exists a constant \(M > 0\) such that
+\[
+|f(x)| \le M \quad \text{for all } x \in X.
+\]
+\end{definition}
+
+\begin{itemize}
+    \item A function is \textbf{bounded above} if there exists \(M \in \mathbb{R}\) such that \(f(x) \le M\) for all \(x \in X\).
+    \item A function is \textbf{bounded below} if there exists \(m \in \mathbb{R}\) such that \(f(x) \ge m\) for all \(x \in X\).
+    \item A function is \textbf{bounded} if and only if it is both bounded above and bounded below.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Injective, Surjective, and Bijective Functions}
+
+\begin{definition}
+We say that a function \(f : X \to Y\) is
+\begin{itemize}
+    \item \textbf{injective} if 
+    \[
+    f(x_1) = f(x_2) \implies x_1 = x_2
+    \]
+    for all \(x_1, x_2 \in X\).
+
+    \item \textbf{surjective} if \(\mathrm{ran}\,f = Y\).
+
+    \item \textbf{bijective} if \(f\) is both injective and surjective.
+\end{itemize}
+\end{definition}
+
+\begin{exercise}[1]
+Let \(f : A \to B\) and \(g : B \to C\) be functions, with \(A \neq \emptyset\). Show that:
+
+\begin{enumerate}[(a)]
+    \item If \(g \circ f\) is \textbf{injective}, then \(f\) is \textbf{injective}.
+    \item If \(g \circ f\) is \textbf{surjective}, then \(g\) is \textbf{surjective}.
+\end{enumerate}
+\end{exercise}
+
+\end{frame}
+
+
+\begin{frame}{Finite, Infinite, Countable Sets}
+
+\begin{definition}
+Let \(X\) be any set. The set \(X\) is said to be
+
+\begin{itemize}
+    \item \textbf{finite} if there exists a bijective function \(f : X \to \{1, 2, \dots, n\}\) for some \(n \in \mathbb{N}\).
+    \item \textbf{infinite} if it is not finite.
+    \item \textbf{countably infinite} if there exists a bijective function \(f : X \to \mathbb{N}\).
+    \item \textbf{countable} if there exists an injective function \(f : X \to \mathbb{N}\), and \textbf{uncountable} otherwise.
+\end{itemize}
+\end{definition}
+
+\end{frame}
+
+
+\section{Sequences}
+
+\begin{frame}{Sequences}
+
+\begin{definition}
+Let \(\mathcal{I} \subset \mathbb{N}\) be an infinite set.  
+A map \(\mathcal{I} \to \mathbb{R}\) is called a \textbf{real sequence},  
+a map \(\mathcal{I} \to \mathbb{C}\) is called a \textbf{complex sequence}, or simply a \textbf{sequence}.
+\end{definition}
+
+
+\footnotesize
+\begin{itemize}
+    \item We denote the values of a sequence by \(a_n\), i.e., a sequence maps
+    \[
+    n \mapsto a_n, \quad n \in \mathcal{I} \subset \mathbb{N}.
+    \]
+    \item For simplicity, we often consider the case \(\mathcal{I} = \mathbb{N}\).  
+    Generalizations are straightforward.
+    \item Formally, a sequence is the set 
+    \[
+    \{ (n, a_n) : n \in \mathcal{I} \}.
+    \]  
+    For simplicity, we write 
+    \[
+    (a_n)_{n \in \mathbb{N}} = (a_n) = (a_0, a_1, a_2, \dots) = a_0; a_1; a_2; \dots
+    \]
+    The values \(a_n\) are also called the \textbf{terms} of the sequence.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Subsequences}
+
+\begin{definition}
+Let \((a_n)_{n \in \mathbb{N}}\) be a sequence. A \textbf{subsequence} of \((a_n)\) is a sequence of the form \((a_{n_k})_{k \in \mathbb{N}}\), where \((n_k)_{k \in \mathbb{N}}\) is a strictly increasing sequence of natural numbers, i.e.,
+\[
+n_0 < n_1 < n_2 < \cdots
+\]
+\end{definition}
+
+\begin{itemize}
+    \item Informally, a subsequence is obtained by selecting infinitely many terms from the original sequence while preserving their order.
+    \item Example: If \(a_n = \frac{1}{n}\), then \(a_{2k} = \frac{1}{2k}\) is a subsequence.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Convergence}
+\begin{definition}
+A complex sequence \((a_n) : \mathcal{I} \to \mathbb{C}, \, \mathcal{I} \subset \mathbb{N}\), is said to \textbf{converge} with limit \(a \in \mathbb{C}\) if  
+\[
+\forall \varepsilon > 0, \, \exists N \in \mathbb{N} \text{ such that } n > N \implies a_n \in B_\varepsilon(a),
+\]
+where 
+\[
+B_\varepsilon(a) := \{ z \in \mathbb{C} : |z - a| < \varepsilon \}
+\] 
+is called the \(\varepsilon\)-neighborhood of \(a\).
+
+Equivalently, we write
+\[
+\lim_{n \to \infty} a_n = a \quad \text{or} \quad a_n \to a \text{ as } n \to \infty.
+\]
+
+A sequence that does not converge (to any limit) is said to \textbf{diverge}.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Convergence}
+\begin{definition}
+A real sequence \((a_n)\) is said to \textbf{diverge to infinity} if  
+\[
+\forall C > 0, \, \exists N \in \mathbb{N} \text{ such that } n > N \implies a_n > C.
+\]  
+We then write
+\[
+\lim_{n \to \infty} a_n = \infty \quad \text{or} \quad a_n \to \infty \text{ as } n \to \infty.
+\]
+
+A real sequence \((a_n)\) is said to \textbf{diverge to minus infinity} if  
+\[
+\forall C < 0, \, \exists N \in \mathbb{N} \text{ such that } n > N \implies a_n < C.
+\]  
+In this case, we write
+\[
+\lim_{n \to \infty} a_n = -\infty \quad \text{or} \quad a_n \to -\infty \text{ as } n \to \infty.
+\]
+\end{definition}
+\end{frame}
+
+\begin{frame}{Convergence}
+
+\begin{lemma}
+A convergent sequence is bounded.
+\end{lemma}
+
+\begin{lemma}
+For a sequence \((a_n)\) and \(a \in \mathbb{C}\):
+\[
+a_n \to a \iff a_n - a \to 0, \quad 
+a_n \to 0 \iff |a_n| \to 0.
+\]
+\end{lemma}
+
+\begin{lemma}
+A convergent sequence has exactly one limit.
+\end{lemma}
+
+\end{frame}
+
+\begin{frame}{Convergence}
+
+\begin{definition}
+Let \((a_n)\) and \((b_n)\) be convergent sequences with  
+\[
+a_n \to a \quad \text{and} \quad b_n \to b, \quad a,b \in \mathbb{C}.
+\]  
+Then the following hold:
+
+\begin{enumerate}
+    \item \(\displaystyle \lim_{n \to \infty} (a_n + b_n) = a + b\)
+    \item \(\displaystyle \lim_{n \to \infty} (a_n \cdot b_n) = a b\)
+    \item \(\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = \frac{a}{b} \) if \(b \neq 0\)
+\end{enumerate}
+\end{definition}
+\begin{exercise}[2]
+  Prove the third lemma.
+\end{exercise}
+
+\end{frame}
+
+\begin{frame}{Convergence}
+
+\begin{theorem}[Squeeze Theorem]
+Let \((a_n)\), \((b_n)\), and \((c_n)\) be real sequences such that
+\[
+a_n \le c_n \le b_n
+\]
+for all sufficiently large \(n\). Suppose that
+\[
+\lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n = a.
+\]
+Then the sequence \((c_n)\) converges, and
+\[
+\lim_{n \to \infty} c_n = a.
+\]
+\end{theorem}
+
+\end{frame}
+
+
+\begin{frame}{Convergence}
+\begin{exercise}[3]
+\begin{enumerate}
+    \item Prove that \(\displaystyle \lim_{n \to \infty} n^{1/n} = 1\).
+    \item Prove that \(\displaystyle \lim_{n \to \infty} nq^{n} = 0\), $|q| < 1$.
+    \item Let \((a_n)\) be a sequence converging to \(a\). Prove that the sequence
+    \(b_n = \displaystyle \left(\frac{1}{n}\sum_{j=1}^{n} a_j\right)\) is convergent with limit \(a\).
+    \item Consider the sequence defined by \(a_1 = 2\), \(a_{n+1} = 1 + \frac{1}{a_n}\). Show that \((a_n)\) is convergent and find its limit.
+\end{enumerate}
+\end{exercise}
+\end{frame}
+%--------------------------------
+\begin{frame}{Convergence}
+
+\begin{enumerate}
+    \item (2.2.24) Every monotonic and bounded sequence \((a_n)\) converges to its supremum or infimum.
+    \item (2.2.30) Let \((a_n)\) be a convergent sequence with \(\lim a_n = a\). Then any subsequence of \((a_n)\) is convergent with the same limit.
+    \item (2.2.31) Every real sequence has a monotonic subsequence.
+    \item (2.2.33) If a sequence converges, then the limit is the only accumulation point.
+    \item (2.2.35) A number \(a\) is an accumulation point of a sequence \((a_n)\) iff there exists a subsequence of \((a_n)\) that converges to \(a\).
+    \item (2.2.36) \textbf{Bolzano-Weierstrass Theorem:} Every bounded real sequence has an accumulation point.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Reminders}
+\begin{enumerate}
+  \item Get used to $B_\epsilon(a)$.
+  \item When you're dealing with limits, the finite elements don't matter. Things beyond N matter.
+  \item When dealing with some complex sequences, you could consider the squeeze theorem to transform the problem into investigating some easier sequences.
+  \item The terms of sequences are discrete points. \\ For the properties of continuous functions, you can't take it for granted when dealing with sequences.
+\end{enumerate}
+\end{frame}
+\section{Exercise Solutions}
+
+\begin{frame}{Solution to Exercise 1}
+\begin{proof}
+(a) Suppose \(g \circ f\) is injective. To show \(f\) is injective, assume \(f(x_1) = f(x_2)\) for some \(x_1, x_2 \in A\). Then
+\[
+(g \circ f)(x_1) = g(f(x_1)) = g(f(x_2)) = (g \circ f)(x_2).
+\]
+Since \(g \circ f\) is injective, we have \(x_1 = x_2\). Therefore, \(f\) is injective.
+
+\vspace{0.3cm}
+
+(b) Suppose \(g \circ f\) is surjective. To show \(g\) is surjective, let \(c \in C\) be arbitrary. Since \(g \circ f\) is surjective, there exists \(a \in A\) such that \((g \circ f)(a) = c\). Let \(b = f(a) \in B\). Then
+\[
+g(b) = g(f(a)) = (g \circ f)(a) = c.
+\]
+Therefore, \(g\) is surjective.
+\end{proof}
+\end{frame}
+
+\begin{frame}{Solution to Exercise 2}
+\begin{proof}
+We need to prove: If \(a_n \to a\) and \(b_n \to b\) with \(b \neq 0\), then \(\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = \frac{a}{b}\).
+
+\vspace{0.2cm}
+
+\textbf{Step 1:} Show that \(\displaystyle \frac{1}{b_n} \to \frac{1}{b}\).
+
+Since \(b \neq 0\), there exists \(N_1\) such that for all \(n > N_1\), we have \(|b_n - b| < \frac{|b|}{2}\). Thus
+\[
+|b_n| \ge |b| - |b_n - b| > |b| - \frac{|b|}{2} = \frac{|b|}{2}.
+\]
+
+For any \(\varepsilon > 0\), there exists \(N_2\) such that for all \(n > N_2\), \(|b_n - b| < \frac{|b|^2 \varepsilon}{2}\).
+\end{proof}
+\end{frame}
+
+\begin{frame}{Solution to Exercise 2 (continued)}
+\begin{proof}[Proof (continued)]
+For \(n > \max\{N_1, N_2\}\):
+\[
+\left| \frac{1}{b_n} - \frac{1}{b} \right| = \frac{|b - b_n|}{|b_n| \cdot |b|} < \frac{|b|^2 \varepsilon / 2}{(|b|/2) \cdot |b|} = \varepsilon.
+\]
+\textbf{Step 2:} Apply the product rule.
+
+Since \(a_n \to a\) and \(\frac{1}{b_n} \to \frac{1}{b}\), by the product rule (Lemma 2 from the convergence properties):
+\[
+\frac{a_n}{b_n} = a_n \cdot \frac{1}{b_n} \to a \cdot \frac{1}{b} = \frac{a}{b}.
+\]
+\end{proof}
+\end{frame}
+
+\begin{frame}{Solution to Exercise 3(a)}
+\begin{proof}
+Let \(a_n = n^{1/n}\). For \(n \ge 2\), we have \(a_n > 1\). Write \(a_n = 1 + h_n\) where \(h_n > 0\).
+
+By the binomial theorem:
+\[
+n = a_n^n = (1 + h_n)^n \ge 1 + nh_n + \frac{n(n-1)}{2}h_n^2.
+\]
+
+Therefore:
+\[
+\frac{n(n-1)}{2}h_n^2 \le n - 1 \implies h_n^2 \le \frac{2(n-1)}{n(n-1)} = \frac{2}{n}.
+\]
+
+Thus \(0 < h_n \le \sqrt{\frac{2}{n}}\). Since \(\sqrt{\frac{2}{n}} \to 0\) as \(n \to \infty\), by the squeeze theorem, \(h_n \to 0\).
+
+Therefore, \(n^{1/n} = 1 + h_n \to 1\).
+\end{proof}
+\end{frame}
+
+\begin{frame}{Solution to Exercise 3(b)}
+\begin{proof}
+  \small
+Since \(|q| < 1\), we can write \(|q| = \frac{1}{1+r}\) for some \(r > 0\).
+
+By the binomial theorem, for \(n \ge 2\):
+\[
+(1+r)^n = \sum_{k=0}^{n} \binom{n}{k} r^k \ge \binom{n}{2} r^2 = \frac{n(n-1)}{2}r^2.
+\]
+
+Therefore:
+\[
+|nq^n| = n|q|^n = \frac{n}{(1+r)^n} \le \frac{n}{\frac{n(n-1)}{2}r^2} = \frac{2}{(n-1)r^2}.
+\]
+
+Since \(\displaystyle \frac{2}{(n-1)r^2} \to 0\) as \(n \to \infty\), by the squeeze theorem:
+\[
+\lim_{n \to \infty} nq^n = 0.
+\]
+\end{proof}
+\end{frame}
+
+\begin{frame}{Solution to Exercise 3(c)}
+\begin{proof}
+Let \(a_n \to a\). We prove that \(\displaystyle \left(\frac{1}{n}\sum_{j=1}^{n} a_j\right) \to a\).
+
+Let \(\varepsilon > 0\). Since \(a_n \to a\), there exists \(N\) such that for all \(j > N\), \(|a_j - a| < \frac{\varepsilon}{2}\).
+
+For \(n > N\), write:
+\[
+\left| \frac{1}{n}\sum_{j=1}^{n} a_j - a \right| = \left| \frac{1}{n}\sum_{j=1}^{n} (a_j - a) \right| \le \frac{1}{n}\sum_{j=1}^{n} |a_j - a|.
+\]
+\end{proof}
+\end{frame}
+
+\begin{frame}{Solution to Exercise 3(c) (continued)}
+  \begin{proof}[Proof (continued)]
+Split the sum:
+\[
+\frac{1}{n}\sum_{j=1}^{n} |a_j - a| = \frac{1}{n}\sum_{j=1}^{N} |a_j - a| + \frac{1}{n}\sum_{j=N+1}^{n} |a_j - a|.
+\]
+
+The first term: \(\displaystyle \frac{1}{n}\sum_{j=1}^{N} |a_j - a| \le \frac{NM}{n} < \frac{\varepsilon}{2}\) for sufficiently large \(n\), where \(M = \max_{1 \le j \le N} |a_j - a|\).
+
+The second term: \(\displaystyle \frac{1}{n}\sum_{j=N+1}^{n} |a_j - a| < \frac{n-N}{n} \cdot \frac{\varepsilon}{2} < \frac{\varepsilon}{2}\).
+\end{proof}
+\end{frame}
+
+\begin{frame}{Solution to Exercise 3(d)}
+\begin{proof}
+Consider \(a_1 = 2\), \(a_{n+1} = 1 + \frac{1}{a_n}\).
+
+\textbf{Step 1:} Show that \((a_n)\) is bounded. We claim \(1 < a_n < 2\) for all \(n \ge 2\) (by induction).
+
+Base: \(a_2 = 1 + \frac{1}{2} = \frac{3}{2} \in (1, 2)\).
+
+Step: If \(1 < a_n < 2\), then \(a_{n+1} = 1 + \frac{1}{a_n} \in (1 + \frac{1}{2}, 1 + 1) = (\frac{3}{2}, 2)\).
+
+\vspace{0.2cm}
+
+\textbf{Step 2:} Suppose \((a_n)\) converges to \(L\). Then taking limits in \(a_{n+1} = 1 + \frac{1}{a_n}\):
+\[
+L = 1 + \frac{1}{L} \implies L^2 - L - 1 = 0 \implies L = \frac{1 + \sqrt{5}}{2} \text{ (golden ratio)}.
+\]
+
+\vspace{0.2cm}
+
+\textbf{Step 3:} To show convergence, observe that odd/even subsequences are monotonic and bounded, hence converge (by Theorem 2.2.24). Both must converge to the same limit by the recurrence relation.
+\end{proof}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+    \huge \textbf{Thanks for Listening!} \\
+    \vspace{0.5cm}
+    \large \textbf{Any questions? Please feel free to ask!} \\
+    \end{center}
+\end{frame}
+
+\begin{comment}
+\begin{frame}{Banach Limit}
+
+\begin{definition}[Banach Limit]
+A \emph{Banach limit} is an extension of the usual concept of limit in mathematics. Formally, it is a continuous linear functional 
+\(\phi : \ell^\infty \to \mathbb{C}\) defined on the Banach space \(\ell^\infty\) of all bounded complex-valued sequences \(x = (x_n)\) such that for all sequences \(x = (x_n), y = (y_n) \in \ell^\infty\) and all \(\alpha \in \mathbb{C}\):
+
+\begin{enumerate}
+    \item Linearity: \(\phi(\alpha x + y) = \alpha \phi(x) + \phi(y)\).
+    \item Positivity: If \(x_n \ge 0\) for all \(n \in \mathbb{N}\), then \(\phi(x) \ge 0\).
+    \item Shift-invariance: \(\phi(x) = \phi(Sx)\), where \(S\) is the shift operator defined by \((Sx)_n = x_{n+1}\).
+    \item Compatibility with usual limits: If \(x\) is convergent, then \(\phi(x) = \lim_{n \to \infty} x_n\).
+\end{enumerate}
+\end{definition}
+
+\end{frame}
+\end{comment}
+\begin{frame}
+\large \textbf{References:}
+\vspace{0.5em}
+\begin{itemize}
+  \item Horst Hohberger, \textit{math186\_all\_lecture\_slides (2026)}
+  \item Wenxin Chen, \textit{MATH1860J RC}, 25 Fall
+  \item Leqi Tang, \textit{MATH1860J RC}, 25 Fall
+  \item Zhun Wang, \textit{MATH1860J RC}, 25 Fall
+\end{itemize}
+\vspace{0.7cm}
+\large \textbf{To be continued...} \\
+\vspace{0.5em}
+\begin{itemize}
+    \item Metric Spaces
+    \item Cauchy Sequences
+\end{itemize}
+\vspace{0.7cm}
+\huge \textbf{Enjoy the National Holiday!}
+\end{frame}
+
+\end{document}

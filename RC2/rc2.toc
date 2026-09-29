@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Complex Numbers}{3}{0}{1}
+\beamer@sectionintoc {2}{Functions and Maps}{6}{0}{2}
+\beamer@sectionintoc {3}{Sequences}{11}{0}{3}
+\beamer@sectionintoc {4}{Exercise Solutions}{22}{0}{4}
