@@ -63,7 +63,7 @@
 \newtheorem{remark}[theorem]{\translate{Remark}}
 
 \title{MATH1860J Recitation Class 02}
-\subtitle{Foundations: Chapters 06-}
+\subtitle{Foundations: Chapters 06-08}
 \author{Shuhan Yu}
 \institute{SJTU Global College}
 \date{Fall Term 2026}
@@ -98,6 +98,53 @@
 
 \begin{frame}{Outline}
     \tableofcontents
+\end{frame}
+
+\section{Recap for Last Week}
+\begin{frame}
+\begin{itemize}
+  \huge
+  \item Logic
+  \item Set
+  \item Numbers
+  \item Countability for $\mathbb{Q}$ and $\mathbb{R}$
+  \item Subset of Real Numbers
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Limit Inferior and Limit Superior}
+
+\begin{definition}
+Let \((a_n)\) be a bounded real sequence. Define
+\[
+b_n := \inf\{a_k : k \ge n\} \quad \text{and} \quad c_n := \sup\{a_k : k \ge n\}.
+\]
+
+The \textbf{limit inferior} of \((a_n)\) is defined as
+\[
+\liminf_{n \to \infty} a_n := \lim_{n \to \infty} b_n = \sup_{n \in \mathbb{N}} \inf\{a_k : k \ge n\}.
+\]
+
+The \textbf{limit superior} of \((a_n)\) is defined as
+\[
+\limsup_{n \to \infty} a_n := \lim_{n \to \infty} c_n = \inf_{n \in \mathbb{N}} \sup\{a_k : k \ge n\}.
+\]
+\end{definition}
+Equivalently: $\overline{\lim}U$ is the maximum accumulation point/maximum limit of convergent subsequences in $U$, $\underline{\lim}U$ is the minimum such limit.
+\end{frame}
+\begin{frame}{Limit Inferior and Limit Superior}
+  Properties:
+  \begin{itemize}
+    \item \((b_n)\) is monotonically increasing and \((c_n)\) is monotonically decreasing.
+    \item \(\liminf_{n \to \infty} a_n \le \limsup_{n \to \infty} a_n\).
+    \item \((a_n)\) converges if and only if \(\liminf_{n \to \infty} a_n = \limsup_{n \to \infty} a_n\).
+\end{itemize}
+\vspace{0.5cm}
+  \begin{exercise}[1]
+        \centering
+        \includegraphics[width=1\textwidth]{Ex01.png}
+        Find $\overline{\lim} U, \underline{\lim} U$. State if one or more of them don't exist.
+  \end{exercise}
 \end{frame}
 
 \section{Complex Numbers}
@@ -209,7 +256,7 @@ We say that a function \(f : X \to Y\) is
 \end{itemize}
 \end{definition}
 
-\begin{exercise}[1]
+\begin{exercise}[2]
 Let \(f : A \to B\) and \(g : B \to C\) be functions, with \(A \neq \emptyset\). Show that:
 
 \begin{enumerate}[(a)]
@@ -364,7 +411,7 @@ Then the following hold:
     \item \(\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = \frac{a}{b} \) if \(b \neq 0\)
 \end{enumerate}
 \end{definition}
-\begin{exercise}[2]
+\begin{exercise}[3]
   Prove the third lemma.
 \end{exercise}
 
@@ -391,7 +438,7 @@ Then the sequence \((c_n)\) converges, and
 
 
 \begin{frame}{Convergence}
-\begin{exercise}[3]
+\begin{exercise}[4]
 \begin{enumerate}
     \item Prove that \(\displaystyle \lim_{n \to \infty} n^{1/n} = 1\).
     \item Prove that \(\displaystyle \lim_{n \to \infty} nq^{n} = 0\), $|q| < 1$.
@@ -424,8 +471,27 @@ Then the sequence \((c_n)\) converges, and
 \end{enumerate}
 \end{frame}
 \section{Exercise Solutions}
-
 \begin{frame}{Solution to Exercise 1}
+Let 
+\[
+U = A \cup B \cup C,
+\]
+where 
+\[
+A = (0,1],\qquad 
+B = \left\{2-\frac{1}{n} \mid n\in\mathbb{N}^+\right\},\qquad 
+C = \left\{-\frac{1}{n} \mid n\in\mathbb{N}^+\right\}.
+\]
+
+\begin{enumerate}
+    \item $\underline{\lim}\,U$ (limit inferior): The accumulation points of $U$ are $[0,1]\cup\{2\}$. The smallest accumulation point is $0$. Hence $\boxed{\underline{\lim}\,U = 0}$.
+    \item $\overline{\lim}\,U$ (limit superior): The largest accumulation point is $2$. Hence $\boxed{\overline{\lim}\,U = 2}$.
+\end{enumerate}
+\vspace{0.5em}
+Equivalently: $\overline{\lim}U$ is the maximum limit of convergent subsequences in $U$, $\underline{\lim}U$ is the minimum such limit.
+\end{frame}
+
+\begin{frame}{Solution to Exercise 2}
 \begin{proof}
 (a) Suppose \(g \circ f\) is injective. To show \(f\) is injective, assume \(f(x_1) = f(x_2)\) for some \(x_1, x_2 \in A\). Then
 \[
@@ -443,7 +509,7 @@ Therefore, \(g\) is surjective.
 \end{proof}
 \end{frame}
 
-\begin{frame}{Solution to Exercise 2}
+\begin{frame}{Solution to Exercise 3}
 \begin{proof}
 We need to prove: If \(a_n \to a\) and \(b_n \to b\) with \(b \neq 0\), then \(\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = \frac{a}{b}\).
 
@@ -460,7 +526,7 @@ For any \(\varepsilon > 0\), there exists \(N_2\) such that for all \(n > N_2\),
 \end{proof}
 \end{frame}
 
-\begin{frame}{Solution to Exercise 2 (continued)}
+\begin{frame}{Solution to Exercise 3 (continued)}
 \begin{proof}[Proof (continued)]
 For \(n > \max\{N_1, N_2\}\):
 \[
@@ -475,7 +541,7 @@ Since \(a_n \to a\) and \(\frac{1}{b_n} \to \frac{1}{b}\), by the product rule (
 \end{proof}
 \end{frame}
 
-\begin{frame}{Solution to Exercise 3(a)}
+\begin{frame}{Solution to Exercise 4(1)}
 \begin{proof}
 Let \(a_n = n^{1/n}\). For \(n \ge 2\), we have \(a_n > 1\). Write \(a_n = 1 + h_n\) where \(h_n > 0\).
 
@@ -495,7 +561,7 @@ Therefore, \(n^{1/n} = 1 + h_n \to 1\).
 \end{proof}
 \end{frame}
 
-\begin{frame}{Solution to Exercise 3(b)}
+\begin{frame}{Solution to Exercise 4(2)}
 \begin{proof}
   \small
 Since \(|q| < 1\), we can write \(|q| = \frac{1}{1+r}\) for some \(r > 0\).
@@ -517,7 +583,7 @@ Since \(\displaystyle \frac{2}{(n-1)r^2} \to 0\) as \(n \to \infty\), by the squ
 \end{proof}
 \end{frame}
 
-\begin{frame}{Solution to Exercise 3(c)}
+\begin{frame}{Solution to Exercise 4(3)}
 \begin{proof}
 Let \(a_n \to a\). We prove that \(\displaystyle \left(\frac{1}{n}\sum_{j=1}^{n} a_j\right) \to a\).
 
@@ -530,7 +596,7 @@ For \(n > N\), write:
 \end{proof}
 \end{frame}
 
-\begin{frame}{Solution to Exercise 3(c) (continued)}
+\begin{frame}{Solution to Exercise 4(3) (continued)}
   \begin{proof}[Proof (continued)]
 Split the sum:
 \[
@@ -543,7 +609,7 @@ The second term: \(\displaystyle \frac{1}{n}\sum_{j=N+1}^{n} |a_j - a| < \frac{n
 \end{proof}
 \end{frame}
 
-\begin{frame}{Solution to Exercise 3(d)}
+\begin{frame}{Solution to Exercise 4(4)}
 \begin{proof}
 Consider \(a_1 = 2\), \(a_{n+1} = 1 + \frac{1}{a_n}\).
 

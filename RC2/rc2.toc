@@ -1,4 +1,5 @@
-\beamer@sectionintoc {1}{Complex Numbers}{3}{0}{1}
-\beamer@sectionintoc {2}{Functions and Maps}{6}{0}{2}
-\beamer@sectionintoc {3}{Sequences}{11}{0}{3}
-\beamer@sectionintoc {4}{Exercise Solutions}{22}{0}{4}
+\beamer@sectionintoc {1}{Recap for Last Week}{3}{0}{1}
+\beamer@sectionintoc {2}{Complex Numbers}{7}{0}{2}
+\beamer@sectionintoc {3}{Functions and Maps}{10}{0}{3}
+\beamer@sectionintoc {4}{Sequences}{15}{0}{4}
+\beamer@sectionintoc {5}{Exercise Solutions}{26}{0}{5}
