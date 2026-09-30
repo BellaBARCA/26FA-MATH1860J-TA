@@ -1,0 +1,4253 @@
+% =====================================================================
+%  SJTU Mathematical Analysis
+%  Chapter 2 : Limits of Sequences and the Fundamental Theorems
+%              of Real Numbers
+%
+%  Every problem of the chapter -- the worked examples of the body of
+%  the text and the four exercise sets -- transcribed and translated
+%  into English, followed by a separate part containing all solutions.
+%
+%  Numbering convention
+%    "Example 2.1.4"  = worked example 2.1.4 of the body of the text
+%    "Exercise 2.1.4" = problem 4 of exercise set 2.1
+%
+%  Build with:  pdflatex <this file>     (run twice for the contents list)
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={SJTU Mathematical Analysis, Chapter 2: Limits of Sequences},
+}
+
+\allowdisplaybreaks
+\setlist[enumerate]{itemsep=0.35ex,topsep=0.5ex,parsep=0.2ex}
+\setlist[itemize]{itemsep=0.35ex,topsep=0.5ex,parsep=0.2ex}
+
+% ---- markup for the three kinds of block ----------------------------
+\definecolor{problemcolor}{RGB}{20,60,130}
+\definecolor{solutioncolor}{RGB}{20,20,20}
+\definecolor{sourcecolor}{RGB}{105,105,105}
+
+\newenvironment{problem}[1]{%
+  \par\addvspace{1.7ex}%
+  \noindent{\color{problemcolor}\textbf{#1}}\hspace{0.55em}\ignorespaces}%
+  {\par\addvspace{0.4ex}}
+
+\newenvironment{solution}[1]{%
+  \par\addvspace{1.7ex}%
+  \noindent{\color{solutioncolor}\textbf{#1}}\hspace{0.55em}\ignorespaces}%
+  {\par\addvspace{0.9ex}}
+
+% small grey line naming the pages of the textbook each group comes from
+\newcommand{\srcline}[1]{%
+  \par\addvspace{1.6ex}%
+  \noindent{\color{sourcecolor}\small\itshape #1}%
+  \par\addvspace{0.2ex}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\eps}{\varepsilon}
+\DeclareMathOperator{\sgn}{sgn}
+
+\title{\bfseries Limits of Sequences\\[0.5em]
+       \large\mdseries Problems and Solutions from SJTU Mathematical Analysis Textbook}
+\date{}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\pagebreak
+\part*{Part I\quad Problems}
+
+\addcontentsline{toc}{part}{Part I --- Problems}
+
+
+\section*{A.\quad Worked examples from the text}
+
+\addcontentsline{toc}{section}{A. Worked examples from the text}
+
+
+\srcline{Worked examples 2.1.2--2.1.5}
+
+\begin{problem}{Example 2.1.2}\label{e:2.1.2}
+Using the $\varepsilon$-$N$ language of limits of sequences, verify that
+\[
+\lim_{n\to\infty} q^{n}=0 \qquad (0<\lvert q\rvert<1).
+\]
+\end{problem}
+
+\begin{problem}{Example 2.1.3}\label{e:2.1.3}
+Using the $\varepsilon$-$N$ language of limits of sequences, prove that
+\[
+\lim_{n\to\infty}\frac{n^{2}-n+2}{3n^{2}+2n-4}=\frac{1}{3}.
+\]
+\end{problem}
+
+\begin{problem}{Example 2.1.4}\label{e:2.1.4}
+Let $\{x_{n}\}$ be a sequence such that $\displaystyle\lim_{n\to\infty}x_{n}=a$. Prove that
+\[
+\lim_{n\to\infty}\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}=a .
+\]
+\end{problem}
+
+\begin{problem}{Example 2.1.5}\label{e:2.1.5}
+Prove that
+\[
+\lim_{n\to\infty}\frac{1}{n^{2}}\neq 1 .
+\]
+\end{problem}
+
+
+\srcline{Worked examples 2.1.12--2.1.15}
+
+\begin{problem}{Example 2.1.12}\label{e:2.1.12}
+Suppose that $\displaystyle\lim_{n\to\infty}x_{n}=a$. Using the definition of the limit of a sequence, prove that
+\[
+\lim_{n\to\infty}x_{n}^{\frac{1}{3}}=a^{\frac{1}{3}} .
+\]
+\end{problem}
+
+\begin{problem}{Example 2.1.13}\label{e:2.1.13}
+Prove that
+\[
+\lim_{n\to\infty}\frac{10^{n}}{n!}=0 .
+\]
+\end{problem}
+
+\begin{problem}{Example 2.1.14}\label{e:2.1.14}
+Let
+\[
+x_{n}=\frac{(2n-1)!!}{(2n)!!},
+\qquad\text{where}\qquad
+(2n-1)!!=1\cdot 3\cdot 5\cdots(2n-1),\quad (2n)!!=2\cdot 4\cdot 6\cdots(2n).
+\]
+Prove that the sequence $\{x_{n}\}$ converges to zero.
+\end{problem}
+
+\begin{problem}{Example 2.1.15}\label{e:2.1.15}
+Prove that
+\[
+\lim_{n\to\infty}n^{\frac{1}{n}}=1 .
+\]
+\end{problem}
+
+
+\srcline{Worked examples 2.1.17--2.1.21}
+
+\begin{problem}{Example 2.1.17}\label{e:2.1.17}
+Find the limit
+\[
+\lim_{n\to\infty}\sqrt{n}\,\bigl(\sqrt{n+1}-\sqrt{n}\bigr).
+\]
+\end{problem}
+
+\begin{problem}{Example 2.1.18}\label{e:2.1.18}
+Prove that if $a>0$, then
+\[
+\lim_{n\to\infty}\sqrt[n]{a}=1 .
+\]
+\end{problem}
+
+\begin{problem}{Example 2.1.19}\label{e:2.1.19}
+Prove that the sequence
+\[
+\left\{\frac{a^{n}}{n!}\right\}
+\]
+is an infinitesimal, where $a>0$.
+\end{problem}
+
+\begin{problem}{Example 2.1.20}\label{e:2.1.20}
+Suppose that
+\[
+\lim_{n\to\infty}\bigl(x_{n}-x_{n-2}\bigr)=0 .
+\]
+Prove that
+\[
+\left\{\frac{x_{n}-x_{n-1}}{n}\right\}
+\]
+is an infinitesimal.
+\end{problem}
+
+\begin{problem}{Example 2.1.21}\label{e:2.1.21}
+Suppose that
+\[
+\lim_{n\to\infty}x_{n}=a,\qquad \lim_{n\to\infty}y_{n}=b .
+\]
+Prove that
+\[
+\lim_{n\to\infty}\frac{x_{n}y_{1}+x_{n-1}y_{2}+\cdots+x_{1}y_{n}}{n}=ab .
+\]
+\end{problem}
+
+
+\srcline{Worked examples 2.1.25--2.1.26}
+
+\begin{problem}{Example 2.1.25}\label{e:2.1.25}
+Let $x_n=\sin\dfrac{n\pi}{4}$. Discuss the convergence of the sequence $\{x_n\}$.
+\end{problem}
+
+\begin{problem}{Example 2.1.26}\label{e:2.1.26}
+Prove that an unbounded sequence must have a subsequence which is infinitely large.
+\end{problem}
+
+
+\srcline{Worked examples 2.2.2--2.2.3}
+
+\begin{problem}{Example 2.2.2}\label{e:2.2.2}
+Suppose that $\lim\limits_{n\to\infty} a_n = a$ (with $a$ a real number). Prove that
+\[
+\lim_{n\to\infty}\frac{a_1 + 2^2 a_2 + \cdots + n^2 a_n}{n^3} = \frac{a}{3}.
+\]
+\end{problem}
+
+\begin{problem}{Example 2.2.3}\label{e:2.2.3}
+Compute the limit
+\[
+\lim_{n\to\infty} n\left(\frac{\sum\limits_{k=1}^{n}(2k+1)^2}{n^3} - \frac{4}{3}\right).
+\]
+\end{problem}
+
+
+\srcline{Worked examples 2.3.2 and 2.3.6--2.3.9}
+
+\begin{problem}{Example 2.3.2}\label{e:2.3.2}
+Let $x_1$ be a given positive number. Prove that the sequence $\{x_n\}$ defined by
+\[
+x_{n+1}=\frac{3(1+x_n)}{3+x_n},\qquad n=1,2,\dots,
+\]
+converges, and find its limit.
+\end{problem}
+
+\begin{problem}{Example 2.3.6}\label{e:2.3.6}
+Let
+\[
+x_n=1+\frac{1}{2^2}+\frac{1}{3^2}+\cdots+\frac{1}{n^2}.
+\]
+Prove that $\{x_n\}$ is a fundamental (Cauchy) sequence.
+\end{problem}
+
+\begin{problem}{Example 2.3.8}\label{e:2.3.8}
+Let $x_0$ and $a$ be arbitrary constants. Set
+\[
+x_1=q\sin x_0+a,\quad x_2=q\sin x_1+a,\quad\cdots,\quad x_{n+1}=q\sin x_n+a,\quad\cdots,
+\]
+where $0<q<1$ is a constant. Prove that the sequence $\{x_n\}$ converges.
+\end{problem}
+
+\begin{problem}{Example 2.3.9}\label{e:2.3.9}
+Let
+\[
+a_n=\sum_{i=1}^{n}\frac{1}{i}.
+\]
+Prove that the sequence $\{a_n\}$ diverges.
+\end{problem}
+
+
+\section*{B.\quad The exercise sets}
+
+\addcontentsline{toc}{section}{B. The exercise sets}
+
+
+\srcline{Exercise set 2.1, problems 1--17}
+
+\begin{problem}{Exercise 2.1.1}\label{x:2.1.1}
+Decide whether each of the following propositions is true or false. If it is
+true, prove it; otherwise give a counterexample.
+\begin{enumerate}[(1)]
+  \item $\displaystyle\lim_{n\to\infty}x_n=a\ (a\in\mathbb{R})\iff
+    \forall\,0<\varepsilon<1,\ \exists\,N\in\mathbb{N},\ \forall\,n\ge N:\ |x_n-a|\le\varepsilon$;
+  \item $\displaystyle\lim_{n\to\infty}x_n=a\ (a\in\mathbb{R})\iff
+    \forall\,0<\varepsilon<1,\ \exists\,N\in\mathbb{N},\ \forall\,n>N:\ |x_n-a|<\varepsilon$;
+  \item $\displaystyle\lim_{n\to\infty}x_n=a\ (a\in\mathbb{R})\iff
+    \forall\,\varepsilon>0,\ \exists\,N\in\mathbb{N},\ \forall\,n>N:\ |x_n-a|<M\varepsilon$
+    \ ($M$ is a positive constant);
+  \item $\displaystyle\lim_{n\to\infty}x_n=a\ (a\in\mathbb{R})\iff
+    \forall\,k\in\mathbb{N},\ \exists\,N\in\mathbb{N},\ \forall\,n>N:\ |x_n-a|<\frac1k$;
+  \item $\displaystyle\lim_{n\to\infty}x_n=a\ (a\in\mathbb{R})\iff
+    \forall\,\varepsilon>0$, the interval $(a-\varepsilon,a+\varepsilon)$ contains
+    infinitely many terms of the sequence $\{x_n\}$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.1.2}\label{x:2.1.2}
+Decide whether each of the following propositions is true or false. If it is
+true, prove it; otherwise give a counterexample.
+\begin{enumerate}[(1)]
+  \item If $a_n\le b_n\le c_n\ (n\in\mathbb{N})$ and
+    $\displaystyle\lim_{n\to\infty}(c_n-a_n)=0$, then the sequence $\{a_n\}$ converges;
+  \item If $a_n\le b_n\le c_n\ (n\in\mathbb{N})$, the sequence $\{b_n\}$ converges and
+    $\displaystyle\lim_{n\to\infty}(c_n-a_n)=0$, then the sequence $\{a_n\}$ converges;
+  \item If $\{a_n\}$ converges and $a_n\ne 0$, $n\in\mathbb{N}$, then
+    $\displaystyle\lim_{n\to\infty}\frac{a_{n+1}}{a_n}=1$;
+  \item If $\displaystyle\lim_{n\to\infty}a_nb_n=0$, then
+    $\displaystyle\lim_{n\to\infty}a_n=0$ or $\displaystyle\lim_{n\to\infty}b_n=0$;
+  \item If $\displaystyle\lim_{n\to\infty}\frac{b_n}{a_n}=1$ and the sequence
+    $\{a_n\}$ converges, then the sequence $\{b_n\}$ converges and
+    $\displaystyle\lim_{n\to\infty}b_n=\lim_{n\to\infty}a_n$;
+  \item If the sequences $\{a_{2k}\}$ and $\{a_{2k-1}\}$ both converge, then the
+    sequence $\{a_n\}$ converges.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.1.3}\label{x:2.1.3}
+Using the $\varepsilon$-$N$ definition, prove that:
+\begin{enumerate}[(1)]
+  \item $\displaystyle\lim_{n\to\infty}\frac{1}{1+\sqrt{n}}=0$;
+  \item $\displaystyle\lim_{n\to\infty}\frac{3n^2+n}{2n^2-1}=\frac32$;
+  \item $\displaystyle\lim_{n\to\infty}\bigl(\sqrt{n^2+n}-n\bigr)=\frac12$;
+  \item $\displaystyle\lim_{n\to\infty}\arctan n=\frac{\pi}{2}$;
+  \item $\displaystyle\lim_{n\to\infty}\frac{n^2\arctan n}{1+n^2}=\frac{\pi}{2}$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.1.4}\label{x:2.1.4}
+Find the following limits:
+\begin{enumerate}[(1)]
+  \item $\displaystyle\lim_{n\to\infty}\frac{(-2)^n+3^n}{(-2)^{n+1}+3^{n+1}}$;
+  \item $\displaystyle\lim_{n\to\infty}
+    \frac{\dfrac12+\dfrac{1}{2^2}+\cdots+\dfrac{1}{2^n}}
+         {\dfrac13+\dfrac{1}{3^2}+\cdots+\dfrac{1}{3^n}}$;
+  \item $\displaystyle\lim_{n\to\infty}
+    \left(\frac{1}{n^2}+\frac{3}{n^2}+\cdots+\frac{2n-1}{n^2}\right)$;
+  \item $\displaystyle\lim_{n\to\infty}
+    \left(1+\frac12\right)\left(1+\frac{1}{2^2}\right)\left(1+\frac{1}{2^4}\right)
+    \cdots\left(1+\frac{1}{2^{2^n}}\right)$;
+  \item $\displaystyle\lim_{n\to\infty}
+    \left(\frac{1}{\sqrt{n^2+1}}+\frac{1}{\sqrt{n^2+2}}+\cdots+\frac{1}{\sqrt{n^2+n}}\right)$;
+  \item $\displaystyle\lim_{n\to\infty}\left(1-\frac{1}{\sqrt[n]{2}}\right)\cos n$;
+  \item $\displaystyle\lim_{n\to\infty}\sqrt[n]{n^2-n+2}$;
+  \item $\displaystyle\lim_{n\to\infty}\sqrt[n]{n\ln n}$;
+  \item $\displaystyle\lim_{n\to\infty}\sqrt[n]{\arctan n}$;
+  \item $\displaystyle\lim_{n\to\infty}
+    \left(\sqrt[n]{1}+\sqrt[n]{2}+\cdots+\sqrt[n]{10}\right)$;
+  \item $\displaystyle\lim_{n\to\infty}\sqrt[n]{2\sin^2 n+\cos^2 n}$;
+  \item $\displaystyle\lim_{n\to\infty}\bigl((n+1)^{\alpha}-n^{\alpha}\bigr)$,
+    $\alpha\in(0,1)$;
+  \item $\displaystyle\lim_{n\to\infty}\frac{\lfloor na_n\rfloor}{n}$.
+    Here $\displaystyle\lim_{n\to\infty}a_n=a$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.1.5}\label{x:2.1.5}
+Prove that the sequence
+\[
+  \left\{\frac{2n+(-1)^n n}{3n+1}\right\},\qquad n\in\mathbb{N},
+\]
+diverges.
+\end{problem}
+
+\begin{problem}{Exercise 2.1.6}\label{x:2.1.6}
+Suppose that $a_n\ne 0$,
+\[
+\frac{a_{n+1}}{a_n}>0\qquad(n\in\mathbb{N}),
+\]
+and that
+\[
+\lim_{n\to\infty}\frac{a_{n+1}}{a_n}=0 .
+\]
+Prove that for all sufficiently large $n$ the sequence $\{a_n\}$ is monotone.
+\end{problem}
+
+\begin{problem}{Exercise 2.1.7}\label{x:2.1.7}
+Suppose that the sequence $\{a_n\}$ converges. Prove that the sequence $\{a_n\}$ has either a largest term or a smallest term. Also ask: must it necessarily have both?
+\end{problem}
+
+\begin{problem}{Exercise 2.1.8}\label{x:2.1.8}
+Given that $\lim\limits_{n\to\infty}x_n=a$ with $a\ne 0$, use the $\varepsilon$-$N$ language to prove:
+\begin{enumerate}[(1)]
+  \item $\lim\limits_{n\to\infty}\sqrt{x_n}=\sqrt{a}$;
+  \item $\lim\limits_{n\to\infty}\sin\dfrac{1}{x_n^2}=\sin\dfrac{1}{a^2}$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.1.9}\label{x:2.1.9}
+Suppose that $\lim\limits_{n\to\infty}(x_n-x_{n-1})=d$. Prove that
+\[
+\lim_{n\to\infty}\frac{x_n}{n}=d .
+\]
+\end{problem}
+
+\begin{problem}{Exercise 2.1.10}\label{x:2.1.10}
+Suppose that $\lim\limits_{n\to\infty}a_n=a$ ($a_n>0$, $n\in\mathbb{N}$). Prove that
+\[
+\lim_{n\to\infty}\sqrt[n]{a_1a_2\cdots a_n}=a ,
+\]
+and then prove successively:
+\begin{enumerate}[(1)]
+  \item if $\lim\limits_{n\to\infty}\dfrac{a_{n+1}}{a_n}=a$ ($a_n>0$, $n\in\mathbb{N}$), then $\lim\limits_{n\to\infty}\sqrt[n]{a_n}=a$;
+  \item $\lim\limits_{n\to\infty}\dfrac{\sqrt[n]{n!}}{n}=\dfrac{1}{\mathrm{e}}$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.1.11}\label{x:2.1.11}
+Prove: if the sequences $\{a_{3k-2}\}$, $\{a_{3k-1}\}$ and $\{a_{3k}\}$ all converge and have the same limit, then the sequence $\{a_n\}$ converges.
+\end{problem}
+
+\begin{problem}{Exercise 2.1.12}\label{x:2.1.12}
+Suppose that $\lim\limits_{n\to\infty}x_n=+\infty$. Prove that
+\[
+\lim_{n\to\infty}\frac{x_1+x_2+\cdots+x_n}{n}=+\infty .
+\]
+\end{problem}
+
+\begin{problem}{Exercise 2.1.13}\label{x:2.1.13}
+Suppose that $a_n>0$ for all $n\in\mathbb{N}$ and that
+\[
+\lim_{n\to\infty}\frac{a_n}{a_{n+1}+a_{n+2}}=0 .
+\]
+Prove that the sequence $\{a_n\}$ is unbounded.
+\end{problem}
+
+\begin{problem}{Exercise 2.1.14}\label{x:2.1.14}
+Prove that a necessary and sufficient condition for a sequence to be an infinitely large quantity is that every subsequence of the sequence is an unbounded sequence.
+\end{problem}
+
+\begin{problem}{Exercise 2.1.15}\label{x:2.1.15}
+Suppose that $a_n\ne 0$ for all $n\in\mathbb{N}$, that $\lim\limits_{n\to\infty}a_n=0$, and that $\lim\limits_{n\to\infty}\dfrac{a_{n+1}}{a_n}=l$. Prove that $|l|\le 1$.
+\end{problem}
+
+\begin{problem}{Exercise 2.1.16}\label{x:2.1.16}
+Suppose that $f(x)$ is strictly monotonically increasing on $[a,b]$, and that $\{x_n\}\subset[a,b]$ satisfies
+\[
+\lim_{n\to\infty}f(x_n)=f(a).
+\]
+Prove that $\lim\limits_{n\to\infty}x_n=a$.
+\end{problem}
+
+\begin{problem}{Exercise 2.1.17}\label{x:2.1.17}
+Suppose that the sequence $\{x_n\}$ is monotonically increasing and that
+\[
+\lim_{n\to\infty}\frac{x_1+x_2+\cdots+x_n}{n}=a .
+\]
+Prove that $\lim\limits_{n\to\infty}x_n=a$.
+\end{problem}
+
+
+\srcline{Exercise set 2.2, problems 1--6 --- printed page 38}
+
+\begin{problem}{Exercise 2.2.1}\label{x:2.2.1}
+Give an example showing that the converse of the Stolz theorem is false.
+\end{problem}
+
+\begin{problem}{Exercise 2.2.2}\label{x:2.2.2}
+Give an example showing that the Stolz theorem fails when $a=\infty$.
+\end{problem}
+
+\begin{problem}{Exercise 2.2.3}\label{x:2.2.3}
+Compute the following limits:
+\begin{enumerate}[(1)]
+  \item $\displaystyle\lim_{n\to\infty}\frac{1+\frac{1}{\sqrt{2}}+\cdots+\frac{1}{\sqrt{n}}}{\ln\sqrt{n}}$;
+  \item $\displaystyle\lim_{n\to\infty}\frac{1+\sqrt{2}+\cdots+\sqrt{n}}{n\sqrt{n}}$;
+  \item $\displaystyle\lim_{n\to\infty}\frac{1+\sqrt{2}+\sqrt[3]{3}+\cdots+\sqrt[n]{n}}{n}$;
+  \item $\displaystyle\lim_{n\to\infty}\frac{1^{2}+3^{2}+\cdots+(2n-1)^{2}}{n^{3}}$;
+  \item $\displaystyle\lim_{n\to\infty}\frac{a_{1}+2a_{2}+\cdots+na_{n}}{1+2+\cdots+n}\qquad\Bigl(\text{given that }\lim_{n\to\infty}a_{n}=a\Bigr)$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.2.4}\label{x:2.2.4}
+Compute the limit $\displaystyle\lim_{n\to\infty}(n!)^{\frac{1}{n^{2}}}$.
+\end{problem}
+
+\begin{problem}{Exercise 2.2.5}\label{x:2.2.5}
+Let $\displaystyle x_{n}=\frac{1}{n^{2}}\sum_{k=0}^{n}\ln C_{n}^{k}$, $n=1,2,\cdots$. Find the limit $\displaystyle\lim_{n\to\infty}x_{n}$.
+\end{problem}
+
+\begin{problem}{Exercise 2.2.6}\label{x:2.2.6}
+Suppose that $\displaystyle\lim_{n\to\infty}n(A_{n}-A_{n-1})=0$. Prove that if the limit
+$\displaystyle\lim_{n\to\infty}\frac{A_{1}+A_{2}+\cdots+A_{n}}{n}$ exists, then
+\[
+\lim_{n\to\infty}A_{n}=\lim_{n\to\infty}\frac{A_{1}+A_{2}+\cdots+A_{n}}{n}.
+\]
+\end{problem}
+
+
+\srcline{Exercise set 2.3, problems 1--2}
+
+\begin{problem}{Exercise 2.3.1}\label{x:2.3.1}
+Prove that each of the following sequences has a limit and find its value:
+\begin{enumerate}[(1)]
+  \item $x_1=\sqrt{2}$, $\displaystyle x_{n+1}=\sqrt{2x_n}$, $n=1,2,\dots$;
+  \item $x_1=\sqrt{c}$ $(c>0)$, $\displaystyle x_{n+1}=\sqrt{c+x_n}$, $n=1,2,\dots$;
+  \item $x_1>1$, $\displaystyle x_{n+1}=\frac{3x_n+1}{x_n+3}$, $n=1,2,\dots$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.3.2}\label{x:2.3.2}
+Let $0<a_1<b_1$, and set
+\[
+a_{n+1}=\sqrt{a_nb_n},\qquad b_{n+1}=\frac{a_n+b_n}{2},\qquad n\in\mathbb N_+.
+\]
+Prove that $\{a_n\}$ and $\{b_n\}$ converge to the same limit.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.3}\label{x:2.3.3}
+Let the sequence $\{x_n\}$ satisfy $0<x_n<1$ and
+\[
+(1-x_n)x_{n+1}>\frac14,\qquad n=1,2,3,\dots .
+\]
+Prove that
+\[
+\lim_{n\to\infty}x_n=\frac12 .
+\]
+\end{problem}
+
+\begin{problem}{Exercise 2.3.4}\label{x:2.3.4}
+Prove: if a monotone sequence $\{x_n\}$ contains a convergent subsequence, then $\{x_n\}$ converges.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.5}\label{x:2.3.5}
+Let $x_1\in(0,1)$ and $x_{n+1}=x_n(1-x_n)$, $n\in\mathbb N_+$. Prove that the sequence $\{nx_n\}$ converges and find its limit.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.6}\label{x:2.3.6}
+Prove: if $a_n>0$ and $\displaystyle\lim_{n\to\infty}\frac{a_n}{a_{n+1}}=l>1$, then $\displaystyle\lim_{n\to\infty}a_n=0$.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.7}\label{x:2.3.7}
+Prove that
+\[
+\frac12+\frac13+\dots+\frac1n<\ln(n+1)<1+\frac12+\dots+\frac1n .
+\]
+\end{problem}
+
+\begin{problem}{Exercise 2.3.8}\label{x:2.3.8}
+Prove that the sequence $\{x_n\}$ converges, where
+\[
+x_n=1+\frac12+\frac13+\dots+\frac1n-\ln n,\qquad n\in\mathbb N_+ .
+\]
+\end{problem}
+
+\begin{problem}{Exercise 2.3.9}\label{x:2.3.9}
+Find the limit
+\[
+\lim_{n\to\infty}\bigl(n!\,e-[n!\,e]\bigr),
+\]
+where $[\,\cdot\,]$ denotes the greatest-integer (floor) function.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.10}\label{x:2.3.10}
+Find the limit
+\[
+\lim_{n\to\infty}\left(\frac{1}{n+1}+\frac{1}{n+2}+\dots+\frac{1}{n+n}\right).
+\]
+\end{problem}
+
+\begin{problem}{Exercise 2.3.11}\label{x:2.3.11}
+Let
+\[
+x_n=\left(1+\frac12\right)\left(1+\frac{1}{2^2}\right)\dots\left(1+\frac{1}{2^n}\right).
+\]
+Prove that $\displaystyle\lim_{n\to\infty}x_n$ exists.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.12}\label{x:2.3.12}
+Can the following statements serve as necessary and sufficient conditions for the convergence of a sequence?
+\begin{enumerate}[(1)]
+  \item $\forall\,\varepsilon>0$, $\forall\,p\in\mathbb N$, $\exists\,N\in\mathbb N$, $\forall\,n>N$: $|x_{n+p}-x_n|<\varepsilon$;
+  \item $\forall\,\varepsilon>0$, $\exists\,N,p\in\mathbb N$, $\forall\,n>N$: $|x_{n+p}-x_n|<\varepsilon$;
+  \item $\forall\,n,p\in\mathbb N_+$, $\displaystyle|x_{n+p}-x_n|<\frac{p}{n}$; \ or \ $\forall\,p\in\mathbb N_+$, $\displaystyle\lim_{n\to\infty}(x_{n+p}-x_n)=0$;
+  \item $\forall\,n,p\in\mathbb N_+$, $\displaystyle|x_{n+p}-x_n|<\frac{p}{n^2}$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.3.13}\label{x:2.3.13}
+Apply the Cauchy convergence criterion to prove that each of the following sequences $\{a_n\}$ converges:
+\begin{enumerate}[(1)]
+  \item $\displaystyle a_n = 1 - \frac{1}{2^2} + \frac{1}{3^2} - \cdots + (-1)^{n-1}\frac{1}{n^2}\qquad (n \in \mathbb{N}_+)$;
+  \item $\displaystyle a_n = 1 + \frac{\sin x}{1^2} + \cdots + \frac{\sin nx}{n^2}\qquad (x \in \mathbb{R})$;
+  \item $\displaystyle a_n = \frac{\sin 2x}{2(2+\sin 2x)} + \frac{\sin 3x}{3(3+\sin 3x)} + \cdots + \frac{\sin nx}{n(n+\sin nx)}\qquad (n \in \mathbb{N}_+,\ x \in \mathbb{R})$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.3.14}\label{x:2.3.14}
+Suppose the sequence
+\[
+\bigl\{\,|a_2 - a_1| + |a_3 - a_2| + \cdots + |a_n - a_{n-1}|\,\bigr\}
+\]
+is bounded. Prove that $\{a_n\}$ converges.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.15}\label{x:2.3.15}
+Prove the $0/0$ form of the Stolz theorem: suppose that
+\[
+\lim_{n\to\infty} a_n = 0, \qquad \lim_{n\to\infty} b_n = 0,
+\qquad b_1 > b_2 > b_3 > \cdots .
+\]
+If
+\[
+\lim_{n\to\infty} \frac{a_n - a_{n-1}}{b_n - b_{n-1}} = A,
+\]
+then
+\[
+\lim_{n\to\infty} \frac{a_n}{b_n} = A .
+\]
+Here $A$ is either a finite number, or positive or negative infinity.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.16}\label{x:2.3.16}
+Let $a_n \in [a,b]$ $(n \in \mathbb{N}_+)$. Prove: if $\{a_n\}$ diverges, then $\{a_n\}$ must have two subsequences converging to different numbers.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.17}\label{x:2.3.17}
+Use the Cauchy convergence criterion to prove that a monotone bounded sequence must converge.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.18}\label{x:2.3.18}
+Use the nested interval theorem to prove the Bolzano--Weierstrass theorem.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.19}\label{x:2.3.19}
+Use the nested interval theorem to prove the Cauchy convergence criterion.
+\end{problem}
+
+\begin{problem}{Exercise 2.3.20}\label{x:2.3.20}
+Let the sequence $\{x_n\}$ satisfy
+\[
+\lim_{n\to\infty} x_n \sum_{k=1}^{n} x_k^2 = 1 .
+\]
+Prove that
+\[
+\lim_{n\to\infty} \sqrt[3]{3n}\, x_n = 1 .
+\]
+\end{problem}
+
+\begin{problem}{Exercise 2.3.21}\label{x:2.3.21}
+Let $a_0 = 3$, $a_n = a_{n-1}^2 - 2$. Prove:
+\begin{enumerate}[(1)]
+  \item $\displaystyle \lim_{n\to\infty} a_n = +\infty$;
+  \item $\displaystyle \lim_{n\to\infty} \frac{a_n}{a_0 a_1 \cdots a_{n-1}} = \sqrt{5}$.
+\end{enumerate}
+\end{problem}
+
+
+\srcline{Exercise set 2.4, problems 1--10}
+
+\begin{problem}{Exercise 2.4.1}\label{x:2.4.1}
+Prove the uniqueness of the supremum and of the infimum.
+\end{problem}
+
+\begin{problem}{Exercise 2.4.2}\label{x:2.4.2}
+Let $A$ be a nonempty set of real numbers. Prove:
+\begin{enumerate}[(1)]
+  \item $\sup A \in A$ if and only if $A$ has a maximum, and in that case $\sup A = \max A$;
+  \item $\inf A \in A$ if and only if $A$ has a minimum, and in that case $\inf A = \min A$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.4.3}\label{x:2.4.3}
+Suppose that $x < a$ holds for every $x \in S$. Which of the two conclusions $\sup S < a$ and $\sup S \le a$ is the correct one?
+\end{problem}
+
+\begin{problem}{Exercise 2.4.4}\label{x:2.4.4}
+Find the supremum and the infimum of each of the following sets $S$:
+\begin{enumerate}[(1)]
+  \item $S = \{x \in \mathbb{Q} \mid x > \sqrt{2}\}$;
+  \item $S = \{y \in \mathbb{R} \mid y = x^2,\ x \in (-\sqrt{3}, 10)\}$;
+  \item $S = \{y \in \mathbb{R} \mid y = \arctan x,\ x \in \mathbb{Q}\}$;
+  \item $S = \left\{1, \dfrac{1}{2}, \dfrac{2}{3}, \dfrac{3}{4}, \cdots \right\}$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.4.5}\label{x:2.4.5}
+Let $A$ be a nonempty set of real numbers and write $-A = \{x \mid -x \in A\}$. Then
+\begin{enumerate}[(1)]
+  \item $\sup(-A) = -\inf A$;
+  \item $\inf(-A) = -\sup A$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.4.6}\label{x:2.4.6}
+Let the sets of real numbers $A$ and $B$ be bounded above. If a set $S$ satisfies
+\[
+S \subset \{x + y \mid x \in A,\ y \in B\},
+\]
+prove that $\sup S \le \sup A + \sup B$. Give an example showing that the strict inequality need not hold.
+\end{problem}
+
+\begin{problem}{Exercise 2.4.7}\label{x:2.4.7}
+Let the sets of real numbers $A$ and $B$ be bounded above. If a set $S$ satisfies
+\[
+S \supset \{x + y \mid x \in A,\ y \in B\},
+\]
+prove that $\sup S \ge \sup A + \sup B$. Give an example showing that the strict inequality need not hold.
+\end{problem}
+
+\begin{problem}{Exercise 2.4.8}\label{x:2.4.8}
+Let $A, B$ be two nonempty sets of real numbers and let $\alpha \ge 0$. Write
+\[
+A + \alpha B = \{x \mid x = a + \alpha b,\ a \in A,\ b \in B\}.
+\]
+Prove:
+\begin{enumerate}[(1)]
+  \item $\sup(A + \alpha B) = \sup A + \alpha \sup B$;
+  \item $\inf(A + \alpha B) = \inf A + \alpha \inf B$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Exercise 2.4.9}\label{x:2.4.9}
+Let $A$ and $B$ be two sets of real numbers with $A \subset B$. Prove that $\sup A \le \sup B$ and $\inf A \ge \inf B$.
+\end{problem}
+
+\begin{problem}{Exercise 2.4.10}\label{x:2.4.10}
+Let $A$ and $B$ be two sets of real numbers such that the inequality $x \le y$ holds for every number $x$ in the set $A$ and every number $y$ in the set $B$. Prove that $\sup A \le \inf B$.
+\end{problem}
+
+\clearpage
+
+\part*{Part II\quad Solutions}
+
+\addcontentsline{toc}{part}{Part II --- Solutions}
+
+
+\section*{A.\quad Worked examples from the text}
+
+\addcontentsline{toc}{section}{A. Worked examples from the text}
+
+
+\srcline{Worked examples 2.1.2--2.1.5}
+
+\begin{solution}{Solution 2.1.2}\label{es:2.1.2}
+Recall the definition: $\displaystyle\lim_{n\to\infty}a_{n}=a$ means that for every $\varepsilon>0$ there is a natural number $N$ such that $\lvert a_{n}-a\rvert<\varepsilon$ for every $n>N$.
+
+Let $0<\lvert q\rvert<1$ and let $\varepsilon>0$ be arbitrary. Since $\lvert q^{n}-0\rvert=\lvert q\rvert^{n}$ and $\lvert q\rvert^{n}>0$, the desired inequality
+\[
+\lvert q^{n}-0\rvert=\lvert q\rvert^{n}<\varepsilon
+\]
+is, after taking logarithms of both sides, equivalent to
+\[
+n\ln\lvert q\rvert<\ln\varepsilon .
+\]
+Because $0<\lvert q\rvert<1$ we have $\ln\lvert q\rvert<0$, so dividing by $\ln\lvert q\rvert$ reverses the inequality and we obtain the sufficient condition
+\[
+n>\frac{\ln\varepsilon}{\ln\lvert q\rvert}.
+\]
+Let
+\[
+N=\max\left\{\left[\frac{\ln\varepsilon}{\ln\lvert q\rvert}\right],\,1\right\},
+\]
+where $[\,x\,]$ denotes the integer part of $x$, i.e.\ the greatest integer not exceeding $x$; then $N$ is a natural number with $N\ge\left[\dfrac{\ln\varepsilon}{\ln\lvert q\rvert}\right]$. Hence for every $n>N$ the index $n$ is an integer with $n\ge N+1>\left[\dfrac{\ln\varepsilon}{\ln\lvert q\rvert}\right]$, and since the integer part is the greatest integer not exceeding the number, this forces $n>\dfrac{\ln\varepsilon}{\ln\lvert q\rvert}$, that is, $n\ln\lvert q\rvert<\ln\varepsilon$, and therefore
+\[
+\lvert q^{n}-0\rvert=\lvert q\rvert^{n}<\varepsilon .
+\]
+Thus for every $\varepsilon>0$ there exists $N=\max\left\{\left[\dfrac{\ln\varepsilon}{\ln\lvert q\rvert}\right],1\right\}\in\mathbb{N}$ such that $\lvert q^{n}-0\rvert<\varepsilon$ for all $n>N$, which is precisely the statement
+\[
+\lim_{n\to\infty}q^{n}=0 .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.1.3}\label{es:2.1.3}
+We use again the definition: $\displaystyle\lim_{n\to\infty}a_{n}=a$ means that for every $\varepsilon>0$ there is a natural number $N$ with $\lvert a_{n}-a\rvert<\varepsilon$ for all $n>N$.
+
+First simplify the difference. For every $n$ with $3n^{2}+2n-4\neq 0$,
+\[
+\left\lvert\frac{n^{2}-n+2}{3n^{2}+2n-4}-\frac{1}{3}\right\rvert
+=\left\lvert\frac{3(n^{2}-n+2)-(3n^{2}+2n-4)}{3(3n^{2}+2n-4)}\right\rvert
+=\left\lvert\frac{-5n+10}{3(3n^{2}+2n-4)}\right\rvert .
+\]
+For $n\ge 2$ we have $5n-10\ge 0$ and $3n^{2}+2n-4\ge 3n^{2}>0$, so the absolute values may be removed and
+\[
+\left\lvert\frac{n^{2}-n+2}{3n^{2}+2n-4}-\frac{1}{3}\right\rvert
+=\frac{5n-10}{3(3n^{2}+2n-4)}
+\le\frac{5n}{3\cdot 3n^{2}}
+=\frac{5}{9n}
+<\frac{1}{n},
+\]
+where in the first inequality we used $5n-10\le 5n$ and $3n^{2}+2n-4\ge 3n^{2}$ (valid for $n\ge 2$).
+
+Now let $\varepsilon>0$ be arbitrary. In view of the estimate above, the inequality
+\[
+\left\lvert\frac{n^{2}-n+2}{3n^{2}+2n-4}-\frac{1}{3}\right\rvert<\varepsilon
+\]
+is certainly satisfied as soon as $\dfrac{1}{n}<\varepsilon$, that is, as soon as
+\[
+n>\frac{1}{\varepsilon}.
+\]
+Take
+\[
+N=\max\left\{\left[\frac{1}{\varepsilon}\right],\,2\right\},
+\]
+where $[\,x\,]$ denotes the integer part. Then $N\in\mathbb{N}$, $N\ge \left[\dfrac{1}{\varepsilon}\right]$ and $N\ge 2$. Hence for every $n>N$ we have on the one hand $n\ge 3>2$, so that the estimate above applies, and on the other hand, $n$ being an integer with $n\ge N+1>\left[\dfrac{1}{\varepsilon}\right]$, we have $n>\dfrac{1}{\varepsilon}$, so that $\dfrac{1}{n}<\varepsilon$. Consequently
+\[
+\left\lvert\frac{n^{2}-n+2}{3n^{2}+2n-4}-\frac{1}{3}\right\rvert<\frac{1}{n}<\varepsilon
+\qquad\text{for every } n>N .
+\]
+Therefore for every $\varepsilon>0$ there exists $N=\max\left\{\left[\dfrac{1}{\varepsilon}\right],2\right\}\in\mathbb{N}$ such that the last inequality holds whenever $n>N$, and so
+\[
+\lim_{n\to\infty}\frac{n^{2}-n+2}{3n^{2}+2n-4}=\frac{1}{3}.
+\]
+(Remark: the enlargement of the inequality requires the condition $n\ge 2$, so when choosing $N$ we must ensure simultaneously that $N\ge\left[\dfrac{1}{\varepsilon}\right]$ and $N\ge 2$; this is exactly what the maximum above does.)
+\end{solution}
+
+\begin{solution}{Solution 2.1.4}\label{es:2.1.4}
+Again, $\displaystyle\lim_{n\to\infty}a_{n}=a$ means that for every $\varepsilon>0$ there is a natural number $N$ such that $\lvert a_{n}-a\rvert<\varepsilon$ for every $n>N$.
+
+Set $y_{k}=x_{k}-a$ for $k=1,2,\dots$. Then $\displaystyle\lim_{n\to\infty}y_{n}=0$, and
+\[
+\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}-a
+=\frac{(x_{1}-a)+(x_{2}-a)+\cdots+(x_{n}-a)}{n}
+=\frac{y_{1}+y_{2}+\cdots+y_{n}}{n}.
+\]
+Hence it suffices to prove the assertion in the case $a=0$, i.e.\ to show that $\displaystyle\lim_{n\to\infty}y_{n}=0$ implies $\displaystyle\lim_{n\to\infty}\frac{y_{1}+\cdots+y_{n}}{n}=0$; the general case follows by adding $a$ back.
+
+So assume $\displaystyle\lim_{n\to\infty}x_{n}=0$. Let $\varepsilon>0$ be given. By the definition of limit applied with the positive number $\varepsilon/2$, there is $N_{1}\in\mathbb{N}$ such that
+\[
+\lvert x_{n}\rvert<\frac{\varepsilon}{2}\qquad\text{for every } n>N_{1}.
+\]
+Fix this $N_{1}$ and put $C=\lvert x_{1}\rvert+\lvert x_{2}\rvert+\cdots+\lvert x_{N_{1}}\rvert$; this is a fixed real number, independent of $n$. For $n>N_{1}$, using the triangle inequality,
+\[
+\left\lvert\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}\right\rvert
+\le\frac{\lvert x_{1}+x_{2}+\cdots+x_{N_{1}}\rvert}{n}
++\frac{\lvert x_{N_{1}+1}+x_{N_{1}+2}+\cdots+x_{n}\rvert}{n}
+\]
+\[
+\le\frac{\lvert x_{1}\rvert+\lvert x_{2}\rvert+\cdots+\lvert x_{N_{1}}\rvert}{n}
++\frac{\lvert x_{N_{1}+1}\rvert+\lvert x_{N_{1}+2}\rvert+\cdots+\lvert x_{n}\rvert}{n}
+<\frac{C}{n}+\frac{n-N_{1}}{n}\cdot\frac{\varepsilon}{2}
+<\frac{C}{n}+\frac{\varepsilon}{2},
+\]
+because the sum $\lvert x_{N_{1}+1}\rvert+\cdots+\lvert x_{n}\rvert$ contains exactly $n-N_{1}<n$ terms, each of them less than $\varepsilon/2$.
+
+Since $C$ is a constant, $\displaystyle\lim_{n\to\infty}\frac{C}{n}=0$; equivalently, there exists $N_{2}\in\mathbb{N}$ such that
+\[
+\frac{C}{n}=\left\lvert\frac{C}{n}-0\right\rvert<\frac{\varepsilon}{2}\qquad\text{for every } n>N_{2}.
+\]
+Now take $N=\max\{N_{1},N_{2}\}$. For every $n>N$ we have $n>N_{1}$ and $n>N_{2}$, hence the two estimates above hold simultaneously and
+\[
+\left\lvert\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}\right\rvert<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon .
+\]
+Thus, in the case $a=0$, for every $\varepsilon>0$ there is $N=\max\{N_{1},N_{2}\}\in\mathbb{N}$ with $\left\lvert\frac{x_{1}+\cdots+x_{n}}{n}-0\right\rvert<\varepsilon$ for all $n>N$, that is,
+\[
+\lim_{n\to\infty}\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}=0 .
+\]
+Returning to the general case by means of the reduction at the beginning, we obtain
+\[
+\lim_{n\to\infty}\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}=a .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.1.5}\label{es:2.1.5}
+We must correctly negate the definition of limit. By definition, $\displaystyle\lim_{n\to\infty}a_{n}=a$ means
+\[
+\forall\,\varepsilon>0,\ \exists\,N\in\mathbb{N},\ \forall\,n>N:\quad \lvert a_{n}-a\rvert<\varepsilon .
+\]
+Negating this statement (each ``for all'' becomes ``there exists'', each ``there exists'' becomes ``for all'', and the final inequality is negated), we obtain: $\displaystyle\lim_{n\to\infty}a_{n}\neq a$ means
+\[
+\exists\,\varepsilon_{0}>0,\ \forall\,N\in\mathbb{N},\ \exists\,n>N:\quad \lvert a_{n}-a\rvert\ge\varepsilon_{0}.
+\]
+Take $a_{n}=\dfrac{1}{n^{2}}$ and $a=1$, and choose
+\[
+\varepsilon_{0}=\frac{3}{4}.
+\]
+Let $N\in\mathbb{N}$ be arbitrary and take
+\[
+n=\max\{N+1,\,2\},
+\]
+so that $n>N$ and $n\ge 2$. Since $n\ge 2$ we have $n^{2}\ge 4$, hence $n^{2}-1\ge n^{2}-\dfrac{n^{2}}{4}=\dfrac{3}{4}n^{2}>0$, and therefore
+\[
+\left\lvert\frac{1}{n^{2}}-1\right\rvert=\frac{n^{2}-1}{n^{2}}\ge\frac{\frac{3}{4}n^{2}}{n^{2}}=\frac{3}{4}=\varepsilon_{0}.
+\]
+So there exists $\varepsilon_{0}=\dfrac{3}{4}>0$ such that for every natural number $N$ there is an index $n=\max\{N+1,2\}>N$ with $\left\lvert\dfrac{1}{n^{2}}-1\right\rvert\ge\varepsilon_{0}$. By the negation of the definition of limit this says exactly that
+\[
+\lim_{n\to\infty}\frac{1}{n^{2}}\neq 1 .
+\]
+\end{solution}
+
+
+\srcline{Worked examples 2.1.12--2.1.15}
+
+\begin{solution}{Solution 2.1.12}\label{es:2.1.12}
+Recall the definition: $\displaystyle\lim_{n\to\infty}x_{n}=a$ means that for every $\varepsilon>0$ there is a natural number $N$ such that
+\[
+\lvert x_{n}-a\rvert<\varepsilon\qquad\text{for every }n>N .
+\]
+We prove the assertion by distinguishing the two cases $a=0$ and $a\neq 0$.
+
+\medskip
+\noindent\textbf{Case 1: $a=0$.}
+Let $\varepsilon>0$ be arbitrary. Since $\varepsilon^{3}>0$ and $\displaystyle\lim_{n\to\infty}x_{n}=0$, the definition supplies a natural number $N$ such that
+\[
+\lvert x_{n}-0\rvert=\lvert x_{n}\rvert<\varepsilon^{3}\qquad\text{for every }n>N .
+\]
+Because the cube root is an odd function, $\lvert x_{n}^{1/3}\rvert=\lvert x_{n}\rvert^{1/3}$; hence for every $n>N$
+\[
+\bigl\lvert x_{n}^{\frac{1}{3}}-0^{\frac{1}{3}}\bigr\rvert=\lvert x_{n}^{\frac{1}{3}}\rvert=\lvert x_{n}\rvert^{\frac{1}{3}}<\bigl(\varepsilon^{3}\bigr)^{\frac{1}{3}}=\varepsilon .
+\]
+As $\varepsilon>0$ was arbitrary, this proves
+\[
+\lim_{n\to\infty}x_{n}^{\frac{1}{3}}=0=0^{\frac{1}{3}} .
+\]
+
+\medskip
+\noindent\textbf{Case 2: $a\neq 0$.}
+Here $a^{2/3}=\lvert a\rvert^{2/3}>0$, so $\varepsilon' :=a^{2/3}\varepsilon$ is a positive number whenever $\varepsilon>0$.
+
+We first record a consequence of the sign-preserving property of limits: since $\displaystyle\lim_{n\to\infty}x_{n}=a$ with $a\neq 0$, applying the definition with the positive number $\lvert a\rvert$ gives a natural number $N_{2}$ such that $\lvert x_{n}-a\rvert<\lvert a\rvert$ for all $n>N_{2}$. If $a>0$ this gives $x_{n}>a-\lvert a\rvert=0$, while if $a<0$ it gives $x_{n}<a+\lvert a\rvert=0$; in either case
+\[
+x_{n}a>0\qquad\text{for every }n>N_{2}.
+\]
+
+Now let $\varepsilon>0$ be arbitrary. Applying the definition of $\displaystyle\lim_{n\to\infty}x_{n}=a$ to the positive number $\varepsilon'=a^{2/3}\varepsilon$, we obtain a natural number $N_{1}$ such that
+\[
+\lvert x_{n}-a\rvert<a^{\frac{2}{3}}\varepsilon\qquad\text{for every }n>N_{1}.
+\]
+Put $N=\max\{N_{1},N_{2}\}$ and fix any $n>N$. Then both estimates above hold. We use the algebraic identity
+\[
+u^{3}-v^{3}=(u-v)\bigl(u^{2}+uv+v^{2}\bigr),
+\]
+valid for all real $u,v$; taking $u=x_{n}^{1/3}$ and $v=a^{1/3}$ (so that $u^{3}=x_{n}$ and $v^{3}=a$) it yields
+\[
+x_{n}-a=\bigl(x_{n}^{\frac{1}{3}}-a^{\frac{1}{3}}\bigr)\bigl(x_{n}^{\frac{2}{3}}+x_{n}^{\frac{1}{3}}a^{\frac{1}{3}}+a^{\frac{2}{3}}\bigr),
+\]
+that is,
+\[
+x_{n}^{\frac{1}{3}}-a^{\frac{1}{3}}
+=\frac{x_{n}-a}{x_{n}^{\frac{2}{3}}+x_{n}^{\frac{1}{3}}a^{\frac{1}{3}}+a^{\frac{2}{3}}} .
+\]
+Since $x_{n}a>0$, each of the three terms in the denominator is strictly positive: $x_{n}^{2/3}>0$, $x_{n}^{1/3}a^{1/3}=(x_{n}a)^{1/3}>0$ and $a^{2/3}>0$. Consequently the denominator is strictly larger than $a^{2/3}$, so
+\[
+\frac{1}{x_{n}^{\frac{2}{3}}+x_{n}^{\frac{1}{3}}a^{\frac{1}{3}}+a^{\frac{2}{3}}}<a^{-\frac{2}{3}} .
+\]
+Taking absolute values in the identity above and combining the two estimates, we get
+\[
+\bigl\lvert x_{n}^{\frac{1}{3}}-a^{\frac{1}{3}}\bigr\rvert
+=\frac{\lvert x_{n}-a\rvert}{x_{n}^{\frac{2}{3}}+x_{n}^{\frac{1}{3}}a^{\frac{1}{3}}+a^{\frac{2}{3}}}
+\le\lvert x_{n}-a\rvert\,a^{-\frac{2}{3}}
+<a^{\frac{2}{3}}\varepsilon\cdot a^{-\frac{2}{3}}=\varepsilon .
+\]
+Thus for every $\varepsilon>0$ there is a natural number $N=\max\{N_{1},N_{2}\}$ with $\lvert x_{n}^{1/3}-a^{1/3}\rvert<\varepsilon$ for all $n>N$, which is exactly the statement
+\[
+\lim_{n\to\infty}x_{n}^{\frac{1}{3}}=a^{\frac{1}{3}} .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.1.13}\label{es:2.1.13}
+Write $y_{n}=\dfrac{10^{n}}{n!}$; clearly $y_{n}>0$ for every $n$. We first bound $y_{n}$ from above.
+
+Let $n>10$. Splitting off the first ten factors of $n!=1\cdot 2\cdots n$ and of $10^{n}$,
+\[
+y_{n}=\frac{10^{n}}{n!}
+=\frac{10^{10}}{10!}\cdot\frac{10}{11}\cdot\frac{10}{12}\cdots\frac{10}{n}
+=\frac{10^{10}}{10!}\prod_{k=11}^{n}\frac{10}{k} .
+\]
+For every $k\ge 11$ we have $0<\dfrac{10}{k}\le\dfrac{10}{11}<1$, and the product contains exactly $n-10$ factors; therefore
+\[
+0<y_{n}\le\frac{10^{10}}{10!}\left(\frac{10}{11}\right)^{n-10}
+\qquad (n>10),
+\]
+where the inequality is an equality exactly when all the factors $\frac{10}{k}$ equal $\frac{10}{11}$, that is, exactly when $n=11$. For every $n>11$ it is strict. In any case the upper bound tends to $0$, as we now check.
+
+Since $0<\frac{10}{11}<1$, the geometric sequence with ratio $q=\frac{10}{11}$ tends to $0$: indeed $q=\frac{1}{1+h}$ with $h=\frac{1}{10}>0$, and Bernoulli's inequality gives $(1+h)^{m}\ge 1+mh$ for every $m\ge 1$, whence
+\[
+0<q^{m}=\frac{1}{(1+h)^{m}}\le\frac{1}{1+mh}\longrightarrow 0 ,
+\]
+so that $\displaystyle\lim_{m\to\infty}q^{m}=0$ by the squeeze theorem. Taking $m=n-10$ and multiplying by the constant $\dfrac{10^{10}}{10!}$,
+\[
+\lim_{n\to\infty}\frac{10^{10}}{10!}\left(\frac{10}{11}\right)^{n-10}
+=\frac{10^{10}}{10!}\cdot 0=0 .
+\]
+
+We may now apply the squeeze theorem for sequences (if $x_{n}\le y_{n}\le z_{n}$ for all sufficiently large $n$ and $\displaystyle\lim_{n\to\infty}x_{n}=\lim_{n\to\infty}z_{n}=a$, then $\displaystyle\lim_{n\to\infty}y_{n}=a$) to the three sequences
+\[
+x_{n}=0,\qquad y_{n}=\frac{10^{n}}{n!},\qquad
+z_{n}=\frac{10^{10}}{10!}\left(\frac{10}{11}\right)^{n-10},
+\]
+which satisfy $0<y_{n}\le z_{n}$ for all $n>10$, while $\displaystyle\lim_{n\to\infty}x_{n}=0$ and $\displaystyle\lim_{n\to\infty}z_{n}=0$. We conclude that
+\[
+\lim_{n\to\infty}\frac{10^{n}}{n!}=0 .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.1.14}\label{es:2.1.14}
+For a natural number $m$ we have, by cross-multiplication with the positive denominators,
+\[
+\frac{m}{m+1}<\frac{m+1}{m+2}
+\quad\Longleftrightarrow\quad
+m(m+2)<(m+1)^{2}
+\quad\Longleftrightarrow\quad
+m^{2}+2m<m^{2}+2m+1 ,
+\]
+which is true. Since
+\[
+x_{n}=\frac{(2n-1)!!}{(2n)!!}
+=\frac{1\cdot 3\cdot 5\cdots(2n-1)}{2\cdot 4\cdot 6\cdots(2n)}>0 ,
+\]
+the sequence $\{x_{n}\}$ is well defined and positive for every $n\ge 1$.
+
+Apply the inequality above to the $n$ natural numbers $m=1,3,5,\dots,2n-1$:
+\[
+\frac{1}{2}<\frac{2}{3},\qquad
+\frac{3}{4}<\frac{4}{5},\qquad
+\frac{5}{6}<\frac{6}{7},\qquad\dots,\qquad
+\frac{2n-1}{2n}<\frac{2n}{2n+1} .
+\]
+All the numbers involved are positive, so we may multiply these $n$ inequalities side by side; the left-hand sides multiply to $x_{n}$ and we obtain
+\[
+\frac{1\cdot 3\cdot 5\cdots(2n-1)}{2\cdot 4\cdot 6\cdots(2n)}
+<\frac{2\cdot 4\cdot 6\cdots(2n)}{3\cdot 5\cdot 7\cdots(2n+1)} .
+\]
+On the right-hand side we factor $3\cdot 5\cdot 7\cdots(2n+1)=(2n+1)\bigl(3\cdot 5\cdots(2n-1)\bigr)$ and then cancel the common factor $3\cdot 5\cdots(2n-1)$:
+\[
+\frac{2\cdot 4\cdot 6\cdots(2n)}{3\cdot 5\cdot 7\cdots(2n+1)}
+=\frac{1}{2n+1}\cdot\frac{2\cdot 4\cdot 6\cdots(2n)}{3\cdot 5\cdots(2n-1)}
+=\frac{1}{(2n+1)\;x_{n}} ,
+\]
+because $\dfrac{2\cdot 4\cdot 6\cdots(2n)}{3\cdot 5\cdots(2n-1)}=\dfrac{2\cdot 4\cdots(2n)}{1\cdot 3\cdot 5\cdots(2n-1)}=\dfrac{1}{x_{n}}$. Therefore
+\[
+x_{n}<\frac{1}{(2n+1)x_{n}} .
+\]
+Multiplying by the positive number $x_{n}$ we find $x_{n}^{2}<\dfrac{1}{2n+1}$, and since $x_{n}>0$,
+\[
+0<x_{n}<\frac{1}{\sqrt{2n+1}}\qquad (n\ge 1).
+\]
+
+Finally, $\displaystyle\lim_{n\to\infty}\frac{1}{\sqrt{2n+1}}=0$. Indeed, let $\varepsilon>0$; by the Archimedean property choose a natural number $N$ with $2N+1\ge\dfrac{1}{\varepsilon^{2}}$. Then for every $n>N$ we have $2n+1>2N+1\ge\dfrac{1}{\varepsilon^{2}}$, hence $\sqrt{2n+1}>\dfrac{1}{\varepsilon}$ and therefore
+\[
+\left\lvert\frac{1}{\sqrt{2n+1}}-0\right\rvert=\frac{1}{\sqrt{2n+1}}<\varepsilon .
+\]
+
+Now the squeeze theorem for sequences applies to
+\[
+0<x_{n}<\frac{1}{\sqrt{2n+1}}\qquad (n\ge 1),
+\]
+where the left-hand sequence is identically $0$ and the right-hand sequence tends to $0$. Consequently
+\[
+\lim_{n\to\infty}x_{n}=\lim_{n\to\infty}\frac{(2n-1)!!}{(2n)!!}=0 ,
+\]
+so the sequence $\{x_{n}\}$ converges, and its limit is $0$.
+\end{solution}
+
+\begin{solution}{Solution 2.1.15}\label{es:2.1.15}
+We use the inequality between the geometric and arithmetic means: for positive real numbers $a_{1},a_{2},\dots,a_{n}$,
+\[
+(a_{1}a_{2}\cdots a_{n})^{\frac{1}{n}}\le\frac{a_{1}+a_{2}+\cdots+a_{n}}{n},
+\]
+with equality if and only if $a_{1}=a_{2}=\cdots=a_{n}$.
+
+Let $n\ge 2$ and apply this inequality to the $n$ positive numbers consisting of $n-2$ copies of $1$ and two copies of $\sqrt{n}$. Their product equals
+\[
+\underbrace{1\cdot 1\cdots 1}_{n-2\text{ factors}}\cdot\sqrt{n}\cdot\sqrt{n}=n,
+\]
+and their sum equals $n-2+2\sqrt{n}$. Hence
+\[
+n^{\frac{1}{n}}
+=\bigl(1\cdot 1\cdots 1\cdot\sqrt{n}\cdot\sqrt{n}\bigr)^{\frac{1}{n}}
+\le\frac{n-2+2\sqrt{n}}{n}
+=1+\frac{2\sqrt{n}-2}{n}
+\le 1+\frac{2\sqrt{n}}{n}
+=1+\frac{2}{\sqrt{n}} .
+\]
+On the other hand $n\ge 1$ gives $n^{1/n}\ge 1^{1/n}=1$ (the map $t\mapsto t^{1/n}$ is increasing on $[0,+\infty)$ for every $n\ge 1$). Thus, for every $n\ge 1$,
+\[
+1\le n^{\frac{1}{n}}\le 1+\frac{2}{\sqrt{n}} .
+\]
+(For $n=1,2$ the estimate is immediate: $1^{1}=1\le 3$ and $2^{1/2}=\sqrt{2}\le 1+\sqrt{2}$.)
+
+It remains to note that $\displaystyle\lim_{n\to\infty}\left(1+\frac{2}{\sqrt{n}}\right)=1$, which follows from $\displaystyle\lim_{n\to\infty}\frac{1}{\sqrt{n}}=0$: given $\varepsilon>0$, the Archimedean property provides a natural number $N$ with $N>\dfrac{1}{\varepsilon^{2}}$, and then for every $n>N$ we have $\sqrt{n}>\dfrac{1}{\varepsilon}$, that is, $\left\lvert\dfrac{1}{\sqrt{n}}-0\right\rvert=\dfrac{1}{\sqrt{n}}<\varepsilon$.
+
+The constant sequence $1$ tends to $1$, and the sequence $n^{1/n}$ is squeezed between the constant sequence $1$ and the sequence $1+\dfrac{2}{\sqrt{n}}$, which also tends to $1$. By the squeeze theorem for sequences,
+\[
+\lim_{n\to\infty}n^{\frac{1}{n}}=1 .
+\]
+\end{solution}
+
+
+\srcline{Worked examples 2.1.17--2.1.21}
+
+\begin{solution}{Solution 2.1.17}\label{es:2.1.17}
+Rationalize the factor $\sqrt{n+1}-\sqrt{n}$ by multiplying and dividing by
+$\sqrt{n+1}+\sqrt{n}$:
+\[
+\sqrt{n}\,\bigl(\sqrt{n+1}-\sqrt{n}\bigr)
+=\frac{\sqrt{n}\,\bigl(\sqrt{n+1}-\sqrt{n}\bigr)\bigl(\sqrt{n+1}+\sqrt{n}\bigr)}
+       {\sqrt{n+1}+\sqrt{n}}
+=\frac{\sqrt{n}\,\bigl((n+1)-n\bigr)}{\sqrt{n+1}+\sqrt{n}}
+=\frac{\sqrt{n}}{\sqrt{n+1}+\sqrt{n}} .
+\]
+Dividing numerator and denominator by $\sqrt{n}$ (which is legitimate for
+$n\geq 1$),
+\[
+\frac{\sqrt{n}}{\sqrt{n+1}+\sqrt{n}}
+=\frac{1}{\sqrt{1+\frac1n}+1}.
+\]
+Now $\frac1n\to 0$, hence $1+\frac1n\to 1$. For the square root we have, for every
+$n\geq 1$,
+\[
+0\leq \sqrt{1+\tfrac1n}-1
+=\frac{\bigl(\sqrt{1+\frac1n}-1\bigr)\bigl(\sqrt{1+\frac1n}+1\bigr)}
+        {\sqrt{1+\frac1n}+1}
+=\frac{\frac1n}{\sqrt{1+\frac1n}+1}
+\leq \frac1n ,
+\]
+and $\frac1n\to 0$; by the squeeze theorem (sandwich theorem)
+$\sqrt{1+\frac1n}-1\to 0$, that is, $\sqrt{1+\frac1n}\to 1$. Since the denominator
+$\sqrt{1+\frac1n}+1$ has limit $1+1=2\neq 0$, the quotient rule for limits gives
+\[
+\lim_{n\to\infty}\sqrt{n}\,\bigl(\sqrt{n+1}-\sqrt{n}\bigr)
+=\lim_{n\to\infty}\frac{1}{\sqrt{1+\frac1n}+1}=\frac12 .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.1.18}\label{es:2.1.18}
+We treat the three cases $a=1$, $a>1$ and $0<a<1$.
+
+\emph{Case 1: $a=1$.} Then $\sqrt[n]{a}=\sqrt[n]{1}=1$ for every $n$, so
+$\lim_{n\to\infty}\sqrt[n]{a}=1$.
+
+\emph{Case 2: $a>1$.} For every $n\geq 1$ we have $\sqrt[n]{a}>1$. Put
+\[
+h_{n}=\sqrt[n]{a}-1>0,\qquad\text{so that}\qquad \sqrt[n]{a}=1+h_{n}.
+\]
+Raising the last equality to the $n$-th power and applying the binomial theorem,
+\[
+a=(1+h_{n})^{n}
+=1+\binom{n}{1}h_{n}+\binom{n}{2}h_{n}^{2}+\cdots+\binom{n}{n}h_{n}^{n}
+\geq 1+n\,h_{n},
+\]
+because $h_{n}>0$ makes every term $\binom{n}{k}h_{n}^{k}$ with $k\geq 1$
+nonnegative (in particular $\binom{n}{1}h_{n}=n h_{n}$). Hence
+\[
+0<h_{n}\leq \frac{a-1}{n}.
+\]
+Since $a-1$ is a fixed constant and $\lim_{n\to\infty}\frac{a-1}{n}=0$, the squeeze
+theorem gives $\lim_{n\to\infty}h_{n}=0$. Therefore, by the sum rule for limits,
+\[
+\lim_{n\to\infty}\sqrt[n]{a}=\lim_{n\to\infty}(1+h_{n})=1+0=1 .
+\]
+
+\emph{Case 3: $0<a<1$.} Then $\frac1a>1$, so Case 2 applied to the number
+$\frac1a>1$ yields
+\[
+\lim_{n\to\infty}\sqrt[n]{\frac1a}=1 .
+\]
+For every $n\geq 1$,
+\[
+\sqrt[n]{a}=\frac{1}{\sqrt[n]{\frac1a}},
+\]
+and the denominator has limit $1\neq 0$; by the quotient rule for limits,
+\[
+\lim_{n\to\infty}\sqrt[n]{a}
+=\frac{1}{\lim_{n\to\infty}\sqrt[n]{\frac1a}}=\frac11=1 .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.1.19}\label{es:2.1.19}
+Recall that a sequence $\{z_{n}\}$ is called an \emph{infinitesimal} (a null
+sequence) if $\lim_{n\to\infty}z_{n}=0$. Let $x_{n}=\frac{a^{n}}{n!}>0$. We prove
+that $x_{n}\to 0$, distinguishing two cases according to the integer part
+$\lfloor a\rfloor$ of $a$.
+
+\emph{Case 1: $\lfloor a\rfloor=0$} (that is, $0<a<1$). For every $n\geq 1$ we have
+$n!\geq n$ and $a^{n}<1$, whence
+\[
+0<x_{n}=\frac{a^{n}}{n!}\leq \frac{a^{n}}{n}<\frac1n .
+\]
+Since $\frac1n\to 0$, the squeeze theorem yields $\lim_{n\to\infty}x_{n}=0$, i.e.
+$\left\{\frac{a^{n}}{n!}\right\}$ is an infinitesimal.
+
+\emph{Case 2: $\lfloor a\rfloor\neq 0$} (that is, $a\geq 1$). Let
+$m=\lfloor a\rfloor\geq 1$, so that $m\leq a<m+1$. Fix $n>m$; then
+\[
+\frac{a^{n}}{n!}
+=\frac{a}{1}\cdot\frac{a}{2}\cdots\frac{a}{m}\cdot\frac{a}{m+1}\cdots\frac{a}{n}
+\leq \frac{a^{m}}{m!}\cdot\frac{a}{n},
+\]
+because the first $m$ factors have product $\frac{a^{m}}{m!}$, while each of the
+remaining factors satisfies $\frac{a}{k}\leq\frac{a}{n}$ for $m+1\leq k\leq n$
+(the larger the denominator, the smaller the fraction, and $a>0$). Thus, whenever
+$n>m$ and $\frac{a}{n}\leq 1$ (which holds for all $n\geq a$),
+\[
+0<x_{n}\leq \frac{a^{m}}{m!}\cdot\frac{a}{n},
+\]
+and $\frac{a^{m}}{m!}\cdot\frac{a}{n}\to 0$ as $n\to\infty$, since
+$\frac{a^{m+1}}{m!}$ is a fixed constant. By the squeeze theorem,
+\[
+\lim_{n\to\infty}\frac{a^{n}}{n!}=0,
+\]
+so $\left\{\frac{a^{n}}{n!}\right\}$ is an infinitesimal.
+
+Combining the two cases, $\left\{\frac{a^{n}}{n!}\right\}$ is an infinitesimal for
+every $a>0$.
+\end{solution}
+
+\begin{solution}{Solution 2.1.20}\label{es:2.1.20}
+By hypothesis $\lim_{n\to\infty}(x_{n}-x_{n-2})=0$: for every $\varepsilon>0$ there
+exists a natural number $N_{1}$ such that
+\[
+| x_{n}-x_{n-2}|<\frac{\varepsilon}{2}\qquad\text{for all } n>N_{1}.
+\]
+We may assume $N_{1}\geq 2$. Fix $n>\max\{2,N_{1}\}$. Using the triangle
+inequality $|x_{k}-x_{k-1}|\leq|x_{k}-x_{k-2}|+|x_{k-1}-x_{k-2}|$ and applying it
+recursively, we obtain
+\[
+\begin{aligned}
+|x_{n}-x_{n-1}|
+&\leq |x_{n}-x_{n-2}|+|x_{n-1}-x_{n-2}|\\
+&\leq |x_{n}-x_{n-2}|+|x_{n-1}-x_{n-3}|+|x_{n-2}-x_{n-3}|\\
+&\leq \cdots\\
+&\leq |x_{n}-x_{n-2}|+|x_{n-1}-x_{n-3}|+\cdots+|x_{N_{1}+1}-x_{N_{1}-1}|
+   +|x_{N_{1}}-x_{N_{1}-1}|\\
+&=\sum_{k=N_{1}+1}^{n}|x_{k}-x_{k-2}|+|x_{N_{1}}-x_{N_{1}-1}|\\
+&<\frac{(n-N_{1})\varepsilon}{2}+|x_{N_{1}}-x_{N_{1}-1}|,
+\end{aligned}
+\]
+where in the last step we used that all indices $k$ occurring in the sum satisfy
+$k\geq N_{1}+1>N_{1}$, so each of the $n-N_{1}$ summands is less than
+$\frac{\varepsilon}{2}$.
+
+The integer $N_{1}$ is now fixed, so $|x_{N_{1}}-x_{N_{1}-1}|$ is a constant and
+therefore
+\[
+\left\{\frac{1}{n}\,|x_{N_{1}}-x_{N_{1}-1}|\right\}
+\]
+is an infinitesimal: indeed its term is a fixed constant divided by $n$. Hence for
+the given $\varepsilon>0$ there exists a natural number $N_{2}$ such that
+\[
+\frac{1}{n}\,|x_{N_{1}}-x_{N_{1}-1}|<\frac{\varepsilon}{2}\qquad\text{for all }
+n>N_{2}.
+\]
+Put $N=\max\{2,N_{1},N_{2}\}$. Then for every $n>N$ the two estimates above hold
+simultaneously, and
+\[
+\left|\frac{x_{n}-x_{n-1}}{n}\right|
+=\frac{|x_{n}-x_{n-1}|}{n}
+<\frac{(n-N_{1})\varepsilon}{2n}+\frac{|x_{N_{1}}-x_{N_{1}-1}|}{n}
+<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon .
+\]
+Therefore
+\[
+\lim_{n\to\infty}\frac{x_{n}-x_{n-1}}{n}=0,
+\]
+that is, $\left\{\frac{x_{n}-x_{n-1}}{n}\right\}$ is an infinitesimal.
+\end{solution}
+
+\begin{solution}{Solution 2.1.21}\label{es:2.1.21}
+Recall that $\{z_{n}\}$ is an \emph{infinitesimal} if $\lim_{n\to\infty}z_{n}=0$;
+equivalently, $\lim_{n\to\infty}z_{n}=c$ if and only if $z_{n}=c+\gamma_{n}$ with
+$\{\gamma_{n}\}$ an infinitesimal.
+
+Set
+\[
+\alpha_{n}=x_{n}-a,\qquad \beta_{n}=y_{n}-b .
+\]
+Since $\lim_{n\to\infty}x_{n}=a$ and $\lim_{n\to\infty}y_{n}=b$, both
+$\{\alpha_{n}\}$ and $\{\beta_{n}\}$ are infinitesimals, so that
+\[
+x_{n}=a+\alpha_{n},\qquad y_{n}=b+\beta_{n}.
+\]
+Every convergent sequence is bounded; hence there is a constant $M>0$ with
+\[
+|\alpha_{n}|\leq M,\qquad |\beta_{n}|\leq M\qquad\text{for all } n\geq 1 .
+\]
+Write
+\[
+I_{n}=\frac{x_{n}y_{1}+x_{n-1}y_{2}+\cdots+x_{1}y_{n}}{n}
+=\frac{1}{n}\sum_{k=1}^{n}x_{n-k+1}y_{k}.
+\]
+Substituting $x_{n-k+1}=a+\alpha_{n-k+1}$ and $y_{k}=b+\beta_{k}$ and expanding,
+\[
+\begin{aligned}
+I_{n}
+&=\frac{1}{n}\sum_{k=1}^{n}\bigl(a+\alpha_{n-k+1}\bigr)\bigl(b+\beta_{k}\bigr)\\
+&=ab+\frac{b}{n}\sum_{k=1}^{n}\alpha_{k}+\frac{a}{n}\sum_{k=1}^{n}\beta_{k}
+   +\frac{1}{n}\sum_{k=1}^{n}\alpha_{n-k+1}\beta_{k},
+\end{aligned}
+\]
+where in the second term we used the reindexing
+$\sum_{k=1}^{n}\alpha_{n-k+1}=\sum_{j=1}^{n}\alpha_{j}$.
+
+\emph{Step 1 (Ces\`aro mean lemma).} If $z_{n}\to 0$, then
+$\frac{1}{n}\sum_{j=1}^{n}z_{j}\to 0$.
+
+Indeed, let $\varepsilon>0$. Choose $N_{1}$ such that $|z_{j}|<\frac{\varepsilon}{2}$
+for all $j>N_{1}$, and put $C=\sum_{j=1}^{N_{1}}|z_{j}|$ (a fixed constant; if
+$N_{1}=0$ take $C=0$). For $n>N_{1}$,
+\[
+\left|\frac{1}{n}\sum_{j=1}^{n}z_{j}\right|
+\leq \frac{C}{n}+\frac{1}{n}\sum_{j=N_{1}+1}^{n}|z_{j}|
+<\frac{C}{n}+\frac{(n-N_{1})\varepsilon}{2n}
+<\frac{C}{n}+\frac{\varepsilon}{2}.
+\]
+Choose $N_{2}\geq N_{1}$ with $\frac{C}{n}<\frac{\varepsilon}{2}$ for all $n>N_{2}$.
+Then $\left|\frac{1}{n}\sum_{j=1}^{n}z_{j}\right|<\varepsilon$ for all $n>N_{2}$,
+which proves the lemma. Applying it to the infinitesimals $\{\alpha_{n}\}$ and
+$\{\beta_{n}\}$,
+\[
+\lim_{n\to\infty}\frac{b}{n}\sum_{k=1}^{n}\alpha_{k}=0,
+\qquad
+\lim_{n\to\infty}\frac{a}{n}\sum_{k=1}^{n}\beta_{k}=0 .
+\]
+
+\emph{Step 2.} $\displaystyle\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}
+\alpha_{n-k+1}\beta_{k}=0$.
+
+Let $\varepsilon>0$. Since $\beta_{k}\to 0$, choose $N_{1}$ such that
+$|\beta_{k}|<\frac{\varepsilon}{2M}$ for all $k>N_{1}$. Since $\alpha_{j}\to 0$ and
+the indices $n-k+1$, for $k=1,\dots,N_{1}$, tend to $+\infty$ as $n\to\infty$,
+there exists $N_{2}$ such that
+\[
+|\alpha_{n-k+1}|<\frac{\varepsilon}{2MN_{1}}\qquad
+\text{for all } n>N_{2}\ \text{ and all } 1\leq k\leq N_{1}
+\]
+(if $N_{1}=0$ the block $1\leq k\leq N_{1}$ is empty and no such choice is needed).
+Then, for $n>\max\{N_{1},N_{2}\}$ (so that the block $1\leq k\leq N_{1}$ lies inside
+the range $1\leq k\leq n$),
+\[
+\begin{aligned}
+\left|\frac{1}{n}\sum_{k=1}^{n}\alpha_{n-k+1}\beta_{k}\right|
+&\leq \frac{1}{n}\sum_{k=1}^{N_{1}}|\alpha_{n-k+1}|\,|\beta_{k}|
+   +\frac{1}{n}\sum_{k=N_{1}+1}^{n}|\alpha_{n-k+1}|\,|\beta_{k}|\\
+&\leq \frac{1}{n}\cdot N_{1}\cdot\frac{\varepsilon}{2MN_{1}}\cdot M
+   +\frac{1}{n}\cdot\frac{\varepsilon}{2M}\sum_{k=N_{1}+1}^{n}|\alpha_{n-k+1}|\\
+&\leq \frac{\varepsilon}{2n}+\frac{\varepsilon}{2M}\cdot M
+\;\leq\; \varepsilon ,
+\end{aligned}
+\]
+where we used $\sum_{k=N_{1}+1}^{n}|\alpha_{n-k+1}|\leq\sum_{j=1}^{n}|\alpha_{j}|
+\leq nM$. This proves Step 2.
+
+Combining the two steps with the expansion of $I_{n}$,
+\[
+\lim_{n\to\infty}I_{n}
+=ab+0+0+0=ab,
+\]
+that is,
+\[
+\lim_{n\to\infty}\frac{x_{n}y_{1}+x_{n-1}y_{2}+\cdots+x_{1}y_{n}}{n}=ab .
+\]
+\end{solution}
+
+
+\srcline{Worked examples 2.1.25--2.1.26}
+
+\begin{solution}{Solution 2.1.25}\label{es:2.1.25}
+We use the following theorem: if a sequence $\{x_n\}$ converges to $a$, then every
+subsequence of $\{x_n\}$ also converges to $a$. Indeed, let $\{x_{n_k}\}$ be any
+subsequence of $\{x_n\}$; given $\varepsilon>0$, choose $N$ such that
+$|x_n-a|<\varepsilon$ for all $n>N$. Since $n_k\ge k$, for every $k>N$ we have
+$n_k\ge k>N$ and therefore $|x_{n_k}-a|<\varepsilon$. Hence
+$\lim\limits_{k\to\infty}x_{n_k}=a$. Consequently, if two subsequences of one and the
+same sequence have different limits, that sequence cannot converge.
+
+Now consider the two subsequences of $\{x_n\}$ indexed by the even multiples of $4$
+and by the numbers congruent to $2$ modulo $8$.
+
+First, for $n=4k$, $k\in\mathbb{N}_+$:
+\[
+x_{4k}=\sin\frac{4k\pi}{4}=\sin k\pi=0
+\qquad\text{for every } k\in\mathbb{N}_+,
+\]
+so the subsequence $\{x_{4k}\}$ is the constant sequence $0,0,0,\dots$, whence
+\[
+\lim_{k\to\infty}x_{4k}=0 .
+\]
+
+Second, for $n=8k+2$, $k\in\mathbb{N}_+$:
+\[
+x_{8k+2}=\sin\frac{(8k+2)\pi}{4}=\sin\left(2k+\frac12\right)\pi
+=\sin\left(2k\pi+\frac{\pi}{2}\right)=1
+\qquad\text{for every } k\in\mathbb{N}_+,
+\]
+so the subsequence $\{x_{8k+2}\}$ is the constant sequence $1,1,1,\dots$, whence
+\[
+\lim_{k\to\infty}x_{8k+2}=1 .
+\]
+
+The two subsequences $\{x_{4k}\}$ and $\{x_{8k+2}\}$ are subsequences of $\{x_n\}$ and
+have the different limits $0$ and $1$. If $\{x_n\}$ converged, say to $a$, then by the
+theorem recalled above both subsequences would converge to $a$, forcing $a=0$ and
+$a=1$, a contradiction. Therefore the sequence
+$\{x_n\}=\left\{\sin\dfrac{n\pi}{4}\right\}$ diverges.
+\end{solution}
+
+\begin{solution}{Solution 2.1.26}\label{es:2.1.26}
+Recall the definitions involved. A sequence $\{x_n\}$ is \emph{bounded} if there is a
+constant $M>0$ such that $|x_n|\le M$ for all $n\in\mathbb{N}_+$; it is
+\emph{unbounded} if no such constant exists. Thus $\{x_n\}$ is unbounded if and only if
+\begin{equation}\label{eq:unb}
+\forall\, G>0,\ \exists\, n\in\mathbb{N}_+:\ |x_n|>G .
+\end{equation}
+Indeed, if for some $G>0$ no such $n$ existed, then $|x_n|\le G$ for all $n$ and the
+sequence would be bounded; conversely, if the sequence is unbounded, then for every
+$G>0$ the choice $M=G$ fails, so some $n$ satisfies $|x_n|>G$. A sequence
+$\{y_k\}$ is \emph{infinitely large}, written $\lim\limits_{k\to\infty}y_k=\infty$, if
+\begin{equation}\label{eq:inf}
+\forall\, G>0,\ \exists\, K\in\mathbb{N}_+,\ \forall\, k>K:\ |y_k|>G .
+\end{equation}
+
+Now let $\{x_n\}$ be an unbounded sequence. We construct indices
+$n_1<n_2<n_3<\cdots$ recursively.
+
+\emph{Step 1.} Put $M_1=1$. By \eqref{eq:unb} with $G=M_1=1$ there exists
+$n_1\in\mathbb{N}_+$ such that
+\[
+|x_{n_1}|>M_1=1 .
+\]
+
+\emph{Inductive step.} Suppose $k\in\mathbb{N}_+$ and $n_k\in\mathbb{N}_+$ have been
+chosen with $|x_{n_k}|>k$. Put
+\[
+M_{k+1}=1+\sum_{i=1}^{n_k}|x_i| .
+\]
+By \eqref{eq:unb} with $G=M_{k+1}$ there exists $n\in\mathbb{N}_+$ such that
+$|x_n|>M_{k+1}$. For every index $i\le n_k$ we have
+\[
+|x_i|\le\sum_{j=1}^{n_k}|x_j|<1+\sum_{j=1}^{n_k}|x_j|=M_{k+1}<|x_n| ,
+\]
+so $n\ne i$ for all $i\le n_k$, that is, $n>n_k$. Set $n_{k+1}=n$. Then
+$n_{k+1}>n_k$ and
+\[
+|x_{n_{k+1}}|>M_{k+1}=1+\sum_{i=1}^{n_k}|x_i|\ge 1+|x_{n_k}|>1+k=k+1 .
+\]
+Thus the induction produces a strictly increasing sequence of indices
+$n_1<n_2<n_3<\cdots$ in $\mathbb{N}_+$ such that
+\begin{equation}\label{eq:key}
+|x_{n_k}|>k\qquad\text{for every } k\in\mathbb{N}_+ .
+\end{equation}
+In particular $\{x_{n_k}\}$ is a subsequence of $\{x_n\}$.
+
+It remains to check \eqref{eq:inf} for $\{x_{n_k}\}$. Let $G>0$ be arbitrary. By the
+Archimedean property of the real numbers there is $K\in\mathbb{N}_+$ with $K>G$. Then
+for every $k>K$, using \eqref{eq:key},
+\[
+|x_{n_k}|>k>K>G .
+\]
+Hence $\lim\limits_{k\to\infty}x_{n_k}=\infty$, i.e. the subsequence $\{x_{n_k}\}$ is
+infinitely large.
+
+Therefore every unbounded sequence has a subsequence which is infinitely large.
+\end{solution}
+
+
+\srcline{Worked examples 2.2.2--2.2.3}
+
+\begin{solution}{Solution 2.2.2}\label{es:2.2.2}
+We use the Stolz theorem (Theorem 2.2.1) in the following form: if $\{c_n\}$ is a strictly
+increasing sequence with $c_n \to +\infty$, and if
+\[
+\lim_{n\to\infty}\frac{b_n - b_{n-1}}{c_n - c_{n-1}} = l
+\]
+for some real number $l$ (with $b_0$ arbitrary), then $\displaystyle\lim_{n\to\infty}\frac{b_n}{c_n} = l$.
+
+Set
+\[
+c_n = n^3, \qquad b_n = \sum_{k=1}^{n} k^2 a_k \quad (n \ge 1), \qquad b_0 = 0 .
+\]
+The sequence $\{c_n\}$ is strictly increasing and $c_n \to +\infty$. For every $n \ge 1$ we have
+\[
+b_n - b_{n-1} = n^2 a_n,
+\]
+and
+\[
+c_n - c_{n-1} = n^3 - (n-1)^3 = 3n^2 - 3n + 1 .
+\]
+Hence
+\[
+\frac{b_n - b_{n-1}}{c_n - c_{n-1}}
+= \frac{n^2 a_n}{3n^2 - 3n + 1}
+= a_n \cdot \frac{n^2}{3n^2 - 3n + 1} .
+\]
+Now
+\[
+\frac{n^2}{3n^2 - 3n + 1} = \frac{1}{3 - \dfrac{3}{n} + \dfrac{1}{n^2}} \longrightarrow \frac13
+\qquad (n \to \infty),
+\]
+and $a_n \to a$ by hypothesis. The limit of a product of two convergent sequences is the product
+of their limits, so
+\[
+\lim_{n\to\infty}\frac{b_n - b_{n-1}}{c_n - c_{n-1}} = a \cdot \frac13 = \frac{a}{3}.
+\]
+The hypotheses of the Stolz theorem are therefore satisfied with $l = a/3$, and consequently
+\[
+\lim_{n\to\infty}\frac{a_1 + 2^2 a_2 + \cdots + n^2 a_n}{n^3}
+= \lim_{n\to\infty}\frac{b_n}{c_n} = \frac{a}{3},
+\]
+which is the required identity.
+\end{solution}
+
+\begin{solution}{Solution 2.2.3}\label{es:2.2.3}
+We again apply the Stolz theorem: if $\{c_n\}$ is strictly increasing with $c_n \to +\infty$ and
+$\displaystyle\lim_{n\to\infty}\frac{b_n - b_{n-1}}{c_n - c_{n-1}} = l$ exists in $\mathbb{R}$, then
+$\displaystyle\lim_{n\to\infty}\frac{b_n}{c_n} = l$.
+
+First we simplify the expression inside the limit. Bringing the bracketed difference to a common
+denominator,
+\[
+n\left(\frac{\sum\limits_{k=1}^{n}(2k+1)^2}{n^3} - \frac{4}{3}\right)
+= \frac{\sum\limits_{k=1}^{n}(2k+1)^2 - \dfrac{4}{3}n^3}{n^2}.
+\]
+Accordingly, set
+\[
+c_n = n^2, \qquad b_n = \sum_{k=1}^{n}(2k+1)^2 - \frac{4}{3}n^3 \quad (n \ge 0),
+\]
+where the empty sum is $0$, so that $b_0 = 0$. The sequence $\{c_n\}$ is strictly increasing and
+$c_n = n^2 \to +\infty$.
+
+For $n \ge 1$,
+\[
+b_n - b_{n-1} = (2n+1)^2 - \frac{4}{3}\left[n^3 - (n-1)^3\right],
+\qquad
+c_n - c_{n-1} = n^2 - (n-1)^2 = 2n - 1 .
+\]
+Since
+\[
+n^3 - (n-1)^3 = 3n^2 - 3n + 1
+\qquad\text{and}\qquad
+(2n+1)^2 = 4n^2 + 4n + 1,
+\]
+we get
+\[
+b_n - b_{n-1}
+= (4n^2 + 4n + 1) - \frac{4}{3}\left(3n^2 - 3n + 1\right)
+= 4n^2 + 4n + 1 - 4n^2 + 4n - \frac{4}{3}
+= 8n - \frac13 = \frac{24n - 1}{3}.
+\]
+Therefore
+\[
+\frac{b_n - b_{n-1}}{c_n - c_{n-1}}
+= \frac{\dfrac{24n-1}{3}}{2n-1}
+= \frac{24n-1}{3(2n-1)}
+= \frac{24 - \dfrac{1}{n}}{3\left(2 - \dfrac{1}{n}\right)}
+\longrightarrow \frac{24}{6} = 4
+\qquad (n \to \infty).
+\]
+By the Stolz theorem,
+\[
+\lim_{n\to\infty} n\left(\frac{\sum\limits_{k=1}^{n}(2k+1)^2}{n^3} - \frac{4}{3}\right)
+= \lim_{n\to\infty}\frac{b_n}{c_n} = 4 .
+\]
+
+For completeness, here is a direct check of the same value. Using
+$\sum_{k=1}^{n} k = \frac{n(n+1)}{2}$ and $\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}$,
+\[
+\sum_{k=1}^{n}(2k+1)^2 = 4\sum_{k=1}^{n}k^2 + 4\sum_{k=1}^{n}k + n
+= \frac{4}{3}n^3 + 4n^2 + \frac{11}{3}n ,
+\]
+so that
+\[
+n\left(\frac{\sum\limits_{k=1}^{n}(2k+1)^2}{n^3} - \frac{4}{3}\right)
+= n\left(\frac{4}{n} + \frac{11}{3n^2}\right)
+= 4 + \frac{11}{3n} \longrightarrow 4 ,
+\]
+in agreement with the Stolz-theorem computation.
+\end{solution}
+
+
+\srcline{Worked examples 2.3.2 and 2.3.6--2.3.9}
+
+\begin{solution}{Solution 2.3.2}\label{es:2.3.2}
+We use the monotone bounded convergence theorem: every monotone sequence of real
+numbers that is bounded is convergent.
+
+\emph{The sequence is bounded.} Since $x_1>0$, and since $x_n>0$ implies
+$x_{n+1}=3(1+x_n)/(3+x_n)>0$, induction gives $x_n>0$ for every $n\ge1$. Moreover
+\[
+x_{n+1}=\frac{3(1+x_n)}{3+x_n}=\frac{3(3+x_n)-6}{3+x_n}=3-\frac{6}{3+x_n}<3,
+\]
+because $3+x_n>0$. Hence $0<x_n<3$ for all $n\ge1$, so $\{x_n\}$ is bounded.
+
+\emph{The sequence is monotone.} For $n\ge2$,
+\[
+x_{n+1}-x_n
+=\frac{3(1+x_n)}{3+x_n}-\frac{3(1+x_{n-1})}{3+x_{n-1}}
+=\frac{3(1+x_n)(3+x_{n-1})-3(1+x_{n-1})(3+x_n)}
+{(3+x_n)(3+x_{n-1})}
+=\frac{6\,(x_n-x_{n-1})}{(3+x_n)(3+x_{n-1})}.
+\]
+Since $3+x_n>0$ and $3+x_{n-1}>0$, the denominator is positive, so $x_{n+1}-x_n$
+has the same sign as $x_n-x_{n-1}$. Iterating, $x_{n+1}-x_n$ has the same sign as
+$x_2-x_1$ for every $n\ge1$. Consequently, if $x_2\ge x_1$ then $x_{n+1}\ge x_n$
+for all $n$, and if $x_2\le x_1$ then $x_{n+1}\le x_n$ for all $n$; in either case
+$\{x_n\}$ is monotone (nondecreasing, respectively nonincreasing).
+
+\emph{Conclusion.} Being monotone and bounded, $\{x_n\}$ converges by the monotone
+bounded convergence theorem. Write $a=\lim_{n\to\infty}x_n$.
+
+\emph{Computation of the limit.} Since $x_n>0$ for all $n$, the limit satisfies
+$a\ge0$. Passing to the limit in the recurrence and using the algebra of limits
+(the denominator is nonzero in the limit, as $3+a\ge3>0$),
+\[
+a=\lim_{n\to\infty}x_{n+1}=\lim_{n\to\infty}\frac{3(1+x_n)}{3+x_n}
+=\frac{3(1+a)}{3+a}.
+\]
+Thus $a(3+a)=3(1+a)$, that is, $a^2+3a=3+3a$, hence $a^2=3$ and $a=\pm\sqrt3$.
+Since $a\ge0$, we must have $a=\sqrt3$. Therefore
+\[
+\lim_{n\to\infty}x_n=\sqrt3 .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.3.6}\label{es:2.3.6}
+Recall Definition 2.3.5: a sequence $\{x_n\}$ is a fundamental (Cauchy) sequence
+if for every given $\varepsilon>0$ there is a natural number $N$ such that
+$|x_m-x_n|<\varepsilon$ whenever $m,n>N$.
+
+Let $m,n$ be positive integers with $m>n$; the case $n\ge m$ is identical because
+$|x_m-x_n|=|x_n-x_m|$. Then
+\[
+x_m-x_n=\frac{1}{(n+1)^2}+\frac{1}{(n+2)^2}+\cdots+\frac{1}{m^2}>0 .
+\]
+For every integer $k\ge2$ we have $k^2=k(k-1)+k>k(k-1)$, hence
+$\dfrac{1}{k^2}<\dfrac{1}{k(k-1)}=\dfrac{1}{k-1}-\dfrac{1}{k}$. Since the indices
+$k=n+1,\dots,m$ all satisfy $k\ge2$, we obtain
+\[
+0<x_m-x_n<\sum_{k=n+1}^{m}\left(\frac{1}{k-1}-\frac{1}{k}\right)
+=\left(\frac1n-\frac{1}{n+1}\right)+\cdots+\left(\frac{1}{m-1}-\frac1m\right)
+=\frac1n-\frac1m<\frac1n .
+\]
+Now let $\varepsilon>0$ be given and choose
+\[
+N=\left[\frac{1}{\varepsilon}\right]+1,
+\]
+where $[\cdot]$ denotes the greatest-integer function. Then $N>\frac1\varepsilon$,
+hence $\frac1N<\varepsilon$. If $m,n>N$, then, writing $r=\min\{m,n\}>N$ (and
+noting that $|x_m-x_n|=0$ when $m=n$, while $|x_m-x_n|=x_{\max}-x_{\min}<\frac1r$
+when $m\neq n$),
+\[
+|x_m-x_n|<\frac{1}{r}<\frac{1}{N}<\varepsilon .
+\]
+Thus the definition is satisfied, that is, $\{x_n\}$ is a fundamental (Cauchy)
+sequence.
+\end{solution}
+
+\begin{solution}{Solution 2.3.8}\label{es:2.3.8}
+We use the Cauchy convergence criterion (Theorem 2.3.7): a sequence $\{x_n\}$ of
+real numbers converges if and only if it is a fundamental (Cauchy) sequence, that
+is, if and only if for every $\varepsilon>0$ there is $N\in\mathbb{N}$ such that
+\[
+|x_{n+p}-x_n|<\varepsilon\qquad\text{for all }n>N\text{ and all }p\in\mathbb{N}.
+\]
+We also use the elementary estimates $|\sin t|\le|t|$ and $|\cos t|\le1$ for all
+real $t$, together with
+\[
+\sin u-\sin v=2\sin\frac{u-v}{2}\cos\frac{u+v}{2}.
+\]
+
+Set $\lambda=|x_1-x_0|\ge0$, which is a constant depending only on $x_0$, $x_1$
+and $q$.
+
+\emph{Step 1: successive differences decay geometrically.} For every $n\ge1$,
+since $x_{n+1}=q\sin x_n+a$ and $x_n=q\sin x_{n-1}+a$,
+\[
+|x_{n+1}-x_n|
+=q\,|\sin x_n-\sin x_{n-1}|
+=2q\left|\sin\frac{x_n-x_{n-1}}{2}\cos\frac{x_n+x_{n-1}}{2}\right|
+\le 2q\cdot\frac{|x_n-x_{n-1}|}{2}
+=q\,|x_n-x_{n-1}| .
+\]
+Applying this repeatedly, starting from $|x_2-x_1|=q|\sin x_1-\sin x_0|\le
+q|x_1-x_0|=q\lambda$, we get by induction on $n$ that
+\[
+|x_{n+1}-x_n|\le q^n\lambda\qquad(n\ge1).
+\]
+
+\emph{Step 2: a Cauchy-type estimate.} Let $n\ge1$ and $p\in\mathbb{N}$. By the
+triangle inequality and Step 1,
+\[
+|x_{n+p}-x_n|
+\le\sum_{k=1}^{p}|x_{n+k}-x_{n+k-1}|
+\le\sum_{k=1}^{p}q^{\,n+k-1}\lambda
+=q^n\bigl(1+q+\cdots+q^{p-1}\bigr)\lambda .
+\]
+Since $0<q<1$, the finite geometric sum is bounded by the sum of the full
+geometric series: $1+q+\cdots+q^{p-1}<\sum_{k=0}^{\infty}q^k=\dfrac{1}{1-q}$.
+Hence
+\[
+|x_{n+p}-x_n|<\frac{q^n}{1-q}\,\lambda .
+\]
+
+\emph{Step 3: the criterion applies.} As $0<q<1$, the geometric sequence
+$\{q^n\}$ tends to $0$, so
+\[
+\lim_{n\to\infty}\frac{q^n}{1-q}\,\lambda=0 .
+\]
+Therefore, given any $\varepsilon>0$, there exists $N\in\mathbb{N}$ such that
+$\dfrac{q^n}{1-q}\lambda<\varepsilon$ for all $n>N$. For such $n$, Step 2 gives
+\[
+|x_{n+p}-x_n|<\frac{q^n}{1-q}\lambda<\varepsilon
+\qquad\text{for every }p\in\mathbb{N}.
+\]
+Thus $\{x_n\}$ is a fundamental (Cauchy) sequence, and by the Cauchy convergence
+criterion $\{x_n\}$ converges.
+\end{solution}
+
+\begin{solution}{Solution 2.3.9}\label{es:2.3.9}
+Recall the negation of the Cauchy condition. A sequence $\{a_n\}$ is \emph{not} a
+fundamental (Cauchy) sequence precisely when there exists an $\varepsilon_0>0$
+such that for every $N\in\mathbb{N}$ one can find $n>N$ and $p\in\mathbb{N}$ with
+\[
+|a_{n+p}-a_n|\ge\varepsilon_0 .
+\]
+By the Cauchy convergence criterion (Theorem 2.3.7), a sequence of real numbers
+converges if and only if it is a fundamental sequence; hence a sequence that is
+not fundamental diverges. We shall show that $\{a_n\}$ fails the Cauchy condition
+with the single choice $\varepsilon_0=\frac12$.
+
+Let $N\ge2$ be a positive integer and take $n=N$ and $p=N$, so that $n+p=2N$.
+Since the sum defining $a_n$ has positive terms and $a_{2N}>a_N$,
+\[
+|a_{n+p}-a_n|=|a_{2N}-a_N|=\sum_{i=N+1}^{2N}\frac1i .
+\]
+This sum contains exactly $N$ terms, and for each index $i$ with
+$N+1\le i\le 2N$ we have $\frac1i\ge\frac{1}{2N}$. Therefore
+\[
+|a_{n+p}-a_n|=\sum_{i=N+1}^{2N}\frac1i\ge\sum_{i=N+1}^{2N}\frac{1}{2N}
+=\frac{N}{2N}=\frac12=\varepsilon_0 .
+\]
+
+Suppose, for contradiction, that $\{a_n\}$ were a fundamental sequence. Then for
+$\varepsilon_0=\frac12$ there would exist $N_0\in\mathbb{N}$ such that
+$|a_{n+p}-a_n|<\frac12$ for all $n>N_0$ and all $p\in\mathbb{N}$. Choose a
+positive integer $N>N_0$ with $N\ge2$ and put $n=p=N$; then $n=N>N_0$, yet the
+computation above gives
+$|a_{n+p}-a_n|\ge\frac12$, a contradiction. Hence $\{a_n\}$ is not a fundamental
+sequence.
+
+Since $\{a_n\}$ is not a fundamental sequence, the Cauchy convergence criterion
+shows that $\{a_n\}$ does not converge; that is, the sequence
+$a_n=\sum_{i=1}^{n}\frac1i$ diverges.
+\end{solution}
+
+
+\section*{B.\quad The exercise sets}
+
+\addcontentsline{toc}{section}{B. The exercise sets}
+
+
+\srcline{Exercise set 2.1, problems 1--17}
+
+\begin{solution}{Solution 2.1.1}\label{xs:2.1.1}
+Throughout we use the definition of convergence in the form
+\[
+  \lim_{n\to\infty}x_n=a\ (a\in\mathbb{R})
+  \iff \forall\,\varepsilon>0,\ \exists\,N\in\mathbb{N},\ \forall\,n\ge N:\
+  |x_n-a|<\varepsilon .
+\]
+
+\medskip
+\noindent\textbf{(1) True.}
+Let $(P_1)$ denote the statement on the right.
+
+Assume first that $x_n\to a$ and let $0<\varepsilon<1$. By the definition there is
+$N\in\mathbb{N}$ with $|x_n-a|<\varepsilon$ for all $n\ge N$; hence
+$|x_n-a|\le\varepsilon$ for all $n\ge N$, so $(P_1)$ holds.
+
+Conversely assume $(P_1)$ and let $\varepsilon>0$ be arbitrary. If
+$\varepsilon<1$, then $(P_1)$ applied to this $\varepsilon$ gives
+$N\in\mathbb{N}$ with $|x_n-a|\le\varepsilon$ for all $n\ge N$. If
+$\varepsilon\ge1$, apply $(P_1)$ with $\varepsilon_1=\tfrac12<1$; there is
+$N\in\mathbb{N}$ with
+\[
+  |x_n-a|\le\tfrac12<\varepsilon\qquad(n\ge N).
+\]
+In both cases find $N\in\mathbb{N}$ with $|x_n-a|<\varepsilon$ for all $n\ge N$;
+hence $x_n\to a$. The equivalence is therefore true.
+
+\medskip
+\noindent\textbf{(2) True.}
+Let $(P_2)$ denote the statement on the right; compared with the definition, it
+restricts $\varepsilon$ to $(0,1)$ and requires $n>N$ instead of $n\ge N$.
+
+If $x_n\to a$, the definition immediately gives $(P_2)$.
+
+Conversely assume $(P_2)$ and let $\varepsilon>0$. Put
+$\varepsilon_1=\min\{\varepsilon,\tfrac12\}\in(0,1)$ and apply $(P_2)$: there is
+$N\in\mathbb{N}$ with $|x_n-a|<\varepsilon_1\le\varepsilon$ for all $n>N$. The
+set of such $n$ is exactly $\{N+1,N+2,\dots\}$, so with $N_1=N+1$ we have
+$|x_n-a|<\varepsilon$ for all $n\ge N_1$. Hence $x_n\to a$ and the equivalence is
+true. (The change from $n\ge N$ to $n>N$ is immaterial, since $N$ is an arbitrary
+positive integer and may be replaced by $N+1$.)
+
+\medskip
+\noindent\textbf{(3) True.}
+Fix a positive constant $M>0$ and let $(P_3)$ denote the statement on the right.
+
+Assume $(P_3)$ and let $\varepsilon>0$. Apply $(P_3)$ with
+$\varepsilon_1=\varepsilon/M>0$: there is $N\in\mathbb{N}$ with
+$|x_n-a|<M\varepsilon_1=\varepsilon$ for all $n>N$. Hence $x_n\to a$.
+
+Conversely assume $x_n\to a$ and let $\varepsilon>0$. Apply the definition with
+$\eta=\varepsilon/M>0$: there is $N\in\mathbb{N}$ with
+$|x_n-a|<\eta=\varepsilon/M$ for all $n\ge N$, whence
+$|x_n-a|<M\varepsilon$ for all $n\ge N$, and a fortiori for all $n>N$. Thus
+$(P_3)$ holds. The equivalence is true: the constant $M$ can always be absorbed
+into $\varepsilon$.
+
+\medskip
+\noindent\textbf{(4) True.}
+Here $k$ ranges over $\mathbb{N}=\{1,2,3,\dots\}$, so that $1/k>0$. Let $(P_4)$
+denote the statement on the right.
+
+Assume $x_n\to a$ and let $k\in\mathbb{N}$. Apply the definition with
+$\varepsilon=1/k>0$: there is $N\in\mathbb{N}$ with
+$|x_n-a|<1/k$ for all $n\ge N$, hence for all $n>N$. Thus $(P_4)$ holds.
+
+Conversely assume $(P_4)$ and let $\varepsilon>0$. By the Archimedean property of
+$\mathbb{R}$ there exists $k\in\mathbb{N}$ with $1/k<\varepsilon$ (for instance
+$k=\lfloor 1/\varepsilon\rfloor+1$, which satisfies $k>1/\varepsilon$, i.e.
+$1/k<\varepsilon$). For this $k$, property $(P_4)$ gives $N\in\mathbb{N}$ with
+$|x_n-a|<1/k<\varepsilon$ for all $n>N$. Hence $x_n\to a$, and the equivalence is
+true.
+
+\medskip
+\noindent\textbf{(5) False.}
+The condition on the right says only that $a$ is a \emph{limit point} (cluster
+point) of the sequence: it requires the interval $(a-\varepsilon,a+\varepsilon)$
+to catch infinitely many terms, but not to catch all but finitely many of them,
+and the latter is what convergence needs.
+
+Take $a=0$ and
+\[
+  x_n=\begin{cases}0, & n \text{ even},\\[2pt] 1, & n \text{ odd}.\end{cases}
+\]
+Then for every $\varepsilon>0$ the interval $(-\varepsilon,\varepsilon)$ contains
+the terms $x_2=x_4=x_6=\cdots=0$, that is, infinitely many terms of the
+sequence, so the statement on the right holds for $a=0$. However $\{x_n\}$ does
+not converge to $0$: with $\varepsilon_0=\tfrac12$, for every $N\in\mathbb{N}$
+there is an odd index $n\ge N$ with $|x_n-0|=1\ge\varepsilon_0$. (Equivalently,
+$x_{2k}=0$ while $x_{2k-1}=1$, so the sequence has the two distinct subsequential
+limits $0$ and $1$, and hence diverges.) Therefore the proposition is false.
+
+The implication $\Leftarrow$ fails because from $\lnot(x_n\to a)$ one can only
+conclude that for some $\varepsilon_0>0$ the set
+$S=\{n\in\mathbb{N}:x_n\in(a-\varepsilon_0,a+\varepsilon_0)\}$ is not cofinite,
+i.e.\ that its complement is infinite; this is much weaker than $S$ being
+finite. In the example above, relative to $a=0$ and $\varepsilon_0=\tfrac12$,
+this set is $S=\{2,4,6,\dots\}$, which is infinite but not cofinite.
+
+\medskip
+\noindent\textbf{Conclusion.} (1) True, (2) True, (3) True, (4) True,
+(5) False.
+\end{solution}
+
+\begin{solution}{Solution 2.1.2}\label{xs:2.1.2}
+We use the following standard facts. (a) \emph{Squeeze theorem}: if
+$u_n\le w_n\le v_n$ for all $n$ and $u_n\to L$, $v_n\to L$, then $w_n\to L$.
+(b) \emph{Algebra of limits}: convergent sequences are added, multiplied and
+divided (when the denominator has nonzero limit and does not vanish) termwise,
+and the limit of the result is the corresponding combination of the limits.
+(c) \emph{Subsequences}: if $x_n\to L$ and $n_1<n_2<\cdots$ is strictly
+increasing, then $x_{n_k}\to L$; conversely, if two subsequences of $\{x_n\}$
+converge to different limits, then $\{x_n\}$ diverges.
+
+\medskip
+\noindent\textbf{(1) False.}
+Take
+\[
+  a_n=b_n=c_n=n\qquad(n\in\mathbb{N}).
+\]
+Then $a_n\le b_n\le c_n$ for every $n$, and
+\[
+  c_n-a_n=0\qquad(n\in\mathbb{N}),
+\]
+so $\lim_{n\to\infty}(c_n-a_n)=0$. Nevertheless $\{a_n\}=\{n\}$ is unbounded and
+therefore does not converge. The point is that $a_n\le b_n\le c_n$ together with
+$\lim(c_n-a_n)=0$ only makes $a_n$ and $c_n$ asymptotically equal; they may both
+tend to $+\infty$, so neither boundedness nor convergence of $\{a_n\}$ can be
+concluded. Hence the proposition is false.
+
+\medskip
+\noindent\textbf{(2) True.}
+Let $a_n\le b_n\le c_n$ for all $n$, let $b_n\to L$, and let
+$\lim_{n\to\infty}(c_n-a_n)=0$.
+
+From $a_n\le b_n\le c_n$ we get, for every $n$,
+\[
+  0\le b_n-a_n\le c_n-a_n
+  \qquad\text{and}\qquad
+  0\le c_n-b_n\le c_n-a_n .
+\]
+Let $\varepsilon>0$. Choose $N_1$ with $|b_n-L|<\varepsilon$ for $n\ge N_1$ and
+$N_2$ with $|c_n-a_n|<\varepsilon$ for $n\ge N_2$, and put
+$N=\max\{N_1,N_2\}$. Then for all $n\ge N$,
+\[
+  |a_n-b_n|=b_n-a_n\le c_n-a_n<\varepsilon,
+  \qquad
+  |c_n-b_n|=c_n-b_n\le c_n-a_n<\varepsilon .
+\]
+Hence, by the triangle inequality,
+\[
+  |a_n-L|\le|a_n-b_n|+|b_n-L|<\varepsilon+\varepsilon=2\varepsilon,
+  \qquad
+  |c_n-L|\le|c_n-b_n|+|b_n-L|<2\varepsilon
+  \qquad(n\ge N).
+\]
+Since the splitting into $\varepsilon/2$ is available (replace $\varepsilon$ by
+$\varepsilon/2$ in the choices of $N_1,N_2$), we may conclude
+$|a_n-L|<\varepsilon$ for all $n\ge N$. As $\varepsilon>0$ is arbitrary,
+\[
+  \lim_{n\to\infty}a_n=L=\lim_{n\to\infty}b_n .
+\]
+Thus $\{a_n\}$ converges, and the proposition is true. (The hypothesis that
+$\{b_n\}$ converges is essential: this is the squeeze theorem for a triple
+$u_n\le w_n\le v_n$ in which only the middle sequence is known to converge and
+the two outer ones are known to be asymptotically equal.)
+
+\medskip
+\noindent\textbf{(3) False.}
+Let $a_n=\dfrac{(-1)^{n}}{n}$ for $n\in\mathbb{N}$. Then $a_n\ne0$ for every $n$
+and $\{a_n\}$ converges (to $0$). But
+\[
+  \frac{a_{n+1}}{a_n}
+  =\frac{(-1)^{n+1}/(n+1)}{(-1)^{n}/n}
+  =-\frac{n}{n+1}\longrightarrow-1\ne1 .
+\]
+Hence the proposition is false. (If it is additionally assumed that
+$\lim_{n\to\infty}a_n=L\ne0$, then the algebra of limits gives
+\[
+  \lim_{n\to\infty}\frac{a_{n+1}}{a_n}=\frac{L}{L}=1,
+\]
+so the statement becomes true; the hypothesis $a_n\ne0$ for all $n$ alone is not
+enough, as the example above shows.)
+
+\medskip
+\noindent\textbf{(4) False.}
+Take
+\[
+  a_n=\begin{cases}1, & n \text{ even},\\[2pt] 0, & n \text{ odd},\end{cases}
+  \qquad
+  b_n=\begin{cases}0, & n \text{ even},\\[2pt] 1, & n \text{ odd}.\end{cases}
+\]
+Then $a_nb_n=0$ for every $n$, so $\lim_{n\to\infty}a_nb_n=0$. However
+$a_{2k}=1\to1$ and $a_{2k-1}=0\to0$, so the subsequences $\{a_{2k}\}$ and
+$\{a_{2k-1}\}$ have different limits and $\{a_n\}$ does not converge (in
+particular it does not converge to $0$); likewise $b_{2k}=0$ and
+$b_{2k-1}=1$, so $\{b_n\}$ does not converge to $0$ either. Hence the
+proposition is false. (Here neither $\lim a_n$ nor $\lim b_n$ even exists; the
+hypothesis $\lim a_nb_n=0$ alone carries no information about the individual
+limits.)
+
+\medskip
+\noindent\textbf{(5) True.}
+Assume $\displaystyle\lim_{n\to\infty}\frac{b_n}{a_n}=1$ and that $\{a_n\}$
+converges, say $a_n\to L\in\mathbb{R}$. For every $n$ the quotient $b_n/a_n$ is
+defined, so $a_n\ne0$; moreover
+\[
+  b_n=a_n\cdot\frac{b_n}{a_n}\qquad(n\in\mathbb{N}).
+\]
+Both factors on the right converge, to $L$ and to $1$ respectively, so by the
+product rule for limits $\{b_n\}$ converges and
+\[
+  \lim_{n\to\infty}b_n=\Bigl(\lim_{n\to\infty}a_n\Bigr)
+  \Bigl(\lim_{n\to\infty}\frac{b_n}{a_n}\Bigr)=L\cdot1=L=\lim_{n\to\infty}a_n .
+\]
+Hence the proposition is true.
+
+\medskip
+\noindent\textbf{(6) False.}
+Take
+\[
+  a_n=\begin{cases}1, & n \text{ even},\\[2pt] 0, & n \text{ odd}.\end{cases}
+\]
+Then $a_{2k}=1$ for every $k$, so $\{a_{2k}\}$ converges (to $1$), and
+$a_{2k-1}=0$ for every $k$, so $\{a_{2k-1}\}$ converges (to $0$). But $\{a_n\}$
+does not converge, since its even and odd subsequences have different limits.
+Hence the proposition is false. (The correct criterion is: $\{a_n\}$ converges
+if and only if $\{a_{2k}\}$ and $\{a_{2k-1}\}$ both converge and have the same
+limit.)
+
+\medskip
+\noindent\textbf{Summary.} (1) False. (2) True. (3) False. (4) False.
+(5) True. (6) False.
+\end{solution}
+
+\begin{solution}{Solution 2.1.3}\label{xs:2.1.3}
+Recall the definition: $\displaystyle\lim_{n\to\infty}x_n=a$ means that for every
+$\varepsilon>0$ there exists $N\in\mathbb{N}$ such that $|x_n-a|<\varepsilon$ for
+every $n\ge N$.
+
+\medskip
+\noindent\textbf{(1)} We prove that
+$\displaystyle\lim_{n\to\infty}\frac{1}{1+\sqrt n}=0$.
+
+Let $\varepsilon>0$. By the Archimedean property of $\mathbb{R}$ choose
+$N\in\mathbb{N}$ with $N>\dfrac{1}{\varepsilon^{2}}$. Then $\sqrt N>\dfrac1\varepsilon$.
+For every $n\ge N$ we have $\sqrt n\ge\sqrt N$, hence
+\[
+  \left|\frac{1}{1+\sqrt n}-0\right|=\frac{1}{1+\sqrt n}
+  \le\frac{1}{\sqrt n}\le\frac{1}{\sqrt N}<\varepsilon .
+\]
+Therefore $\displaystyle\lim_{n\to\infty}\frac{1}{1+\sqrt n}=0$.
+
+\medskip
+\noindent\textbf{(2)} We prove that
+$\displaystyle\lim_{n\to\infty}\frac{3n^{2}+n}{2n^{2}-1}=\frac32$.
+
+For $n\ge2$ (so that $2n^{2}-1>0$),
+\[
+  \left|\frac{3n^{2}+n}{2n^{2}-1}-\frac32\right|
+  =\left|\frac{2(3n^{2}+n)-3(2n^{2}-1)}{2(2n^{2}-1)}\right|
+  =\frac{2n+3}{4n^{2}-2} .
+\]
+For $n\ge2$ we have $2n+3\le2n+2n=4n$ and $4n^{2}-2\ge4n^{2}-n^{2}=3n^{2}$, hence
+\[
+  \left|\frac{3n^{2}+n}{2n^{2}-1}-\frac32\right|\le\frac{4n}{3n^{2}}
+  =\frac{4}{3n}\le\frac{4}{3}\cdot\frac1n .
+\]
+Let $\varepsilon>0$ and choose $N\in\mathbb{N}$ with $N\ge2$ and
+$N>\dfrac{4}{3\varepsilon}$. Then for every $n\ge N$,
+\[
+  \left|\frac{3n^{2}+n}{2n^{2}-1}-\frac32\right|\le\frac{4}{3n}
+  \le\frac{4}{3N}<\varepsilon .
+\]
+Hence $\displaystyle\lim_{n\to\infty}\frac{3n^{2}+n}{2n^{2}-1}=\frac32$.
+
+\medskip
+\noindent\textbf{(3)} We prove that
+$\displaystyle\lim_{n\to\infty}\bigl(\sqrt{n^{2}+n}-n\bigr)=\frac12$.
+
+For every $n\ge1$, multiplying by the conjugate,
+\[
+  \sqrt{n^{2}+n}-n
+  =\frac{\bigl(\sqrt{n^{2}+n}-n\bigr)\bigl(\sqrt{n^{2}+n}+n\bigr)}
+        {\sqrt{n^{2}+n}+n}
+  =\frac{n}{\sqrt{n^{2}+n}+n},
+\]
+so, using this same identity for the numerator,
+\[
+  0\le\frac12-\bigl(\sqrt{n^{2}+n}-n\bigr)
+  =\frac12-\frac{n}{\sqrt{n^{2}+n}+n}
+  =\frac{\sqrt{n^{2}+n}-n}{2\bigl(\sqrt{n^{2}+n}+n\bigr)}
+  =\frac{n}{2\bigl(\sqrt{n^{2}+n}+n\bigr)^{2}} .
+\]
+Since $\sqrt{n^{2}+n}+n\ge2n$, we get
+\[
+  0\le\frac12-\bigl(\sqrt{n^{2}+n}-n\bigr)
+  \le\frac{n}{2(2n)^{2}}=\frac{1}{8n} .
+\]
+Let $\varepsilon>0$ and choose $N\in\mathbb{N}$ with $N>\dfrac{1}{8\varepsilon}$.
+Then for every $n\ge N$,
+\[
+  \left|\bigl(\sqrt{n^{2}+n}-n\bigr)-\frac12\right|
+  =\frac12-\bigl(\sqrt{n^{2}+n}-n\bigr)\le\frac{1}{8n}\le\frac{1}{8N}<\varepsilon .
+\]
+Hence $\displaystyle\lim_{n\to\infty}\bigl(\sqrt{n^{2}+n}-n\bigr)=\frac12$.
+
+\medskip
+\noindent\textbf{(4)} We prove that $\displaystyle\lim_{n\to\infty}\arctan n=\frac\pi2$.
+
+Since $\arctan n\in\bigl(0,\tfrac\pi2\bigr)$ for $n\ge1$, the number
+$\dfrac\pi2-\arctan n$ lies in $\bigl(0,\tfrac\pi2\bigr)$. For
+$\theta\in\bigl(0,\tfrac\pi2\bigr)$ the cotangent identity
+$\tan\bigl(\tfrac\pi2-\theta\bigr)=\cot\theta=\dfrac{1}{\tan\theta}$ holds
+(it follows from $\sin\bigl(\tfrac\pi2-\theta\bigr)=\cos\theta$ and
+$\cos\bigl(\tfrac\pi2-\theta\bigr)=\sin\theta$). Taking $\theta=\arctan n$,
+\[
+  \tan\Bigl(\frac\pi2-\arctan n\Bigr)=\frac{1}{\tan(\arctan n)}=\frac1n .
+\]
+and since both angles lie in $\bigl(0,\tfrac\pi2\bigr)$, on which $\tan$ is
+injective,
+\[
+  \frac\pi2-\arctan n=\arctan\frac1n .
+\]
+Finally $0<\arctan x<x$ for every $x>0$, so
+\[
+  0<\frac\pi2-\arctan n=\arctan\frac1n<\frac1n\qquad(n\ge1).
+\]
+Let $\varepsilon>0$ and choose $N\in\mathbb{N}$ with $N>\dfrac1\varepsilon$. For
+every $n\ge N$,
+\[
+  \left|\arctan n-\frac\pi2\right|=\frac\pi2-\arctan n<\frac1n\le\frac1N<\varepsilon .
+\]
+Hence $\displaystyle\lim_{n\to\infty}\arctan n=\frac\pi2$.
+
+\medskip
+\noindent\textbf{(5)} We prove that
+$\displaystyle\lim_{n\to\infty}\frac{n^{2}\arctan n}{1+n^{2}}=\frac\pi2$.
+
+Write
+\[
+  \frac{n^{2}\arctan n}{1+n^{2}}-\frac\pi2
+  =\frac{n^{2}\arctan n}{1+n^{2}}-\frac{n^{2}}{1+n^{2}}\cdot\frac\pi2
+   -\frac{1}{1+n^{2}}\cdot\frac\pi2
+  =\frac{n^{2}}{1+n^{2}}\Bigl(\arctan n-\frac\pi2\Bigr)-\frac{\pi}{2(1+n^{2})} .
+\]
+By part (4), $0<\dfrac\pi2-\arctan n<\dfrac1n$ for every $n\ge1$, and also
+$0<\dfrac{n^{2}}{1+n^{2}}<1$. Hence, for every $n\ge1$,
+\[
+  \left|\frac{n^{2}\arctan n}{1+n^{2}}-\frac\pi2\right|
+  \le\frac{n^{2}}{1+n^{2}}\Bigl(\frac\pi2-\arctan n\Bigr)
+   +\frac{\pi}{2(1+n^{2})}
+  <\frac1n+\frac{\pi}{2n}=\frac{2+\pi}{2n} .
+\]
+Let $\varepsilon>0$ and choose $N\in\mathbb{N}$ with
+$N>\dfrac{2+\pi}{2\varepsilon}$. Then for every $n\ge N$,
+\[
+  \left|\frac{n^{2}\arctan n}{1+n^{2}}-\frac\pi2\right|
+  <\frac{2+\pi}{2n}\le\frac{2+\pi}{2N}<\varepsilon .
+\]
+Hence $\displaystyle\lim_{n\to\infty}\frac{n^{2}\arctan n}{1+n^{2}}=\frac\pi2$.
+\end{solution}
+
+\begin{solution}{Solution 2.1.4}\label{xs:2.1.4}
+We use the algebra of limits (sum, product and quotient rules), the squeeze
+theorem, the standard limits
+\[
+  q^{1/n}\to1\ (q>0),\qquad n^{1/n}\to1,\qquad \frac1{n^{k}}\to0\ (k>0),
+\]
+and the geometric sum formula
+$\displaystyle\sum_{i=1}^{n}q^{i}=\frac{q\,(1-q^{n})}{1-q}$ for $q\ne1$.
+
+\medskip
+\noindent\textbf{(1)} Divide numerator and denominator by $3^{n}$ and use
+$3^{n+1}=3\cdot3^{n}$ together with $\bigl(-\tfrac23\bigr)^{n}\to0$ (because
+$\bigl|\tfrac23\bigr|<1$):
+\[
+  \frac{(-2)^{n}+3^{n}}{(-2)^{n+1}+3^{n+1}}
+  =\frac{\bigl(-\tfrac23\bigr)^{n}+1}{(-2)\bigl(-\tfrac23\bigr)^{n}+3}
+  \longrightarrow\frac{0+1}{0+3}=\frac13 .
+\]
+The limit is $\boxed{\dfrac13}$.
+
+\medskip
+\noindent\textbf{(2)} By the geometric sum formula with $q=\tfrac12$ and with
+$q=\tfrac13$,
+\[
+  \sum_{i=1}^{n}\frac{1}{2^{i}}
+  =\frac{\tfrac12\bigl(1-2^{-n}\bigr)}{1-\tfrac12}=1-2^{-n},
+  \qquad
+  \sum_{i=1}^{n}\frac{1}{3^{i}}
+  =\frac{\tfrac13\bigl(1-3^{-n}\bigr)}{1-\tfrac13}
+  =\frac{1-3^{-n}}{2} .
+\]
+Since $2^{-n}\to0$ and $3^{-n}\to0$, the quotient of the two sums satisfies
+\[
+  \frac{\displaystyle\sum_{i=1}^{n}2^{-i}}{\displaystyle\sum_{i=1}^{n}3^{-i}}
+  =\frac{1-2^{-n}}{\tfrac12\bigl(1-3^{-n}\bigr)}
+  \longrightarrow\frac{1}{\tfrac12}=2 .
+\]
+The limit is $\boxed{2}$.
+
+\medskip
+\noindent\textbf{(3)} The sum in the parentheses consists of the first $n$ odd
+numbers, and
+\[
+  1+3+5+\cdots+(2n-1)=n^{2} .
+\]
+Therefore
+\[
+  \frac{1}{n^{2}}+\frac{3}{n^{2}}+\cdots+\frac{2n-1}{n^{2}}
+  =\frac{1+3+\cdots+(2n-1)}{n^{2}}=\frac{n^{2}}{n^{2}}=1
+  \qquad(n\in\mathbb{N}),
+\]
+so the sequence is constant and the limit is $\boxed{1}$.
+
+\medskip
+\noindent\textbf{(4)} Denote the product by
+\[
+  P_n=\prod_{i=0}^{n}\Bigl(1+\frac{1}{2^{2^{i}}}\Bigr)
+  =\Bigl(1+\frac12\Bigr)\Bigl(1+\frac{1}{2^{2}}\Bigr)
+   \Bigl(1+\frac{1}{2^{4}}\Bigr)\cdots\Bigl(1+\frac{1}{2^{2^{n}}}\Bigr).
+\]
+The identity $(1-x)(1+x)=1-x^{2}$ gives, for each $i\ge0$,
+\[
+  \Bigl(1-\frac{1}{2^{2^{i}}}\Bigr)\Bigl(1+\frac{1}{2^{2^{i}}}\Bigr)
+  =1-\frac{1}{2^{2^{i+1}}} .
+\]
+Apply this identity successively to the product $P_n$, starting with the single
+factor $1-\tfrac12=1-\dfrac{1}{2^{2^{0}}}$: each step absorbs the next factor
+$\Bigl(1+\dfrac{1}{2^{2^{i}}}\Bigr)$ of $P_n$ and doubles the exponent of the
+remaining factor, since
+\[
+  \Bigl(1-\frac12\Bigr)\Bigl(1+\frac12\Bigr)=1-\frac{1}{2^{2}},\qquad
+  \Bigl(1-\frac{1}{2^{2}}\Bigr)\Bigl(1+\frac{1}{2^{2}}\Bigr)=1-\frac{1}{2^{4}},
+  \qquad\dots
+\]
+After all $n+1$ factors of $P_n$ have been absorbed, the exponent has been
+doubled $n+1$ times, so
+\[
+  \Bigl(1-\frac12\Bigr)P_n=1-\frac{1}{2^{2^{n+1}}} .
+\]
+Since $1-\tfrac12=\tfrac12$,
+\[
+  P_n=2\Bigl(1-\frac{1}{2^{2^{n+1}}}\Bigr)
+  \longrightarrow 2\,(1-0)=2 .
+\]
+The limit is $\boxed{2}$.
+
+\medskip
+\noindent\textbf{(5)} Let
+$S_n=\displaystyle\sum_{k=1}^{n}\frac{1}{\sqrt{n^{2}+k}}$. For $1\le k\le n$ we
+have $n^{2}<n^{2}+k\le n^{2}+n$, hence
+\[
+  \frac{1}{\sqrt{n^{2}+n}}\le\frac{1}{\sqrt{n^{2}+k}}\le\frac{1}{\sqrt{n^{2}+1}} .
+\]
+Summing these $n$ inequalities,
+\[
+  \frac{n}{\sqrt{n^{2}+n}}\le S_n\le\frac{n}{\sqrt{n^{2}+1}} .
+\]
+Now
+\[
+  \frac{n}{\sqrt{n^{2}+n}}=\frac{1}{\sqrt{1+\tfrac1n}}\longrightarrow1,
+  \qquad
+  \frac{n}{\sqrt{n^{2}+1}}=\frac{1}{\sqrt{1+\tfrac{1}{n^{2}}}}\longrightarrow1 .
+\]
+By the squeeze theorem $S_n\to1$. The limit is $\boxed{1}$.
+
+\medskip
+\noindent\textbf{(6)} Since $2>0$ we have $\sqrt[n]{2}=2^{1/n}\to1$, so
+\[
+  1-\frac{1}{\sqrt[n]{2}}=1-2^{-1/n}\longrightarrow1-1=0 .
+\]
+Also $|\cos n|\le1$ for every $n$, so $\{\cos n\}$ is bounded. By the theorem
+that the product of a null sequence and a bounded sequence is a null sequence,
+\[
+  \Bigl(1-\frac{1}{\sqrt[n]{2}}\Bigr)\cos n\longrightarrow0 .
+\]
+The limit is $\boxed{0}$.
+
+\medskip
+\noindent\textbf{(7)} For $n\ge2$ the radicand satisfies
+$1\le n^{2}-n+2\le n^{2}$, hence
+\[
+  1\le\sqrt[n]{n^{2}-n+2}\le\sqrt[n]{n^{2}}=\bigl(n^{1/n}\bigr)^{2} .
+\]
+Since $n^{1/n}\to1$, also $\bigl(n^{1/n}\bigr)^{2}\to1$; the squeeze theorem gives
+\[
+  \lim_{n\to\infty}\sqrt[n]{n^{2}-n+2}=1 .
+\]
+The limit is $\boxed{1}$.
+
+\medskip
+\noindent\textbf{(8)} For $n\ge3$ we have $\ln n\le n$, hence
+$1\le n\ln n\le n^{2}$ and therefore
+\[
+  1\le\sqrt[n]{n\ln n}\le\sqrt[n]{n^{2}}=\bigl(n^{1/n}\bigr)^{2}\longrightarrow1 .
+\]
+By the squeeze theorem, $\displaystyle\lim_{n\to\infty}\sqrt[n]{n\ln n}=1$. The
+limit is $\boxed{1}$.
+
+\medskip
+\noindent\textbf{(9)} Since $\arctan$ is increasing and $\arctan 2>1$ while
+$\arctan n<\dfrac\pi2$, we have, for every $n\ge2$,
+\[
+  1\le\arctan n<\frac\pi2,
+  \qquad\text{hence}\qquad
+  1\le\sqrt[n]{\arctan n}\le\sqrt[n]{\frac\pi2}=\Bigl(\frac\pi2\Bigr)^{1/n} .
+\]
+(The inequality $1\le\arctan n$ does fail for the single index $n=1$, where
+$\arctan1=\pi/4<1$; this affects neither the bounds for $n\ge2$ nor the limit.)
+Since $\pi/2>0$, we have $(\pi/2)^{1/n}\to1$, and the squeeze theorem gives
+$\displaystyle\lim_{n\to\infty}\sqrt[n]{\arctan n}=1$. The limit is
+$\boxed{1}$.
+
+\medskip
+\noindent\textbf{(10)} The expression
+\[
+  T_n=\sqrt[n]{1}+\sqrt[n]{2}+\cdots+\sqrt[n]{10}
+\]
+is a sum of the ten fixed numbers $1,2,\dots,10$, each raised to the power
+$1/n$. For every $n\ge1$ and $k=1,\dots,10$ we have $1\le\sqrt[n]{k}\le\sqrt[n]{10}$,
+hence
+\[
+  10\le T_n\le 10\,\sqrt[n]{10}=10\cdot10^{1/n} .
+\]
+Since $10^{1/n}\to1$, the squeeze theorem gives $T_n\to10$. The limit is
+$\boxed{10}$; equivalently,
+\[
+  \lim_{n\to\infty}\sum_{k=1}^{10}\sqrt[n]{k}=\sum_{k=1}^{10}1=10 .
+\]
+
+\medskip
+\noindent\textbf{(11)} For every $n$,
+\[
+  1=\sin^{2}n+\cos^{2}n\le 2\sin^{2}n+\cos^{2}n=\sin^{2}n+1\le2,
+\]
+so
+\[
+  1\le\sqrt[n]{2\sin^{2}n+\cos^{2}n}\le\sqrt[n]{2}=2^{1/n}\longrightarrow1 .
+\]
+By the squeeze theorem,
+$\displaystyle\lim_{n\to\infty}\sqrt[n]{2\sin^{2}n+\cos^{2}n}=1$. The limit is
+$\boxed{1}$.
+
+\medskip
+\noindent\textbf{(12)} Let $\alpha\in(0,1)$ and put
+$u_n=(n+1)^{\alpha}-n^{\alpha}$, $n\ge1$. Since $0<\alpha<1$, the function
+$f(t)=t^{\alpha}$ is increasing on $[0,\infty)$, so $u_n>0$. By the mean value
+theorem applied to $f$ on the interval $[n,n+1]$ there exists
+$\xi_n\in(n,n+1)$ with
+\[
+  u_n=f(n+1)-f(n)=f'(\xi_n)=\alpha\,\xi_n^{\alpha-1} .
+\]
+Because $\xi_n>n>0$ and $\alpha-1<0$, we have
+$\xi_n^{\alpha-1}<n^{\alpha-1}$, so
+\[
+  0<u_n<\alpha\,n^{\alpha-1}=\frac{\alpha}{n^{1-\alpha}} .
+\]
+Since $1-\alpha>0$, we have $n^{\alpha-1}=n^{-(1-\alpha)}\to0$; by the squeeze
+theorem $u_n\to0$. The limit is $\boxed{0}$.
+
+\emph{Elementary alternative without the mean value theorem.} For $n\ge1$ and
+$0<\alpha<1$, the subadditivity-type inequality
+$(1+x)^{\alpha}\le 1+x$ for $x\ge0$ gives
+\[
+  0<(n+1)^{\alpha}-n^{\alpha}
+  =n^{\alpha}\Bigl[\Bigl(1+\frac1n\Bigr)^{\alpha}-1\Bigr]
+  \le n^{\alpha}\cdot\frac1n=n^{\alpha-1}\longrightarrow0 ,
+\]
+and again $u_n\to0$ by the squeeze theorem.
+
+\medskip
+\noindent\textbf{(13)} Let $a_n\to a$ and put
+$x_n=\dfrac{\lfloor na_n\rfloor}{n}$, where $\lfloor t\rfloor$ denotes the
+greatest integer not exceeding $t$ (the book writes $[\,t\,]$ for this function).
+For every real $t$ one has
+\[
+  t-1<\lfloor t\rfloor\le t .
+\]
+Applying this with $t=na_n$ and dividing by $n>0$ yields
+\[
+  a_n-\frac1n<\frac{\lfloor na_n\rfloor}{n}\le a_n
+  \qquad(n\in\mathbb{N}).
+\]
+Now $a_n-\dfrac1n\to a-0=a$ and $a_n\to a$. By the squeeze theorem (the two
+outer sequences converge to the same limit $a$),
+\[
+  \lim_{n\to\infty}\frac{\lfloor na_n\rfloor}{n}=a .
+\]
+
+\emph{The same conclusion in $\varepsilon$-$N$ language.} Let $\varepsilon>0$.
+Choose $N_1$ with $|a_n-a|<\dfrac\varepsilon2$ for $n\ge N_1$ and $N_2$ with
+$\dfrac1n<\dfrac\varepsilon2$ for $n\ge N_2$, and put $N=\max\{N_1,N_2\}$. For
+$n\ge N$, the inequalities above give
+\[
+  a-\frac\varepsilon2-\frac\varepsilon2<a_n-\frac1n<x_n\le a_n<a+\frac\varepsilon2,
+\]
+that is, $a-\varepsilon<x_n<a+\varepsilon$; hence $|x_n-a|<\varepsilon$ for all
+$n\ge N$. Therefore $\displaystyle\lim_{n\to\infty}\frac{\lfloor na_n\rfloor}{n}=a$.
+\end{solution}
+
+\begin{solution}{Solution 2.1.5}\label{xs:2.1.5}
+Let
+\[
+  x_n=\frac{2n+(-1)^{n}n}{3n+1}\qquad(n\in\mathbb{N}),
+\]
+and note that
+\[
+  x_n=\frac{n\bigl(2+(-1)^{n}\bigr)}{3n+1}
+  =\frac{2+(-1)^{n}}{3+\tfrac1n} .
+\]
+
+\medskip
+\noindent\emph{Step 1: the even-indexed subsequence.}
+For $n=2k$ we have $(-1)^{n}=1$, so
+\[
+  x_{2k}=\frac{2(2k)+2k}{3(2k)+1}=\frac{6k}{6k+1}
+  =\frac{1}{1+\dfrac{1}{6k}} .
+\]
+Since $\dfrac{1}{6k}\to0$ as $k\to\infty$,
+\[
+  \lim_{k\to\infty}x_{2k}=1 .
+\]
+
+\medskip
+\noindent\emph{Step 2: the odd-indexed subsequence.}
+For $n=2k-1$ we have $(-1)^{n}=-1$, so
+\[
+  x_{2k-1}=\frac{2(2k-1)-(2k-1)}{3(2k-1)+1}
+  =\frac{2k-1}{6k-2}
+  =\frac{2-\dfrac1k}{6-\dfrac2k},
+\]
+where the last expression is obtained by dividing numerator and denominator by
+$k$. Since $\dfrac1k\to0$ and $\dfrac2k\to0$,
+\[
+  \lim_{k\to\infty}x_{2k-1}=\frac{2}{6}=\frac13 .
+\]
+
+\medskip
+\noindent\emph{Step 3: conclusion.}
+Suppose, for contradiction, that $\{x_n\}$ converges, say
+$\displaystyle\lim_{n\to\infty}x_n=L\in\mathbb{R}$. We use the theorem: \emph{if a
+sequence converges to $L$, then every subsequence of it converges to $L$.}
+
+Indeed, let $n_1<n_2<\cdots$ be a strictly increasing sequence of positive
+integers and let $\varepsilon>0$. Choose $N$ with $|x_n-L|<\varepsilon$ for all
+$n\ge N$. Since $n_k\ge k$ for every $k$ (proved by induction: $n_1\ge1$ and
+$n_{k+1}>n_k\ge k$, so $n_{k+1}\ge k+1$), we have $n_k\ge N$ whenever $k\ge N$,
+and therefore $|x_{n_k}-L|<\varepsilon$ for all $k\ge N$. Hence $x_{n_k}\to L$.
+
+Applying this with the strictly increasing sequences $(2k)$ and $(2k-1)$, and
+using Steps 1 and 2, we obtain
+\[
+  1=\lim_{k\to\infty}x_{2k}=L=\lim_{k\to\infty}x_{2k-1}=\frac13 ,
+\]
+which is impossible because $1\ne\tfrac13$. This contradiction shows that
+$\{x_n\}$ does not converge; that is, the sequence diverges.
+
+\medskip
+\noindent\emph{Remark (direct $\varepsilon$ argument).} The same conclusion can
+be reached without the subsequence theorem. Suppose $x_n\to L$ and put
+$\varepsilon_0=\dfrac16>0$. Choose $N$ with $|x_n-L|<\varepsilon_0$ for $n\ge N$.
+For $k$ large enough that $2k-1\ge N$ we have, by the triangle inequality,
+\[
+  \bigl|x_{2k}-x_{2k-1}\bigr|
+  \le|x_{2k}-L|+|L-x_{2k-1}|<\frac16+\frac16=\frac13 .
+\]
+On the other hand
+\[
+  x_{2k}-x_{2k-1}=\frac{6k}{6k+1}-\frac{2k-1}{6k-2}
+  =\frac{24k^{2}-8k+1}{(6k+1)(6k-2)}\longrightarrow\frac{24}{36}=\frac23 ,
+\]
+so for all sufficiently large $k$ we have $x_{2k}-x_{2k-1}>\dfrac13$, i.e.
+$|x_{2k}-x_{2k-1}|>\dfrac13$. This is a contradiction. Hence $\{x_n\}$ diverges.
+
+\medskip
+\noindent Equivalently: the sequence $\{x_n\}$ has the two distinct
+subsequential limits $1$ and $\dfrac13$, so it cannot converge.
+\end{solution}
+
+\begin{solution}{Solution 2.1.6}\label{xs:2.1.6}
+We use the three hypotheses
+\[
+a_n\ne 0\quad(n\in\mathbb N),\qquad \frac{a_{n+1}}{a_n}>0\quad(n\in\mathbb N),
+\qquad \lim_{n\to\infty}\frac{a_{n+1}}{a_n}=0 .
+\]
+
+\emph{Step 1: all terms have the same sign.} Since $\dfrac{a_{n+1}}{a_n}>0$ for
+every $n$, two consecutive terms $a_n$ and $a_{n+1}$ always have the same sign.
+By induction $a_n$ therefore has the same sign as $a_1$, for every
+$n\in\mathbb N$; equivalently,
+\[
+a_n=a_1\prod_{k=1}^{n-1}\frac{a_{k+1}}{a_k},
+\]
+and this product is positive because every factor in it is positive.
+
+\emph{Step 2: the ratios are eventually smaller than $1$.} Applying the
+definition of $\displaystyle\lim_{n\to\infty}\frac{a_{n+1}}{a_n}=0$ with
+$\varepsilon=1$, we obtain $N\in\mathbb N$ such that
+\[
+\left|\frac{a_{n+1}}{a_n}\right|<1\qquad(n>N).
+\]
+Together with the positivity of the ratios this says
+\[
+0<\frac{a_{n+1}}{a_n}<1\qquad(n>N).
+\]
+
+\emph{Step 3: the tail is monotone.} Fix $n>N$.
+\begin{itemize}
+  \item If $a_n>0$, then Step 1 gives $a_{n+1}>0$; multiplying the inequality
+        $0<\dfrac{a_{n+1}}{a_n}<1$ by the positive number $a_n$ preserves it, so
+        $0<a_{n+1}<a_n$.
+  \item If $a_n<0$, then Step 1 gives $a_{n+1}<0$; multiplying by the negative
+        number $a_n$ reverses the inequality, so $a_n<a_{n+1}<0$.
+\end{itemize}
+By Step 1 the sign is the same for every $n$, so one and the same case applies to
+the whole tail: if $a_1>0$ then $a_{n+1}<a_n$ for every $n>N$, while if $a_1<0$
+then $a_{n+1}>a_n$ for every $n>N$. Hence the tail $\{a_n\}_{n>N}$ is strictly
+decreasing in the first case and strictly increasing in the second; in either
+case there is an index $N$ such that the sequence $\{a_n\}$ is monotone for all
+sufficiently large $n$, which is the required conclusion.
+\end{solution}
+
+\begin{solution}{Solution 2.1.7}\label{xs:2.1.7}
+\emph{Part 1: a convergent sequence has a largest term or a smallest term.}
+
+Let $\lim\limits_{n\to\infty}a_n=L$. By the definition of convergence with $\varepsilon=1$ there exists $N\in\mathbb{N}$ such that
+\[
+L-1<a_n<L+1\qquad(n>N).
+\]
+The set $S=\{a_n:n\in\mathbb{N}\}$ is therefore nonempty and bounded: if $N=0$ then $L-1<a_n<L+1$ for all $n$; if $N\ge 1$ then the finitely many numbers $a_1,\dots,a_N$ are bounded and the tail lies in $(L-1,L+1)$. Hence
+\[
+s=\sup S,\qquad i=\inf S
+\]
+are finite real numbers.
+
+First note that $s\in S$ means exactly that $s=a_m$ for some index $m$, and then $a_n\le s=a_m$ for every $n$, so that $a_m$ is the largest term of the sequence; similarly, $i\in S$ means that $i$ is the smallest term. So it suffices to prove that $s\in S$ or $i\in S$.
+
+If $s\in S$ there is nothing to prove. Assume therefore that $s\notin S$; we show that then $i\in S$. Because $s=\sup S$ is not an element of $S$, we have $a_n<s$ for all $n$. We prove that $s=L$: let $\delta>0$; since $s-\delta<s=\sup S$ and $s-\delta$ is not an upper bound of $S$, there is an index $n$ with $a_n>s-\delta$. Moreover, for each $k$ the set $\{n:a_n>s-\frac1k\}$ is infinite: if it were finite, then choosing $N$ larger than all of its elements we would have $a_n\le s-\frac1k$ for every $n\ge N$, so that $\max\{a_1,\dots,a_{N-1},s-\frac1k\}$ (the maximum over an empty list of the $a_j$ being read as $s-\frac1k$) would be an upper bound of $S$ strictly smaller than $s$, contradicting $s=\sup S$. We may therefore choose indices $n_1<n_2<\cdots$ with $a_{n_k}>s-\frac1k$ for every $k$; since also $a_{n_k}<s$, we get $|a_{n_k}-s|<\frac1k$, so $a_{n_k}\to s$. Every subsequence of the convergent sequence $\{a_n\}$ converges to the same limit $L$, so $L=s$. In particular, for every $\delta>0$ there are indices $n$ with $|a_n-L|<\delta$, that is, $a_n>L-\delta$.
+
+Now suppose, for contradiction, that also $i\notin S$. Since $i$ is the greatest lower bound and no term equals $i$, for every $n$ we have $a_n>i$; moreover $i+\delta$ is not a lower bound of $S$ for any $\delta>0$, so there is an index $n$ with $a_n<i+\delta$, and a subsequence argument as before shows that $i=L$. Hence $L=i$ and $L=s$, so for every $n$,
+\[
+i=L\le a_n\le L=s ,
+\]
+which forces $a_n=L$ for all $n$. But then $L=a_1$ belongs to $S$ and $s=L$, so $s\in S$, contradicting the assumption $s\notin S$. Therefore $i\in S$, and the sequence has a smallest term.
+
+Consequently, for every convergent sequence, $s\in S$ or $i\in S$: the sequence has a largest term or a smallest term.
+
+\emph{Part 2: must it have both?} No. Consider the convergent sequence
+\[
+a_n=\frac1n\qquad(n\in\mathbb{N}),\qquad \lim_{n\to\infty}a_n=0 .
+\]
+It has the largest term $a_1=1$. It has no smallest term: for every $n$,
+\[
+a_{n+1}=\frac{1}{n+1}<\frac1n=a_n ,
+\]
+so no term is $\le$ all the others; equivalently, $\inf_n a_n=0$ is not attained, because $a_n>0$ for every $n$. Hence a convergent sequence need not have both a largest and a smallest term.
+\end{solution}
+
+\begin{solution}{Solution 2.1.8}\label{xs:2.1.8}
+We use throughout the definition of convergence: $\lim\limits_{n\to\infty}x_n=a$ means that for every $\eta>0$ there exists $N_0\in\mathbb{N}$ such that $|x_n-a|<\eta$ whenever $n>N_0$.
+
+\emph{(1)} We distinguish two cases according to the value of $a$.
+
+\emph{Case $a>0$.} Taking $\eta=\dfrac a2$ in the definition of convergence, we get $N_1\in\mathbb{N}$ such that
+\[
+|x_n-a|<\frac a2\qquad(n>N_1),
+\]
+hence
+\[
+x_n>a-\frac a2=\frac a2>0\qquad(n>N_1),
+\]
+so in particular $x_n\ge 0$ and $\sqrt{x_n}$ is real for all $n>N_1$. Now let $\varepsilon>0$ be arbitrary. By the definition of convergence with $\eta=\varepsilon\sqrt a$ (which is positive because $a>0$) there is $N_2\in\mathbb{N}$ such that
+\[
+|x_n-a|<\varepsilon\sqrt a\qquad(n>N_2).
+\]
+Put $N=\max\{N_1,N_2\}$. For every $n>N$ the number $\sqrt{x_n}$ is real and, using the identity $\bigl(\sqrt{x_n}-\sqrt a\bigr)\bigl(\sqrt{x_n}+\sqrt a\bigr)=x_n-a$ and $\sqrt{x_n}+\sqrt a\ge\sqrt a>0$,
+\[
+\bigl|\sqrt{x_n}-\sqrt a\bigr|
+=\frac{|x_n-a|}{\sqrt{x_n}+\sqrt a}
+\le\frac{|x_n-a|}{\sqrt a}
+<\frac{\varepsilon\sqrt a}{\sqrt a}=\varepsilon .
+\]
+Since $\varepsilon>0$ was arbitrary, $\lim\limits_{n\to\infty}\sqrt{x_n}=\sqrt a$.
+
+\emph{Case $a=0$.} Let $\varepsilon>0$. Applying the definition of convergence with $\eta=\varepsilon^2$ we obtain $N\in\mathbb{N}$ such that $|x_n|<\varepsilon^2$ for all $n>N$. For such $n$ we have $0\le x_n<\varepsilon^2$, hence
+\[
+\bigl|\sqrt{x_n}-\sqrt 0\bigr|=\sqrt{x_n}<\varepsilon .
+\]
+Therefore $\lim\limits_{n\to\infty}\sqrt{x_n}=0=\sqrt a$.
+
+(The case $a<0$ cannot occur here, because then $x_n<0$ for all large $n$ and $\sqrt{x_n}$ would not be real. Observe that the hypothesis $a\ne 0$ is stronger than necessary: the assertion is true for every $a\ge 0$.)
+
+\emph{(2)} We need the elementary inequality for the sine function,
+\[
+|\sin u-\sin v|\le|u-v|\qquad(u,v\in\mathbb{R}),
+\]
+which follows from the product formula $\sin u-\sin v=2\cos\dfrac{u+v}{2}\sin\dfrac{u-v}{2}$ combined with $|\cos t|\le 1$ and $|\sin t|\le|t|$.
+
+Let $\varepsilon>0$ be arbitrary. Since $a\ne 0$, taking $\eta=\dfrac{|a|}{2}$ in the definition of convergence we get $N_1\in\mathbb{N}$ such that
+\[
+|x_n-a|<\frac{|a|}{2}\qquad(n>N_1),
+\]
+so that for $n>N_1$,
+\[
+|x_n|>|a|-\frac{|a|}{2}=\frac{|a|}{2},\qquad
+|x_n+a|\le|x_n|+|a|<\frac{|a|}{2}+|a|=\frac{3|a|}{2}.
+\]
+In particular $x_n\ne 0$ for $n>N_1$, so $\dfrac{1}{x_n^2}$ is defined for those $n$. For $n>N_1$,
+\[
+\left|\frac{1}{x_n^2}-\frac{1}{a^2}\right|
+=\frac{|a^2-x_n^2|}{x_n^2a^2}
+=\frac{|x_n-a|\,|x_n+a|}{x_n^2a^2}
+<|x_n-a|\cdot\frac{\frac{3|a|}{2}}{\frac{|a|^2}{4}\cdot a^2}
+=|x_n-a|\cdot\frac{6}{|a|^3},
+\]
+where we used $a^2=|a|^2$ and $x_n^2>\dfrac{|a|^2}{4}$. Choose $N_2\in\mathbb{N}$ such that
+\[
+|x_n-a|<\frac{|a|^3}{6}\,\varepsilon\qquad(n>N_2)
+\]
+(this is possible by the definition of convergence, since $\dfrac{|a|^3}{6}\varepsilon>0$). Put $N=\max\{N_1,N_2\}$. For every $n>N$ we have $x_n\ne 0$ and, by the sine inequality with $u=\dfrac{1}{x_n^2}$ and $v=\dfrac{1}{a^2}$,
+\[
+\left|\sin\frac{1}{x_n^2}-\sin\frac{1}{a^2}\right|
+\le\left|\frac{1}{x_n^2}-\frac{1}{a^2}\right|
+<|x_n-a|\cdot\frac{6}{|a|^3}
+<\frac{|a|^3}{6}\varepsilon\cdot\frac{6}{|a|^3}
+=\varepsilon .
+\]
+Since $\varepsilon>0$ was arbitrary, $\lim\limits_{n\to\infty}\sin\dfrac{1}{x_n^2}=\sin\dfrac{1}{a^2}$.
+\end{solution}
+
+\begin{solution}{Solution 2.1.9}\label{xs:2.1.9}
+Let $\varepsilon>0$ be arbitrary. By the hypothesis $\lim\limits_{n\to\infty}(x_n-x_{n-1})=d$, applied with the positive number $\varepsilon$, there is $N_1\in\mathbb{N}$ such that
+\[
+\bigl|(x_n-x_{n-1})-d\bigr|<\varepsilon\qquad(n>N_1).
+\]
+Fix an index $n_0>N_1$, for instance $n_0=N_1+1$. For every $n>n_0$ the telescoping identity
+\[
+x_n=x_{n_0}+\sum_{k=n_0+1}^{n}(x_k-x_{k-1})
+\]
+holds. Subtracting $nd$, where $d$ is summed $n-n_0$ times over the indices $k=n_0+1,\dots,n$ and $n_0$ times separately, we get
+\[
+x_n-nd=x_{n_0}-n_0d+\sum_{k=n_0+1}^{n}\bigl[(x_k-x_{k-1})-d\bigr].
+\]
+Dividing by $n>0$ and taking absolute values,
+\[
+\left|\frac{x_n}{n}-d\right|
+\le\frac{|x_{n_0}-n_0d|}{n}+\frac{1}{n}\sum_{k=n_0+1}^{n}\bigl|(x_k-x_{k-1})-d\bigr| .
+\]
+Every index $k$ occurring in the sum satisfies $k\ge n_0+1>N_1$, so each summand is $<\varepsilon$; there are $n-n_0<n$ of them. Therefore, for every $n>n_0$,
+\[
+\left|\frac{x_n}{n}-d\right|
+<\frac{C}{n}+\frac{n-n_0}{n}\,\varepsilon
+<\frac Cn+\varepsilon,
+\qquad C:=|x_{n_0}-n_0d| .
+\]
+The number $C\ge 0$ is a fixed constant and $C/n\to 0$; hence there is $N_2\in\mathbb{N}$ with $C/n<\varepsilon$ for all $n>N_2$. Putting $N=\max\{n_0,N_2\}$, we obtain for every $n>N$
+\[
+\left|\frac{x_n}{n}-d\right|<\varepsilon+\varepsilon=2\varepsilon .
+\]
+Since $\varepsilon>0$ was arbitrary, replacing $\varepsilon$ by $\varepsilon/2$ at the beginning of the argument gives $\bigl|\frac{x_n}{n}-d\bigr|<\varepsilon$ for all large $n$. Hence
+\[
+\lim_{n\to\infty}\frac{x_n}{n}=d .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.1.10}\label{xs:2.1.10}
+\emph{Remark on the hypotheses.} Since $a_n>0$ for every $n$ and $a_n\to a$, we have $a\ge 0$. Moreover each product $a_1a_2\cdots a_n$ is positive, so all the $n$-th roots below are real and positive.
+
+\emph{Main assertion: $\lim\limits_{n\to\infty}\sqrt[n]{a_1a_2\cdots a_n}=a$.} We split the proof into two cases.
+
+\emph{Case 1: $a>0$.} Let $0<\varepsilon<a$ be arbitrary. Choose a number $M$ with $a+\varepsilon<M<a+2\varepsilon$. By the definition of convergence there is $N\in\mathbb{N}$ such that
+\[
+a-\varepsilon<a_n<M\qquad(n>N).
+\]
+Put $P=\displaystyle\prod_{k=1}^{N}a_k>0$ (if $N=0$, read $P=1$). For every $n>N$,
+\[
+a_1a_2\cdots a_n=P\prod_{k=N+1}^{n}a_k ,
+\]
+and each of the $n-N$ factors of the second product lies strictly between $a-\varepsilon$ and $M$, whence
+\[
+P\,(a-\varepsilon)^{\,n-N}<a_1a_2\cdots a_n<P\,M^{\,n-N}.
+\]
+Taking $n$-th roots (the map $t\mapsto t^{1/n}$ is increasing on $[0,+\infty)$) gives, for $n>N$,
+\[
+P^{\frac1n}(a-\varepsilon)^{1-\frac Nn}<\sqrt[n]{a_1a_2\cdots a_n}<P^{\frac1n}M^{1-\frac Nn}.
+\]
+Now $P^{\frac1n}\to 1$ for every $P>0$: if $P\ge 1$ then Bernoulli's inequality gives $1\le P^{\frac1n}\le 1+\frac{P-1}{n}$, and if $0<P<1$ the same bound applied to $1/P$ gives $P^{\frac1n}\ge\frac{1}{1+\frac{1/P-1}{n}}$. Also
+\[
+(a-\varepsilon)^{1-\frac Nn}\to a-\varepsilon,\qquad M^{1-\frac Nn}\to M .
+\]
+Hence there is $N_1>N$ such that for every $n>N_1$,
+\[
+(a-\varepsilon)-\varepsilon<P^{\frac1n}(a-\varepsilon)^{1-\frac Nn},
+\qquad
+P^{\frac1n}M^{1-\frac Nn}<M+\varepsilon .
+\]
+Combining the last three displays and using $M+\varepsilon<a+2\varepsilon$ and $(a-\varepsilon)-\varepsilon=a-2\varepsilon$, we conclude that for every $n>N_1$,
+\[
+a-2\varepsilon<\sqrt[n]{a_1a_2\cdots a_n}<a+2\varepsilon ,
+\]
+that is, $\bigl|\sqrt[n]{a_1a_2\cdots a_n}-a\bigr|<2\varepsilon$. Since $\varepsilon>0$ was arbitrary, the main assertion holds in this case.
+
+\emph{Case 2: $a=0$.} Let $\varepsilon>0$. By the definition of convergence
+there is $N\in\mathbb{N}$ with
+\[
+0<a_n<\frac\varepsilon2\qquad(n>N).
+\]
+Put $Q=\displaystyle\prod_{k=1}^{N}a_k>0$ (if $N=0$, $Q=1$). Since every factor
+$a_k$ with $N<k\le n$ is $<\dfrac\varepsilon2$, we get for every $n>N$
+\[
+a_1a_2\cdots a_n=Q\prod_{k=N+1}^{n}a_k<Q\,\Bigl(\frac\varepsilon2\Bigr)^{\,n-N},
+\]
+hence
+\[
+0<\sqrt[n]{a_1a_2\cdots a_n}
+<\Bigl(Q\,\Bigl(\frac\varepsilon2\Bigr)^{\,n-N}\Bigr)^{\frac1n}
+=\frac\varepsilon2\cdot Q^{\frac1n}\Bigl(\frac\varepsilon2\Bigr)^{-\frac Nn}.
+\]
+As $n\to\infty$ we have $Q^{\frac1n}\to 1$ and
+$\Bigl(\dfrac\varepsilon2\Bigr)^{-\frac Nn}\to 1$, hence
+\[
+Q^{\frac1n}\Bigl(\frac\varepsilon2\Bigr)^{-\frac Nn}\longrightarrow 1 ;
+\]
+in particular there is $N_1>N$ such that
+$Q^{\frac1n}\bigl(\frac\varepsilon2\bigr)^{-\frac Nn}<2$ for every $n>N_1$
+(convergence to $1$ gives, for instance, values $<2$ eventually), and then
+\[
+0<\sqrt[n]{a_1a_2\cdots a_n}<\frac\varepsilon2\cdot 2=\varepsilon .
+\]
+Thus $\bigl|\sqrt[n]{a_1a_2\cdots a_n}-0\bigr|<\varepsilon$ for all $n>N_1$. Since $\varepsilon>0$ was arbitrary,
+\[
+\lim_{n\to\infty}\sqrt[n]{a_1a_2\cdots a_n}=0=a .
+\]
+This proves the main assertion.
+
+\emph{(1)} Assume $\lim\limits_{n\to\infty}\dfrac{a_{n+1}}{a_n}=a$, where $a_n>0$ for all $n\in\mathbb{N}$. Apply the main assertion to the positive sequence
+\[
+r_k=\frac{a_{k+1}}{a_k}\qquad(k\in\mathbb{N}),
+\]
+whose limit is $a$. This yields
+\[
+\lim_{m\to\infty}\sqrt[m]{r_1r_2\cdots r_m}=a .
+\]
+But the product telescopes:
+\[
+r_1r_2\cdots r_{n-1}
+=\frac{a_2}{a_1}\cdot\frac{a_3}{a_2}\cdots\frac{a_n}{a_{n-1}}
+=\frac{a_n}{a_1},
+\]
+and therefore
+\[
+\sqrt[n]{a_n}=\sqrt[n]{a_1\cdot\frac{a_n}{a_1}}
+=a_1^{\frac1n}\bigl(r_1r_2\cdots r_{n-1}\bigr)^{\frac1n}.
+\]
+The sequence $\{(r_1r_2\cdots r_{n-1})^{1/n}\}_{n\ge 2}$ is the sequence $\{(r_1r_2\cdots r_m)^{1/m}\}_m$ with $m=n-1$, raised to the powers $\frac{n-1}{n}\to 1$; indeed,
+\[
+\bigl(r_1r_2\cdots r_{n-1}\bigr)^{\frac1n}
+=\bigl[\bigl(r_1r_2\cdots r_{n-1}\bigr)^{\frac{1}{n-1}}\bigr]^{\frac{n-1}{n}},
+\]
+and $\frac{n-1}{n}\to 1$. Since $t\mapsto t^{\alpha}$ is continuous on $(0,+\infty)$ for every fixed real $\alpha$, and since the limit of a sequence and of any of its subsequences coincide, we conclude that
+\[
+\lim_{n\to\infty}\bigl(r_1r_2\cdots r_{n-1}\bigr)^{\frac1n}=a .
+\]
+Finally $a_1^{1/n}\to 1$, so
+\[
+\lim_{n\to\infty}\sqrt[n]{a_n}=1\cdot a=a .
+\]
+
+If $a=0$, the same computation applies: by Case 2 of the main assertion,
+\[
+\sqrt[m]{r_1r_2\cdots r_m}\longrightarrow 0 ,
+\]
+and $a_1^{1/n}\to 1$ still holds because $a_1>0$.
+
+\emph{(2)} Since $n!=1\cdot2\cdots n>0$ for every $n$, define
+\[
+b_n=\frac{n!}{n^n}>0\qquad(n\in\mathbb{N}).
+\]
+Then
+\[
+\sqrt[n]{b_n}=\frac{\sqrt[n]{n!}}{n},
+\]
+because $\sqrt[n]{n^n}=n$. For the successive ratio of the sequence $\{b_n\}$ we compute
+\[
+\frac{b_{n+1}}{b_n}
+=\frac{(n+1)!}{(n+1)^{n+1}}\cdot\frac{n^n}{n!}
+=\frac{(n+1)\,n!}{(n+1)^{n+1}}\cdot\frac{n^n}{n!}
+=\Bigl(\frac{n}{n+1}\Bigr)^{n}
+=\frac{1}{\Bigl(1+\dfrac1n\Bigr)^{n}} .
+\]
+By the fundamental limit $\lim\limits_{n\to\infty}\Bigl(1+\dfrac1n\Bigr)^{n}=\mathrm{e}$ (where $\mathrm{e}$ denotes the base of the natural logarithm), we obtain
+\[
+\lim_{n\to\infty}\frac{b_{n+1}}{b_n}=\frac1{\mathrm{e}} .
+\]
+The sequence $\{b_n\}$ is positive, so part (1) with $a=\dfrac1{\mathrm{e}}$ gives
+\[
+\lim_{n\to\infty}\sqrt[n]{b_n}=\frac1{\mathrm{e}} .
+\]
+Substituting $\sqrt[n]{b_n}=\dfrac{\sqrt[n]{n!}}{n}$ yields
+\[
+\lim_{n\to\infty}\frac{\sqrt[n]{n!}}{n}=\frac1{\mathrm{e}} .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.1.11}\label{xs:2.1.11}
+Let $a$ be the common limit:
+\[
+\lim_{k\to\infty}a_{3k-2}=\lim_{k\to\infty}a_{3k-1}=\lim_{k\to\infty}a_{3k}=a .
+\]
+Let $\varepsilon>0$ be arbitrary. By the definition of convergence applied to each of the three subsequences, there exist $K_1,K_2,K_3\in\mathbb{N}$ such that
+\[
+|a_{3k-2}-a|<\varepsilon\ \ (k>K_1),\qquad
+|a_{3k-1}-a|<\varepsilon\ \ (k>K_2),\qquad
+|a_{3k}-a|<\varepsilon\ \ (k>K_3).
+\]
+Put
+\[
+N=\max\{3K_1-2,\;3K_2-1,\;3K_3\}.
+\]
+Every positive integer $n$ is of exactly one of the three forms $3k-2$, $3k-1$, $3k$ (division with remainder by $3$). Let $n>N$.
+
+If $n=3k-2$, then $3k-2=n>N\ge 3K_1-2$, hence $k>K_1$ and therefore $|a_n-a|=|a_{3k-2}-a|<\varepsilon$.
+
+If $n=3k-1$, then $3k-1=n>N\ge 3K_2-1$, hence $k>K_2$ and therefore $|a_n-a|=|a_{3k-1}-a|<\varepsilon$.
+
+If $n=3k$, then $3k=n>N\ge 3K_3$, hence $k>K_3$ and therefore $|a_n-a|=|a_{3k}-a|<\varepsilon$.
+
+Thus $|a_n-a|<\varepsilon$ for every $n>N$, that is, $\lim\limits_{n\to\infty}a_n=a$; the sequence $\{a_n\}$ converges.
+\end{solution}
+
+\begin{solution}{Solution 2.1.12}\label{xs:2.1.12}
+Recall the definition: $\lim\limits_{n\to\infty}x_n=+\infty$ means that for every $M>0$ there is $N\in\mathbb{N}$ such that $x_n>M$ for all $n>N$.
+
+Let $\sigma_n=\dfrac{x_1+x_2+\cdots+x_n}{n}$. Fix an arbitrary $M>0$. Applying the definition with the positive number $2M$, we obtain $N_1\in\mathbb{N}$ such that
+\[
+x_n>2M\qquad(n>N_1).
+\]
+Put $C=x_1+x_2+\cdots+x_{N_1}$ (a fixed real number). For every $n>N_1$,
+\[
+\sigma_n=\frac{1}{n}\Bigl(\sum_{k=1}^{N_1}x_k+\sum_{k=N_1+1}^{n}x_k\Bigr)
+>\frac{1}{n}\bigl(C+(n-N_1)\cdot 2M\bigr)
+=2M-\frac{2MN_1-C}{n}.
+\]
+Choose $N\ge N_1$ so large that $\dfrac{2MN_1-C}{n}<M$ for all $n>N$; this is possible because $\dfrac{2MN_1-C}{n}\to 0$ as $n\to\infty$ (if $2MN_1-C\le 0$, take $N=N_1$). Then for every $n>N$,
+\[
+\sigma_n>2M-M=M .
+\]
+Since $M>0$ was arbitrary, this proves $\lim\limits_{n\to\infty}\dfrac{x_1+x_2+\cdots+x_n}{n}=+\infty$.
+\end{solution}
+
+\begin{solution}{Solution 2.1.13}\label{xs:2.1.13}
+Suppose, for contradiction, that $\{a_n\}$ is bounded. By hypothesis $\dfrac{a_n}{a_{n+1}+a_{n+2}}\to 0$. Taking $\varepsilon=\dfrac14$ in the definition of convergence (the limit is $0$), we obtain $N_0\in\mathbb{N}$ such that
+\[
+0<\frac{a_n}{a_{n+1}+a_{n+2}}<\frac14\qquad(n\ge N_0),
+\]
+that is,
+\[
+a_{n+1}+a_{n+2}>4a_n\qquad(n\ge N_0).\qquad(1)
+\]
+Because $\{a_n\}$ is bounded and $a_n>0$ for all $n$, the number
+\[
+s=\sup_{n\ge N_0}a_n
+\]
+is finite and positive. Since $s$ is the least upper bound of the nonempty set $\{a_n:n\ge N_0\}$ and $s>0$, there exists an index $m\ge N_0$ with $a_m>\dfrac{s}{2}$: indeed, otherwise $a_n\le \dfrac{s}{2}$ for all $n\ge N_0$, so $\dfrac{s}{2}<s$ would be a smaller upper bound, contradicting the definition of $s$.
+
+Applying $(1)$ with $n=m$ and using $a_{m+1}\le s$, $a_{m+2}\le s$, we get
+\[
+2s\ \ge\ a_{m+1}+a_{m+2}\ >\ 4a_m\ >\ 4\cdot\frac{s}{2}=2s,
+\]
+which is impossible. Hence $\{a_n\}$ cannot be bounded; the sequence $\{a_n\}$ is unbounded.
+\end{solution}
+
+\begin{solution}{Solution 2.1.14}\label{xs:2.1.14}
+Recall the definitions. A sequence $\{a_n\}$ is \emph{unbounded} if for every $M>0$ there exists $n\in\mathbb{N}$ with $|a_n|>M$. A sequence $\{a_n\}$ is an \emph{infinitely large quantity}, written $\lim\limits_{n\to\infty}a_n=\infty$, if for every $M>0$ there exists $N\in\mathbb{N}$ such that $|a_n|>M$ for all $n>N$. A subsequence of $\{a_n\}$ is a sequence $\{a_{n_k}\}$ where $n_1<n_2<\cdots$ are positive integers.
+
+\emph{Necessity.} Assume that $\{a_n\}$ is an infinitely large quantity, and let $\{a_{n_k}\}$ be any subsequence. Given $M>0$, choose $N$ with $|a_n|>M$ whenever $n>N$. Since $n_k\ge k$, for every $k>N$ we have $n_k\ge k>N$, hence $|a_{n_k}|>M$. Therefore the subsequence $\{a_{n_k}\}$ is unbounded. As the subsequence was arbitrary, every subsequence of $\{a_n\}$ is unbounded.
+
+\emph{Sufficiency.} Assume that every subsequence of $\{a_n\}$ is unbounded, and suppose, for contradiction, that $\{a_n\}$ is not an infinitely large quantity. Then the defining property fails: there exists $M>0$ such that for every $N\in\mathbb{N}$ there is some $n>N$ with $|a_n|\le M$.
+
+We construct a subsequence recursively. Choose $n_1>0$ with $|a_{n_1}|\le M$ (take $N=0$). Having chosen $n_k$, take $N=n_k$ and pick $n_{k+1}>n_k$ with $|a_{n_{k+1}}|\le M$. This produces indices $n_1<n_2<\cdots$ with $|a_{n_k}|\le M$ for every $k$, so the subsequence $\{a_{n_k}\}$ is bounded (by $M$), contradicting the hypothesis that every subsequence is unbounded.
+
+Therefore $\{a_n\}$ is an infinitely large quantity, and the stated condition is both necessary and sufficient.
+\end{solution}
+
+\begin{solution}{Solution 2.1.15}\label{xs:2.1.15}
+Assume, to the contrary, that $|l|>1$. Choose a real number $c$ with
+\[
+1<c<|l|;
+\]
+such a $c$ exists because $|l|>1$ (take, for instance, $c=\dfrac{1+|l|}{2}$).
+
+Since $\dfrac{a_{n+1}}{a_n}\to l$, we have $\left|\dfrac{a_{n+1}}{a_n}\right|\to |l|$ (the absolute value function is continuous). Choose $N\in\mathbb{N}$ such that
+\[
+\left|\frac{a_{n+1}}{a_n}\right|>c\qquad(n\ge N).
+\]
+Note that $a_N\ne 0$ by hypothesis, so $|a_N|>0$. For every $n>N$, writing the quotient as a telescoping product,
+\[
+|a_n|=|a_N|\cdot\prod_{k=N}^{n-1}\left|\frac{a_{k+1}}{a_k}\right|>|a_N|\,c^{\,n-N}.
+\]
+Since $c>1$, we have $c^{\,n-N}\to+\infty$ (for example, $c=1+r$ with $r>0$, and $c^m\ge 1+mr\to+\infty$ by Bernoulli's inequality). Hence, for every $M>0$, choosing $n$ so large that $|a_N|c^{\,n-N}>M$ gives $|a_n|>M$. Therefore $|a_n|\to+\infty$, and in particular the sequence $\{a_n\}$ does not converge to $0$, contradicting the hypothesis $\lim\limits_{n\to\infty}a_n=0$.
+
+Consequently $|l|\le 1$.
+\end{solution}
+
+\begin{solution}{Solution 2.1.16}\label{xs:2.1.16}
+Let $\varepsilon>0$ be arbitrary. We distinguish two cases.
+
+If $\varepsilon\ge b-a$, then for every $n$ both $x_n$ and $a$ lie in $[a,b]$, so
+\[
+|x_n-a|\le b-a\le\varepsilon ,
+\]
+and the required inequality holds automatically for that $\varepsilon$.
+
+Now suppose $0<\varepsilon<b-a$. Then $a<a+\varepsilon<b$, and since $f$ is strictly increasing on $[a,b]$,
+\[
+\delta:=f(a+\varepsilon)-f(a)>0 .
+\]
+By hypothesis $f(x_n)\to f(a)$, so there exists $N\in\mathbb{N}$ such that
+\[
+|f(x_n)-f(a)|<\delta\qquad(n>N),
+\]
+in particular $f(x_n)<f(a)+\delta=f(a+\varepsilon)$ for all $n>N$. Since $x_n\in[a,b]$ and $f$ is strictly increasing, $f(x_n)<f(a+\varepsilon)$ forces $x_n<a+\varepsilon$: indeed, $x_n\ge a+\varepsilon$ would imply $f(x_n)\ge f(a+\varepsilon)$. On the other hand $x_n\ge a$ because $\{x_n\}\subset[a,b]$. Hence
+\[
+0\le x_n-a<\varepsilon,\qquad\text{that is,}\qquad |x_n-a|<\varepsilon
+\]
+for all $n>N$.
+
+Thus for every $\varepsilon>0$ there is $N$ with $|x_n-a|<\varepsilon$ whenever $n>N$, which is exactly the statement $\lim\limits_{n\to\infty}x_n=a$.
+\end{solution}
+
+\begin{solution}{Solution 2.1.17}\label{xs:2.1.17}
+Write
+\[
+\sigma_n=\frac{x_1+x_2+\cdots+x_n}{n},\qquad \sigma_n\to a .
+\]
+Since $\{x_n\}$ is monotonically increasing, $x_k\le x_n$ for all $k\le n$, hence for every $n$
+\[
+\sigma_n=\frac{1}{n}\sum_{k=1}^{n}x_k\le\frac{1}{n}\sum_{k=1}^{n}x_n=x_n. \qquad(1)
+\]
+Also, for every fixed $m$ and every $n>m$, monotonicity gives $x_k\ge x_m$ for $m<k\le n$, so
+\[
+\sigma_n=\frac{1}{n}\Bigl(\sum_{k=1}^{m}x_k+\sum_{k=m+1}^{n}x_k\Bigr)
+\ge \frac{1}{n}\sum_{k=1}^{m}x_k+\frac{n-m}{n}\,x_m .
+\]
+The first term on the right tends to $0$ and $\frac{n-m}{n}\to 1$ as $n\to\infty$, so the lower limit of the right-hand side equals $x_m$. Since $\sigma_n\to a$, we may pass to lower limits in the inequality above and obtain
+\[
+a\ \ge\ x_m\qquad\text{for every }m\in\mathbb{N}. \qquad(2)
+\]
+
+\emph{Case 1: $a$ is finite.} By $(2)$ the monotonically increasing sequence $\{x_n\}$ is bounded above by $a$; hence it converges to its supremum $L=\sup_n x_n$, and $L\le a$. On the other hand, $(1)$ gives $\sigma_n\le x_n$ for all $n$, so taking upper limits,
+\[
+a=\limsup_{n\to\infty}\sigma_n\le\limsup_{n\to\infty}x_n=L .
+\]
+Therefore $a\le L\le a$, that is $L=a$, and consequently $\lim\limits_{n\to\infty}x_n=a$.
+
+\emph{Case 2: $a=+\infty$.} Then $(1)$ gives $x_n\ge\sigma_n$ for every $n$, hence
+\[
+\liminf_{n\to\infty}x_n\ge\lim_{n\to\infty}\sigma_n=+\infty,
+\]
+so $\lim\limits_{n\to\infty}x_n=+\infty=a$.
+
+(The case $a=-\infty$ cannot occur, since $\sigma_n\ge x_1>-\infty$ for all $n$.) In every possible case, $\lim\limits_{n\to\infty}x_n=a$.
+\end{solution}
+
+
+\srcline{Exercise set 2.2, problems 1--6 --- printed page 38}
+
+\begin{solution}{Solution 2.2.1}\label{xs:2.2.1}
+The converse of the Stolz theorem (Theorem 2.2.1) would read as follows: if $\{a_n\}$ is strictly increasing with $a_n\to+\infty$, if $\{b_n\}$ is an arbitrary sequence and if
+\[
+\lim_{n\to\infty}\frac{b_n}{a_n}=a
+\]
+exists, then necessarily
+\[
+\lim_{n\to\infty}\frac{b_n-b_{n-1}}{a_n-a_{n-1}}=a .
+\]
+We show that this assertion is false.
+
+Take
+\[
+a_n=n,\qquad b_n=(-1)^n,\qquad n\ge 1 .
+\]
+For every $n\ge2$ we have $a_n-a_{n-1}=1>0$, so $\{a_n\}$ is strictly increasing, and $a_n=n\to+\infty$; thus all the hypotheses on the denominator are satisfied. Moreover
+\[
+\frac{b_n}{a_n}=\frac{(-1)^n}{n},\qquad\text{hence}\qquad
+\left|\frac{b_n}{a_n}-0\right|=\frac{1}{n}\longrightarrow 0 ,
+\]
+so that $\lim_{n\to\infty}b_n/a_n=0$; the hypothesis of the converse therefore holds with $a=0$.
+
+On the other hand, since $(-1)^{n-1}=-(-1)^n$,
+\[
+\frac{b_n-b_{n-1}}{a_n-a_{n-1}}
+=\frac{(-1)^n-(-1)^{n-1}}{1}
+=(-1)^n\bigl(1+1\bigr)
+=2(-1)^n .
+\]
+Thus this increment quotient equals $2$ when $n$ is even and $-2$ when $n$ is odd. Such a sequence has no limit: its even-indexed subsequence converges to $2$ and its odd-indexed subsequence converges to $-2$, while every subsequence of a convergent sequence must converge to the same limit. Consequently the increment quotient diverges, and in particular it does not equal $a=0$. Hence the converse of the Stolz theorem is false.
+\end{solution}
+
+\begin{solution}{Solution 2.2.2}\label{xs:2.2.2}
+\begin{enumerate}[(i)]
+\item We first record that, keeping \emph{all} the hypotheses of Theorem 2.2.1 (in particular the strict monotonicity of $\{a_n\}$), the case $a=+\infty$ does not fail. Suppose that $\{a_n\}$ is strictly increasing with $a_n\to+\infty$, that $\{b_n\}$ is a sequence, and that
+\[
+\lim_{n\to\infty}\frac{b_n-b_{n-1}}{a_n-a_{n-1}}=+\infty .
+\]
+Let $M>0$ be fixed. By the definition of a limit equal to $+\infty$ there is an $N$ such that
+\[
+\frac{b_n-b_{n-1}}{a_n-a_{n-1}}>M\qquad\text{for all }n>N .
+\]
+Since $\{a_n\}$ is strictly increasing we have $a_n-a_{n-1}>0$, so this is equivalent to
+\[
+b_n-b_{n-1}>M\,(a_n-a_{n-1})\qquad(n>N).
+\]
+Summing these inequalities for $n=N+1,N+2,\dots,n$ and telescoping both sides gives
+\[
+b_n-b_N>M\,(a_n-a_N),\qquad\text{that is,}\qquad b_n>M a_n+\bigl(b_N-M a_N\bigr).
+\]
+Now $a_n\to+\infty$, hence $a_n>0$ for all sufficiently large $n$, and dividing the last inequality by $a_n$ yields
+\[
+\frac{b_n}{a_n}>M+\frac{b_N-M a_N}{a_n}\longrightarrow M\qquad(n\to\infty),
+\]
+because $b_N-Ma_N$ is a constant. As $M>0$ was arbitrary, this says precisely that $\lim_{n\to\infty}b_n/a_n=+\infty$ (and the same argument with $-M$ in place of $M$ gives the case $a=-\infty$). Therefore, under the hypotheses of Theorem 2.2.1, the conclusion does hold in the infinite case as well; the failure asked for in this exercise must come from a genuinely weaker hypothesis, namely from dropping the strict monotonicity of the denominator.
+
+\item The genuine failure occurs once the strict monotonicity of the denominator is weakened to $a_n\to+\infty$. Define
+\[
+a_n=n+(-1)^n,\qquad b_n=3\sum_{k=1}^{n}(-1)^k k,\qquad n\ge1 .
+\]
+We verify all the relevant properties.
+
+\emph{The sequence $\{a_n\}$ tends to $+\infty$ but is not monotone.} Since $a_n\ge n-1$ we have $a_n\to+\infty$. On the other hand
+\[
+a_1=0,\quad a_2=3,\quad a_3=2,\quad a_4=5,\quad a_5=4,\ \dots,
+\]
+and $a_2=3>2=a_3$, so $\{a_n\}$ is not monotone; the hypothesis of Theorem 2.2.1 is indeed violated.
+
+\emph{A closed form for $b_n$.} Pairing consecutive terms, for $n=2m$ we get
+\[
+\sum_{k=1}^{2m}(-1)^k k=(-1+2)+(-3+4)+\cdots+\bigl(-(2m-1)+2m\bigr)=m=\frac{n}{2},
+\]
+while for $n=2m-1$ the same pairing applied to the first $2m-2$ terms gives $m-1$, so that
+\[
+\sum_{k=1}^{2m-1}(-1)^k k=(m-1)-(2m-1)=-m=-\frac{n+1}{2}.
+\]
+Thus for every $n\ge1$
+\[
+b_n=3(-1)^n\left\lceil\frac{n}{2}\right\rceil,\qquad\text{so}\qquad |b_n|=3\left\lceil\frac{n}{2}\right\rceil ,
+\]
+and since $\frac{n}{2}\le\left\lceil\frac{n}{2}\right\rceil\le\frac{n+1}{2}$ we have $|b_n|\sim\frac{3n}{2}$ as $n\to\infty$.
+
+\emph{The increment quotient tends to $+\infty$.} For $n\ge2$,
+\[
+a_n-a_{n-1}=\bigl(n+(-1)^n\bigr)-\bigl(n-1+(-1)^{n-1}\bigr)=1+2(-1)^n,
+\]
+which equals $3$ for even $n$ and $-1$ for odd $n$, and
+\[
+b_n-b_{n-1}=3(-1)^n n .
+\]
+Hence
+\[
+\frac{b_n-b_{n-1}}{a_n-a_{n-1}}=
+\begin{cases}
+\dfrac{3n}{3}=n, & n\ \text{even},\\[2ex]
+\dfrac{-3n}{-1}=3n, & n\ \text{odd},
+\end{cases}
+\]
+so this quotient equals $n$ at even indices and $3n$ at odd indices. In particular it is at least $n$ for every $n\ge2$, whence
+\[
+\lim_{n\to\infty}\frac{b_n-b_{n-1}}{a_n-a_{n-1}}=+\infty .
+\]
+
+\emph{The quotients $b_n/a_n$ have no limit.} Since $a_n>0$ for $n\ge2$, consider $n\ge2$. For even $n=2m$ we have $b_n=3m>0$ and $a_n=2m+1$, so
+\[
+\frac{b_n}{a_n}=\frac{3m}{2m+1}\longrightarrow\frac{3}{2},
+\]
+while for odd $n=2m+1$ we have $b_n=-3(m+1)<0$ and $a_n=2m$, so
+\[
+\frac{b_n}{a_n}=\frac{-3(m+1)}{2m}\longrightarrow-\frac{3}{2}.
+\]
+Thus $|b_n|/a_n\to\frac32$, but $b_n$ changes sign with $n$: along even indices the quotients tend to $+\frac32$ and along odd indices to $-\frac32$. Since these two subsequential limits differ, the sequence $\{b_n/a_n\}$ has no limit; in particular it does not tend to $+\infty$, being negative for all sufficiently large odd $n$.
+
+We conclude that with $a_n=n+(-1)^n\to+\infty$ (so that the strict monotonicity required by Theorem 2.2.1 is dropped) and with $b_n=3\sum_{k=1}^{n}(-1)^k k$, the increment quotient tends to $+\infty$ whereas $b_n/a_n$ has no limit. Hence the conclusion of the Stolz theorem can fail in the infinite case as soon as the strict monotonicity of the denominator is weakened to $a_n\to+\infty$.
+\end{enumerate}
+\end{solution}
+
+\begin{solution}{Solution 2.2.3}\label{xs:2.2.3}
+We use the Stolz theorem (Theorem 2.2.1): if $\{a_n\}$ is strictly increasing with $a_n\to+\infty$, if $\{b_n\}$ is an arbitrary sequence, and if
+\[
+\lim_{n\to\infty}\frac{b_n-b_{n-1}}{a_n-a_{n-1}}=a,
+\]
+where $a$ may be a finite number, $+\infty$ or $-\infty$, then $\lim_{n\to\infty}b_n/a_n=a$. In each item we exhibit the sequences $a_n,b_n$, check the hypotheses and compute the increment quotient.
+
+\begin{enumerate}[(1)]
+\item Take $b_n=\sum_{k=1}^{n}\frac{1}{\sqrt{k}}$ and $a_n=\ln\sqrt{n}=\frac12\ln n$. The sequence $\{a_n\}$ is strictly increasing and $a_n\to+\infty$. For $n\ge2$,
+\[
+\frac{b_n-b_{n-1}}{a_n-a_{n-1}}
+=\frac{\dfrac{1}{\sqrt{n}}}{\dfrac12\bigl(\ln n-\ln(n-1)\bigr)}
+=\frac{2}{\sqrt{n}\,\ln\Bigl(1+\dfrac{1}{n-1}\Bigr)} .
+\]
+Since $\ln(1+t)\le t$ for every $t>0$, with $t=\frac{1}{n-1}$ we obtain
+\[
+\frac{2}{\sqrt{n}\,\ln\Bigl(1+\dfrac{1}{n-1}\Bigr)}\ \ge\ \frac{2(n-1)}{\sqrt{n}}\longrightarrow+\infty ,
+\]
+so the increment quotient tends to $+\infty$. By the Stolz theorem,
+\[
+\lim_{n\to\infty}\frac{1+\frac{1}{\sqrt{2}}+\cdots+\frac{1}{\sqrt{n}}}{\ln\sqrt{n}}=+\infty .
+\]
+
+\item Take $b_n=\sum_{k=1}^{n}\sqrt{k}$ and $a_n=n\sqrt{n}=n^{3/2}$. Again $\{a_n\}$ is strictly increasing with $a_n\to+\infty$. For $n\ge2$,
+\[
+\frac{b_n-b_{n-1}}{a_n-a_{n-1}}=\frac{\sqrt{n}}{n^{3/2}-(n-1)^{3/2}} .
+\]
+Writing $n^{3/2}-(n-1)^{3/2}=\bigl(\sqrt{n}-\sqrt{n-1}\bigr)\bigl(n+\sqrt{n(n-1)}+n-1\bigr)$ and using
+$\sqrt{n}-\sqrt{n-1}=\dfrac{1}{\sqrt{n}+\sqrt{n-1}}$, we get
+\[
+\frac{b_n-b_{n-1}}{a_n-a_{n-1}}
+=\frac{\sqrt{n}\,\bigl(\sqrt{n}+\sqrt{n-1}\bigr)}{2n-1+\sqrt{n(n-1)}}
+=\frac{1+\sqrt{1-\frac1n}}{2-\frac1n+\sqrt{1-\frac1n}}\longrightarrow\frac{1+1}{2+1}=\frac23,
+\]
+the second equality resulting from dividing numerator and denominator by $n$. By the Stolz theorem,
+\[
+\lim_{n\to\infty}\frac{1+\sqrt{2}+\cdots+\sqrt{n}}{n\sqrt{n}}=\frac23 .
+\]
+
+\item Take $b_n=\sum_{k=1}^{n}\sqrt[k]{k}$ and $a_n=n$. Here $\{a_n\}$ is strictly increasing with $a_n\to+\infty$, and
+\[
+\frac{b_n-b_{n-1}}{a_n-a_{n-1}}=\frac{\sqrt[n]{n}}{1}=\sqrt[n]{n}=e^{\frac{\ln n}{n}} .
+\]
+Since $\frac{\ln n}{n}\to0$ and the exponential function is continuous, $\sqrt[n]{n}\to e^{0}=1$. By the Stolz theorem,
+\[
+\lim_{n\to\infty}\frac{1+\sqrt{2}+\sqrt[3]{3}+\cdots+\sqrt[n]{n}}{n}=1 .
+\]
+
+\item Take $b_n=\sum_{k=1}^{n}(2k-1)^{2}$ and $a_n=n^{3}$. The sequence $\{a_n\}$ is strictly increasing with $a_n\to+\infty$, and for $n\ge2$, since $n^{3}-(n-1)^{3}=3n^{2}-3n+1$,
+\[
+\frac{b_n-b_{n-1}}{a_n-a_{n-1}}
+=\frac{(2n-1)^{2}}{n^{3}-(n-1)^{3}}
+=\frac{4n^{2}-4n+1}{3n^{2}-3n+1}\longrightarrow\frac43 .
+\]
+By the Stolz theorem,
+\[
+\lim_{n\to\infty}\frac{1^{2}+3^{2}+\cdots+(2n-1)^{2}}{n^{3}}=\frac43 .
+\]
+
+\item Let $B_n=\sum_{k=1}^{n}k\,a_k$ and $A_n=1+2+\cdots+n=\frac{n(n+1)}{2}$, where $\{a_n\}$ is the given sequence with $\lim_{n\to\infty}a_n=a$ (a finite real number). The sequence $\{A_n\}$ is strictly increasing and $A_n\to+\infty$. Moreover
+\[
+B_n-B_{n-1}=n a_n,\qquad
+A_n-A_{n-1}=\frac{n(n+1)}{2}-\frac{(n-1)n}{2}=n ,
+\]
+hence
+\[
+\frac{B_n-B_{n-1}}{A_n-A_{n-1}}=\frac{n a_n}{n}=a_n\longrightarrow a .
+\]
+By the Stolz theorem,
+\[
+\lim_{n\to\infty}\frac{a_1+2a_2+\cdots+n a_n}{1+2+\cdots+n}=\lim_{n\to\infty}a_n=a .
+\]
+(The same computation applies verbatim when $a=+\infty$ or $a=-\infty$.)
+\end{enumerate}
+\end{solution}
+
+\begin{solution}{Solution 2.2.4}\label{xs:2.2.4}
+Let
+\[
+y_n=\ln\Bigl((n!)^{\frac{1}{n^{2}}}\Bigr)=\frac{\ln n!}{n^{2}}=\frac{1}{n^{2}}\sum_{k=1}^{n}\ln k .
+\]
+We show that $y_n\to0$; then, since the exponential function is continuous,
+\[
+(n!)^{\frac{1}{n^{2}}}=e^{y_n}\longrightarrow e^{0}=1 .
+\]
+
+\emph{Upper bound.} Since $\ln k\le\ln n$ for $1\le k\le n$,
+\[
+0\le y_n\le\frac{n\ln n}{n^{2}}=\frac{\ln n}{n}\longrightarrow0 ,
+\]
+because $\frac{\ln n}{n}\to0$ as $n\to\infty$.
+
+\emph{Lower bound.} Let $n\ge4$. Since $\ln k\ge0$ for $k\ge1$ and $\ln$ is increasing, discarding the terms of the sum with $k<\left\lceil n/2\right\rceil$ and bounding the remaining ones from below by $\ln\frac n2$ gives
+\[
+\sum_{k=1}^{n}\ln k\ \ge\ \Bigl(n-\left\lceil\frac n2\right\rceil+1\Bigr)\ln\frac n2\ \ge\ \frac n2\ln\frac n2 ,
+\]
+the last inequality because $n-\left\lceil\frac n2\right\rceil+1\ge\frac n2$ and $\ln\frac n2>0$ for $n\ge4$. Hence
+\[
+y_n\ge\frac{\ln\frac n2}{2n}\longrightarrow0 .
+\]
+
+By the squeeze theorem $y_n\to0$, and therefore
+\[
+\lim_{n\to\infty}(n!)^{\frac{1}{n^{2}}}=1 .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.2.5}\label{xs:2.2.5}
+Write $C_n^k=\binom{n}{k}$ and set
+\[
+S_n=\sum_{k=0}^{n}\ln C_n^k,\qquad T_n=\sum_{k=0}^{n}\ln k!,
+\]
+so that $x_n=S_n/n^{2}$. Since $C_n^k=\dfrac{n!}{k!\,(n-k)!}$,
+\[
+S_n=\sum_{k=0}^{n}\Bigl(\ln n!-\ln k!-\ln(n-k)!\Bigr)=(n+1)\ln n!-2T_n,
+\]
+the last step because $\sum_{k=0}^{n}\ln(n-k)!=\sum_{j=0}^{n}\ln j!=T_n$. Replacing $n$ by $n-1$ gives $S_{n-1}=n\ln(n-1)!-2T_{n-1}$, hence for $n\ge2$
+\[
+S_n-S_{n-1}=(n+1)\ln n!-n\ln(n-1)!-2\bigl(T_n-T_{n-1}\bigr)
+=(n-1)\ln n!-n\ln(n-1)! ,
+\]
+because $T_n-T_{n-1}=\ln n!$. Using $\ln n!=\ln(n-1)!+\ln n$, we arrive at the identity
+\[
+S_n-S_{n-1}=(n-1)\ln n-\ln(n-1)! .
+\]
+
+We now estimate $\ln(n-1)!=\sum_{j=1}^{n-1}\ln j$ by comparing this sum with the integral of the increasing function $\ln x$. For $n\ge3$,
+\[
+\int_{1}^{n-1}\ln x\,dx\ \le\ \sum_{j=1}^{n-1}\ln j\ \le\ \int_{1}^{n}\ln x\,dx ,
+\]
+because $\ln j\ge\int_{j-1}^{j}\ln x\,dx$ for $j\ge2$, while $\ln j\le\int_{j}^{j+1}\ln x\,dx$ for $j\ge1$. Since $\int_{1}^{N}\ln x\,dx=N\ln N-N+1$, this reads
+\[
+(n-1)\ln(n-1)-n+2\ \le\ \ln(n-1)!\ \le\ n\ln n-n+1 .
+\]
+Consequently, using $\ln\dfrac{n}{n-1}\le\dfrac{1}{n-1}$,
+\[
+(n-1)\ln n-\ln(n-1)!\ \le\ (n-1)\ln\frac{n}{n-1}+n-2\ \le\ 1+n-2=n-1 ,
+\]
+while on the other side
+\[
+(n-1)\ln n-\ln(n-1)!\ \ge\ (n-1)\ln n-\bigl(n\ln n-n+1\bigr)=n-1-\ln n .
+\]
+Dividing by $n^{2}-(n-1)^{2}=2n-1$ we get, for every $n\ge3$,
+\[
+\frac{n-1-\ln n}{2n-1}\ \le\ \frac{S_n-S_{n-1}}{n^{2}-(n-1)^{2}}\ \le\ \frac{n-1}{2n-1},
+\]
+and both outer expressions tend to $\frac12$; by the squeeze theorem,
+\[
+\lim_{n\to\infty}\frac{S_n-S_{n-1}}{n^{2}-(n-1)^{2}}=\frac12 .
+\]
+The sequence $\{n^{2}\}$ is strictly increasing and tends to $+\infty$, so the Stolz theorem (Theorem 2.2.1), applied with $a_n=n^{2}$ and $b_n=S_n$, yields
+\[
+\lim_{n\to\infty}x_n=\lim_{n\to\infty}\frac{S_n}{n^{2}}=\frac12 .
+\]
+(Stirling's formula gives the same value: $\ln n!=n\ln n-n+O(\ln n)$ together with $\sum_{k=1}^{n}k\ln k=\frac12n^{2}\ln n-\frac14n^{2}+O(n\ln n)$ leads to $S_n=\frac12n^{2}+O(n\ln n)$. A numerical check confirms the limit as well: $x_{200}\approx0.4871$, $x_{1000}\approx0.4966$, $x_{5000}\approx0.4992$.)
+\end{solution}
+
+\begin{solution}{Solution 2.2.6}\label{xs:2.2.6}
+Put
+\[
+L=\lim_{n\to\infty}\frac{A_1+A_2+\cdots+A_n}{n},\qquad S_n=A_1+A_2+\cdots+A_n ,
+\]
+so that $S_n/n\to L$, and put $D_j=A_j-A_{j-1}$ for $j\ge2$. The hypothesis says $jD_j=j(A_j-A_{j-1})\to0$ as $j\to\infty$.
+
+\emph{An identity.} For every $n\ge2$,
+\[
+nA_n-S_n=\sum_{j=2}^{n}(j-1)\bigl(A_j-A_{j-1}\bigr)=\sum_{j=2}^{n}(j-1)D_j .
+\]
+Indeed, expanding the right-hand side and re-indexing the second sum,
+\[
+\sum_{j=2}^{n}(j-1)A_j-\sum_{j=2}^{n}(j-1)A_{j-1}
+=\sum_{j=2}^{n}(j-1)A_j-\sum_{i=1}^{n-1}iA_i
+=(n-1)A_n-\sum_{i=1}^{n-1}A_i ,
+\]
+and since $\sum_{i=1}^{n-1}A_i=S_n-A_n$, this equals
+\[
+(n-1)A_n-S_n+A_n=nA_n-S_n .
+\]
+Dividing the identity by $n$ gives
+\[
+A_n=\frac{S_n}{n}+\frac{1}{n}\sum_{j=2}^{n}(j-1)D_j . \tag{$\ast$}
+\]
+
+\emph{The second term tends to $0$.} By hypothesis $jD_j\to0$, and then also
+\[
+D_j=\frac1j\,(jD_j)\longrightarrow0 .
+\]
+Hence the sequence $u_j=(j-1)D_j$ satisfies $u_j=jD_j-D_j\to0$. By the Ces\`aro mean theorem (Example 2.1.4: if $u_j\to u$ then $\frac{u_1+\cdots+u_j}{j}\to u$), applied to the sequence $u_1=0$, $u_j=(j-1)D_j$ for $j\ge2$, whose limit is $0$, we obtain
+\[
+\frac1n\sum_{j=2}^{n}(j-1)D_j=\frac1n\sum_{j=1}^{n}u_j\longrightarrow0 .
+\]
+
+\emph{Conclusion.} Letting $n\to\infty$ in $(\ast)$ and using $S_n/n\to L$ together with the preceding result,
+\[
+\lim_{n\to\infty}A_n=L+0=L=\lim_{n\to\infty}\frac{A_1+A_2+\cdots+A_n}{n},
+\]
+which is the required equality. (If the Ces\`aro limit is $+\infty$ or $-\infty$, then $(\ast)$ shows that $A_n$ has the same infinite limit, since its second term still tends to $0$.)
+\end{solution}
+
+
+\srcline{Exercise set 2.3, problems 1--21}
+
+\begin{solution}{Solution 2.3.1}\label{xs:2.3.1}
+\begin{enumerate}[(1)]
+  \item We first record the bound $0<x_n<2$ for all $n$, by induction: $x_1=\sqrt2<2$, and if $0<x_n<2$ then
+  \[
+  x_{n+1}=\sqrt{2x_n}<\sqrt{2\cdot 2}=2 .
+  \]
+  Moreover, for every $n$,
+  \[
+  \frac{x_{n+1}}{x_n}=\sqrt{\frac{2}{x_n}}>1,
+  \]
+  because $0<x_n<2$; hence $\{x_n\}$ is strictly increasing. Being increasing and bounded above by $2$, it converges (monotone convergence theorem). Let $L=\lim_{n\to\infty}x_n$. Since $x_n\ge x_1=\sqrt2$ for all $n$, we have $L\ge\sqrt2>0$. Squaring the recursion gives $x_{n+1}^2=2x_n$; letting $n\to\infty$ and using the limit rules for products yields $L^2=2L$, i.e.\ $L(L-2)=0$. As $L>0$, $L=2$. Thus $\lim_{n\to\infty}x_n=2$.
+
+  \item Put $\alpha=\dfrac{1+\sqrt{1+4c}}{2}>0$ and $\beta=\dfrac{1-\sqrt{1+4c}}{2}<0$; these are the two roots of $t^2-t-c=0$, so in particular $\alpha^2=\alpha+c$. We prove by induction that $0<x_n<\alpha$: indeed $x_1=\sqrt c<\alpha$ is equivalent to $c<\alpha^2=\alpha+c$, which is true since $\alpha>0$; and if $0<x_n<\alpha$, then
+  \[
+  x_{n+1}=\sqrt{c+x_n}<\sqrt{c+\alpha}=\sqrt{\alpha^2}=\alpha .
+  \]
+  Next, for $0<x_n<\alpha$,
+  \[
+  x_{n+1}>x_n\iff c+x_n>x_n^2\iff x_n^2-x_n-c<0\iff (x_n-\alpha)(x_n-\beta)<0,
+  \]
+  and the last inequality holds because $\beta<0<x_n<\alpha$. Hence $\{x_n\}$ is strictly increasing and bounded above by $\alpha$, so it converges; let $L=\lim x_n$. Then $L=\sqrt{c+L}$, so $L^2=L+c$ with $L\ge x_1=\sqrt c>0$. Therefore $L$ is the positive root, i.e.
+  \[
+  \lim_{n\to\infty}x_n=\frac{1+\sqrt{1+4c}}{2}.
+  \]
+
+  \item Since $x_1>1$, we claim $x_n>1$ for every $n$: if $x_n>1$, then
+  \[
+  x_{n+1}-1=\frac{3x_n+1-x_n-3}{x_n+3}=\frac{2(x_n-1)}{x_n+3}>0 .
+  \]
+  Hence $\{x_n\}$ is bounded below by $1$. It is also decreasing, since for $x_n>1$
+  \[
+  x_{n+1}-x_n=\frac{3x_n+1-x_n^2-3x_n}{x_n+3}=\frac{1-x_n^2}{x_n+3}<0 .
+  \]
+  A decreasing sequence bounded below converges. Let $L=\lim x_n$; then $L\ge 1$ and, passing to the limit in the recursion (the function $t\mapsto(3t+1)/(t+3)$ is continuous at $L$, where the denominator is positive),
+  \[
+  L=\frac{3L+1}{L+3}\iff L^2+3L=3L+1\iff L^2=1 .
+  \]
+  Since $L\ge1$ we get $L=1$, i.e.\ $\lim_{n\to\infty}x_n=1$.
+\end{enumerate}
+\end{solution}
+
+\begin{solution}{Solution 2.3.2}\label{xs:2.3.2}
+We prove first that
+\[
+0<a_n<b_n\qquad\text{for all } n\in\mathbb N_+,
+\]
+by induction. This holds for $n=1$ by hypothesis. If $0<a_n<b_n$, then $a_n\ne b_n$ and the arithmetic--geometric mean inequality gives
+\[
+a_{n+1}=\sqrt{a_nb_n}<\frac{a_n+b_n}{2}=b_{n+1},
+\]
+and both numbers are positive. So the claim follows.
+
+Now $a_{n+1}=\sqrt{a_nb_n}>a_n$ because $b_n>a_n$, so $\{a_n\}$ is strictly increasing; and $b_{n+1}=\frac{a_n+b_n}{2}<b_n$, so $\{b_n\}$ is strictly decreasing. Moreover
+\[
+a_1\le a_n<b_n\le b_1\qquad(n\in\mathbb N_+),
+\]
+so $\{a_n\}$ is increasing and bounded above by $b_1$, while $\{b_n\}$ is decreasing and bounded below by $a_1$. By the monotone convergence theorem both converge; write $a=\lim a_n$ and $b=\lim b_n$. Then
+\[
+b=\lim b_{n+1}=\lim\frac{a_n+b_n}{2}=\frac{a+b}{2},
+\]
+whence $2b=a+b$, i.e.\ $a=b$. Thus the two sequences converge to the same limit. (The common value is the arithmetic--geometric mean of $a_1$ and $b_1$; alternatively, from
+\[
+b_{n+1}-a_{n+1}=\frac{(\sqrt{b_n}-\sqrt{a_n})^2}{2}\le\frac{b_n-a_n}{2}
+\]
+one gets $0<b_n-a_n\le 2^{1-n}(b_1-a_1)\to 0$, which again shows $a=b$.)
+\end{solution}
+
+\begin{solution}{Solution 2.3.3}\label{xs:2.3.3}
+For all $n$ we have $0<x_n<1$ and $(1-x_n)x_{n+1}>\frac14$. By the arithmetic--geometric mean inequality,
+\[
+\frac14<(1-x_n)x_{n+1}\le\left(\frac{(1-x_n)+x_{n+1}}{2}\right)^2 .
+\]
+Taking square roots (both sides are positive) gives
+\[
+\frac12<\frac{1-x_n+x_{n+1}}{2},
+\]
+that is,
+\[
+x_{n+1}>x_n\qquad(n=1,2,3,\dots).
+\]
+Hence $\{x_n\}$ is strictly increasing. It is bounded above by $1$ by hypothesis, so it converges; let $L=\lim_{n\to\infty}x_n$. Since $x_n>x_1>0$ and $x_n<1$, we have $0<L\le1$.
+
+Because the limit of a product is the product of the limits,
+\[
+(1-x_n)x_{n+1}\longrightarrow (1-L)L .
+\]
+Every term of the sequence $\{(1-x_n)x_{n+1}\}$ is $>\frac14$, and a limit of numbers each $>\frac14$ is $\ge\frac14$; hence $L(1-L)\ge\frac14$. On the other hand
+\[
+L(1-L)=\frac14-\left(L-\frac12\right)^2\le\frac14 .
+\]
+Therefore $L(1-L)=\frac14$, which forces $L-\frac12=0$, i.e.\
+\[
+\lim_{n\to\infty}x_n=\frac12 .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.3.4}\label{xs:2.3.4}
+Suppose first that $\{x_n\}$ is increasing (the decreasing case is obtained by applying the increasing case to $\{-x_n\}$, which is increasing and has the convergent subsequence $\{-x_{n_k}\}$).
+
+Let $\{x_{n_k}\}$ be a convergent subsequence with $x_{n_k}\to a$. We claim that
+\[
+x_n\le a\qquad\text{for every } n .
+\]
+Assume on the contrary that $x_m>a$ for some $m$. Put $\delta=x_m-a>0$. Since $n_k\to+\infty$, there is $k$ with $n_k>m$; as $\{x_n\}$ is increasing, $x_{n_k}\ge x_m=a+\delta$ for all such $k$, and there are infinitely many of them. But $x_{n_k}\to a$, so for $\varepsilon=\delta/2$ we must have $x_{n_k}<a+\delta/2$ for all large $k$ --- a contradiction. Hence $x_n\le a$ for all $n$.
+
+Thus the increasing sequence $\{x_n\}$ is bounded above by $a$, and the monotone convergence theorem shows that it converges; let $L=\lim x_n$. Then $L=\sup_n x_n\le a$. On the other hand $x_{n_k}\le L$ for every $k$, so letting $k\to\infty$ gives $a\le L$. Hence $L=a$, and $\{x_n\}$ converges (to the same limit as the subsequence).
+\end{solution}
+
+\begin{solution}{Solution 2.3.5}\label{xs:2.3.5}
+Write $f(t)=t(1-t)$ for $t\in(0,1)$. Since $0<t<1$ implies $0<f(t)<1$ (indeed $f(t)>0$ and $f(t)\le\frac14<1$), we get by induction
+\[
+0<x_n<1\qquad(n\in\mathbb N_+).
+\]
+Moreover
+\[
+x_{n+1}=x_n-x_n^2<x_n ,
+\]
+so $\{x_n\}$ is strictly decreasing and bounded below by $0$. By the monotone convergence theorem it converges; if $L=\lim x_n$, then $L=L(1-L)$ (continuity of $t\mapsto t(1-t)$), so $L^2=0$ and
+\[
+\lim_{n\to\infty}x_n=0 .
+\]
+
+Now we determine the limit of $\{nx_n\}$. For every $n$,
+\[
+\frac{1}{x_{n+1}}=\frac{1}{x_n(1-x_n)}=\frac{1}{x_n}+\frac{1}{1-x_n},
+\]
+so, summing from $k=1$ to $k=n-1$,
+\[
+\frac{1}{x_n}=\frac{1}{x_1}+\sum_{k=1}^{n-1}\frac{1}{1-x_k}.
+\]
+Since $x_k\to0$, we have $\dfrac{1}{1-x_k}\to1$. By the Ces\`aro mean theorem (if $c_k\to c$ then the arithmetic means $\frac{1}{n}\sum_{k=1}^{n}c_k\to c$), applied to $c_k=\dfrac{1}{1-x_k}$,
+\[
+\frac{1}{n}\sum_{k=1}^{n-1}\frac{1}{1-x_k}=\frac{n-1}{n}\cdot\frac{1}{n-1}\sum_{k=1}^{n-1}\frac{1}{1-x_k}\longrightarrow 1 .
+\]
+Therefore
+\[
+\frac{1}{nx_n}=\frac{1}{n}\cdot\frac{1}{x_n}=\frac{1}{nx_1}+\frac{1}{n}\sum_{k=1}^{n-1}\frac{1}{1-x_k}\longrightarrow 0+1=1,
+\]
+and consequently
+\[
+\lim_{n\to\infty}nx_n=1 .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.3.6}\label{xs:2.3.6}
+Since $l>1$, choose a number $q$ with $1<q<l$ (for instance $q=(1+l)/2$). From $\lim_{n\to\infty}\frac{a_n}{a_{n+1}}=l>q$ we get an index $N$ such that
+\[
+\frac{a_n}{a_{n+1}}>q\qquad\text{for all } n\ge N .
+\]
+As $a_{n+1}>0$, this is equivalent to
+\[
+0<a_{n+1}<\frac{a_n}{q}\qquad(n\ge N).
+\]
+Iterating this inequality, for every $n>N$,
+\[
+0<a_n<\frac{a_N}{q^{\,n-N}}=a_Nq^{N}q^{-n}.
+\]
+Since $q>1$, we have $q^{-n}\to0$ (for $q=1+r$ with $r>0$, Bernoulli's inequality gives $q^n=(1+r)^n\ge 1+nr\to\infty$, hence $q^{-n}\to0$). Therefore the right-hand side tends to $0$, and the squeeze theorem gives
+\[
+\lim_{n\to\infty}a_n=0 .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.3.7}\label{xs:2.3.7}
+For every integer $k\ge1$ and every $t\in(k,k+1)$ we have $\dfrac{1}{k+1}<\dfrac1t<\dfrac1k$. Integrating this inequality over $(k,k+1)$,
+\[
+\frac{1}{k+1}=\int_k^{k+1}\frac{dt}{k+1}<\int_k^{k+1}\frac{dt}{t}=\ln\frac{k+1}{k}<\int_k^{k+1}\frac{dt}{k}=\frac1k .
+\]
+So for all $k\ge1$,
+\[
+\frac{1}{k+1}<\ln\!\left(1+\frac1k\right)<\frac1k. \tag{$\ast$}
+\]
+
+\emph{Left inequality.} Summing $(\ast)$ for $k=1,\dots,n-1$ and using the telescoping sum $\sum_{k=1}^{n-1}\ln\frac{k+1}{k}=\ln n$,
+\[
+\frac12+\frac13+\dots+\frac1n=\sum_{k=1}^{n-1}\frac{1}{k+1}<\sum_{k=1}^{n-1}\ln\frac{k+1}{k}=\ln n<\ln(n+1).
+\]
+(In fact the same argument with $k=1,\dots,n$ gives the sharper $\frac12+\dots+\frac{1}{n+1}<\ln(n+1)$.)
+
+\emph{Right inequality.} Summing $(\ast)$ for $k=1,\dots,n$ and using $\sum_{k=1}^{n}\ln\frac{k+1}{k}=\ln(n+1)$,
+\[
+\ln(n+1)=\sum_{k=1}^{n}\ln\frac{k+1}{k}<\sum_{k=1}^{n}\frac1k=1+\frac12+\dots+\frac1n .
+\]
+Combining the two estimates,
+\[
+\frac12+\frac13+\dots+\frac1n<\ln(n+1)<1+\frac12+\dots+\frac1n .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.3.8}\label{xs:2.3.8}
+Let $x_n=H_n-\ln n$, where $H_n=1+\frac12+\dots+\frac1n$.
+
+\emph{$\{x_n\}$ is decreasing.} For every $n\ge1$,
+\[
+x_n-x_{n+1}=\bigl(H_n-\ln n\bigr)-\bigl(H_{n+1}-\ln(n+1)\bigr)
+=\ln\frac{n+1}{n}-\frac{1}{n+1}>0,
+\]
+where the strict inequality is exactly $\ln\frac{n+1}{n}>\frac{1}{n+1}$, i.e.\ the left inequality $(\ast)$ of Solution 2.3.7 with $k=n$.
+
+\emph{$\{x_n\}$ is bounded below.} By the right inequality of Exercise 2.3.7 applied with $n$ replaced by $n-1$ (for $n\ge2$),
+\[
+\ln n<1+\frac12+\dots+\frac{1}{n-1}<H_n,
+\]
+so $x_n=H_n-\ln n>0$ for $n\ge2$; and $x_1=1-\ln1=1>0$. Hence $0<x_n\le1$ for all $n$.
+
+A decreasing sequence bounded below converges (monotone convergence theorem). Therefore $\{x_n\}$ converges; its limit is Euler's constant
+\[
+\gamma=\lim_{n\to\infty}\left(1+\frac12+\dots+\frac1n-\ln n\right).
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.3.9}\label{xs:2.3.9}
+\textbf{The limit is $0$.} We use the standard series for $e$ (obtained from $e=\lim_{n\to\infty}(1+1/n)^n$ by expanding the binomial and passing to the limit):
+\[
+e=\sum_{j=0}^{\infty}\frac{1}{j!},\qquad 2<e<3 .
+\]
+Fix $n\in\mathbb N_+$. For $0\le j\le n$ the number $n!/j!$ is a positive integer, so
+\[
+A_n:=\sum_{j=0}^{n}\frac{n!}{j!}\in\mathbb N .
+\]
+Splitting the series for $n!e$ at $j=n$,
+\[
+n!\,e=\sum_{j=0}^{n}\frac{n!}{j!}+\sum_{j=n+1}^{\infty}\frac{n!}{j!}=A_n+r_n,
+\qquad
+r_n:=\sum_{j=n+1}^{\infty}\frac{n!}{j!}>0 .
+\]
+For $j\ge n+1$,
+\[
+\frac{n!}{j!}=\frac{1}{(n+1)(n+2)\cdots j}\le\frac{1}{(n+1)^{\,j-n}},
+\]
+hence
+\[
+0<r_n\le\sum_{j=n+1}^{\infty}\frac{1}{(n+1)^{\,j-n}}
+=\sum_{i=1}^{\infty}\frac{1}{(n+1)^{i}}
+=\frac{1}{n+1}\cdot\frac{1}{1-\frac{1}{n+1}}=\frac1n .
+\]
+In particular $0<r_n\le 1/n<1$ for every $n\ge 2$, while for $n=1$ we have $0<r_1=e-2<1$ because $2<e<3$. Thus in every case $0<r_n<1$, so $A_n$ is precisely the integer part of $n!\,e$; equivalently $[n!\,e]=A_n$ and
+\[
+n!\,e-[n!\,e]=r_n .
+\]
+Since $0<r_n\le \dfrac1n$ for all $n$ and $\dfrac1n\to 0$, the squeeze theorem gives
+\[
+\lim_{n\to\infty}\bigl(n!\,e-[n!\,e]\bigr)=\lim_{n\to\infty}r_n=0 .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.3.10}\label{xs:2.3.10}
+Denote
+\[
+S_n=\frac{1}{n+1}+\frac{1}{n+2}+\dots+\frac{1}{n+n}=\sum_{k=n+1}^{2n}\frac1k .
+\]
+We use the elementary estimate, valid for every $k\ge1$ (see Solution 2.3.7),
+\[
+\frac{1}{k+1}<\ln\frac{k+1}{k}<\frac1k .
+\]
+
+\emph{Upper bound.} Summing the left inequality over $k=n,n+1,\dots,2n-1$ and telescoping,
+\[
+\sum_{k=n}^{2n-1}\frac{1}{k+1}=\sum_{j=n+1}^{2n}\frac1j=S_n<\sum_{k=n}^{2n-1}\ln\frac{k+1}{k}=\ln\frac{2n}{n}=\ln 2 .
+\]
+
+\emph{Lower bound.} Summing the right inequality over the same range,
+\[
+\ln 2=\sum_{k=n}^{2n-1}\ln\frac{k+1}{k}<\sum_{k=n}^{2n-1}\frac1k=\frac1n+\sum_{k=n+1}^{2n-1}\frac1k
+=\frac1n+S_n-\frac{1}{2n}=S_n+\frac{1}{2n},
+\]
+hence $S_n>\ln 2-\dfrac{1}{2n}$.
+
+Therefore
+\[
+\ln 2-\frac{1}{2n}<S_n<\ln 2\qquad(n\ge1),
+\]
+and the squeeze theorem (since $1/(2n)\to0$) gives
+\[
+\lim_{n\to\infty}\left(\frac{1}{n+1}+\frac{1}{n+2}+\dots+\frac{1}{n+n}\right)=\ln 2 .
+\]
+\end{solution}
+
+\begin{solution}{Solution 2.3.11}\label{xs:2.3.11}
+Since $1+\dfrac{1}{2^{n+1}}>1$,
+\[
+x_{n+1}=x_n\left(1+\frac{1}{2^{n+1}}\right)>x_n ,
+\]
+so $\{x_n\}$ is strictly increasing. It remains to show that it is bounded above.
+
+We use the following elementary fact: if $a_1,\dots,a_m\ge0$ and $s=a_1+\dots+a_m<1$, then
+\[
+\prod_{k=1}^{m}(1+a_k)\le\frac{1}{1-s}.
+\]
+(Proof by induction on $m$: for $m=1$ it is $1+a_1\le\frac{1}{1-a_1}$, i.e.\ $(1+a_1)(1-a_1)=1-a_1^2\le1$. Assume it for $m-1$ with partial sum $s'=a_1+\dots+a_{m-1}$; then, using $s=s'+a_m$,
+\[
+\prod_{k=1}^{m}(1+a_k)\le\frac{1+a_m}{1-s'}
+\le\frac{1}{1-s},
+\]
+the last step being equivalent to $(1+a_m)(1-s)\le 1-s'$, i.e.\ to $-a_ms\le0$, which is true.)
+
+Apply this with $a_k=2^{-k}$ for $k=2,\dots,n$. Since
+\[
+\sum_{k=2}^{n}\frac{1}{2^k}<\sum_{k=2}^{\infty}\frac{1}{2^k}=\frac12<1,
+\]
+we obtain
+\[
+x_n=\frac32\prod_{k=2}^{n}\left(1+\frac{1}{2^k}\right)
+\le\frac32\cdot\frac{1}{1-\sum_{k=2}^{n}2^{-k}}
+=\frac32\cdot\frac{1}{\frac12+2^{-n}}\le\frac32\cdot 2=3 .
+\]
+So $\{x_n\}$ is increasing and bounded above by $3$; by the monotone convergence theorem $\displaystyle\lim_{n\to\infty}x_n$ exists. (Its value is the infinite product $\prod_{k=1}^{\infty}\left(1+2^{-k}\right)\approx2.3842$.)
+\end{solution}
+
+\begin{solution}{Solution 2.3.12}\label{xs:2.3.12}
+The Cauchy criterion for sequences, as established in this chapter, reads:
+\[
+\{x_n\}\ \text{converges}\iff
+\forall\varepsilon>0\ \exists N\in\mathbb N\ \forall n>N\ \forall p\in\mathbb N_+:\ |x_{n+p}-x_n|<\varepsilon ,
+\]
+i.e.\ the index $N$ must be independent of $p$. We test each statement against this criterion.
+
+\textbf{(1) Not a necessary and sufficient condition (it is necessary but not sufficient).}
+The quantifier order ``$\forall p\ \exists N$'' allows $N$ to depend on $p$, so (1) says precisely
+\[
+\text{for every fixed }p\in\mathbb N_+:\quad \lim_{n\to\infty}(x_{n+p}-x_n)=0 .
+\]
+\emph{Necessary:} if $x_n\to a$, then for fixed $p$, $x_{n+p}\to a$ as $n\to\infty$, hence $x_{n+p}-x_n\to a-a=0$; so (1) holds for every convergent sequence.
+\emph{Not sufficient:} take $x_n=\sqrt n$. This sequence diverges to $+\infty$, yet for every fixed $p\ge1$,
+\[
+0<\sqrt{n+p}-\sqrt n=\frac{p}{\sqrt{n+p}+\sqrt n}<\frac{p}{2\sqrt n}\longrightarrow0 ,
+\]
+so (1) is satisfied. Hence (1) does not characterize convergence. (The same conclusion holds for $x_n=1+\frac12+\dots+\frac1n$.)
+
+\textbf{(2) Not a necessary and sufficient condition (it is necessary but not sufficient).}
+Here $N$ and $p$ are both chosen existentially, i.e.\ a \emph{single} pair $(N,p)$ must make $|x_{n+p}-x_n|<\varepsilon$ for all $n>N$.
+\emph{Necessary:} if $x_n\to a$, then $x_{n+1}-x_n\to0$, so for every $\varepsilon>0$ there is $N$ with $|x_{n+1}-x_n|<\varepsilon$ for all $n>N$; thus (2) holds with $p=1$.
+\emph{Not sufficient:} if $0\in\mathbb N$ is allowed, then (2) holds for \emph{every} sequence (take $p=0$: $|x_n-x_n|=0<\varepsilon$), so it certainly does not force convergence; for example the divergent sequence $x_n=n$ satisfies (2). If instead $\mathbb N=\{1,2,\dots\}$, then $p\ge1$, and the divergent sequence $x_n=\sqrt n$ still satisfies (2) with $p=1$, because $|x_{n+1}-x_n|=\frac{1}{\sqrt{n+1}+\sqrt n}\to0$. So in either reading (2) is not sufficient.
+
+\textbf{(3) Not a necessary and sufficient condition (it is necessary but not sufficient).}
+Statement (3) is the disjunction of
+\[
+\text{(A)}\quad \forall n,p\in\mathbb N_+:\ |x_{n+p}-x_n|<\frac{p}{n},
+\qquad
+\text{(B)}\quad \forall p\in\mathbb N_+:\ \lim_{n\to\infty}(x_{n+p}-x_n)=0 .
+\]
+\emph{Necessary:} (B) is exactly condition (1), which was shown above to hold for every convergent sequence; hence the disjunction holds for every convergent sequence.
+\emph{Not sufficient:} consider $x_n=\ln\ln(n+2)$ ($n\ge1$). It is strictly increasing and $x_n\to+\infty$, so it diverges. On the other hand, for all $n,p\in\mathbb N_+$,
+\[
+x_{n+p}-x_n=\ln\frac{\ln(n+p+2)}{\ln(n+2)}
+=\ln\!\left(1+\frac{\ln\frac{n+p+2}{n+2}}{\ln(n+2)}\right)
+\le\frac{\ln\left(1+\frac{p}{n+2}\right)}{\ln(n+2)}
+\le\frac{p}{(n+2)\ln(n+2)}<\frac{p}{n},
+\]
+where we used $\ln(1+u)\le u$ twice and, in the last step, $\ln(n+2)\ge\ln3>1$, so $(n+2)\ln(n+2)>n$. Thus (A) holds for the divergent sequence $\{x_n\}$, and (3) is not sufficient. (The first alternative (A) is not necessary either: for $x_n=\sum_{2^j\le n}2\cdot2^{-j}$, a convergent sequence with jumps of size $2^{1-k}$ at $n=2^k$, we have $|x_{n+1}-x_n|=\frac{2}{n+1}>\frac1n$ at $n=2^k-1$, so (A) fails; the disjunction is nevertheless necessary because (B) holds.)
+
+\textbf{(4) Not a necessary and sufficient condition (it is sufficient but not necessary).}
+\emph{Sufficient:} assume $|x_{n+p}-x_n|<\dfrac{p}{n^2}$ for all $n,p\in\mathbb N_+$. Taking $p=1$ gives
+\[
+|x_{n+1}-x_n|<\frac{1}{n^2}\qquad(n\in\mathbb N_+).
+\]
+For $m>n\ge2$, the triangle inequality and the telescoping estimate $\frac{1}{k^2}\le\frac{1}{k(k-1)}=\frac{1}{k-1}-\frac1k$ yield
+\[
+|x_m-x_n|\le\sum_{k=n}^{m-1}|x_{k+1}-x_k|<\sum_{k=n}^{m-1}\frac{1}{k^2}
+\le\sum_{k=n}^{\infty}\frac{1}{k(k-1)}=\frac{1}{n-1}.
+\]
+Given $\varepsilon>0$, choose $N>1+\frac1\varepsilon$; then for all $m>n>N$ we have $|x_m-x_n|<\frac{1}{n-1}<\varepsilon$. Thus $\{x_n\}$ is a Cauchy sequence, and by the Cauchy convergence criterion it converges.
+\emph{Not necessary:} define
+\[
+x_n=\begin{cases}2^{-j}, & n=2^j\ \text{for some } j\in\mathbb N_+,\\[2pt] 0, & \text{otherwise.}\end{cases}
+\]
+Then $0\le x_n\to0$, so $\{x_n\}$ converges (to $0$). But for $n=3$ and $p=1$,
+\[
+|x_{4}-x_3|=\left|\frac14-0\right|=\frac14>\frac{1}{9}=\frac{p}{n^2},
+\]
+so (4) fails. Hence (4) is sufficient but not necessary for convergence.
+
+\textbf{Conclusion.} None of (1)--(4) is a necessary and sufficient condition for convergence: (1), (2), (3) are necessary but not sufficient, while (4) is sufficient but not necessary.
+\end{solution}
+
+\begin{solution}{Solution 2.3.13}\label{xs:2.3.13}
+We use the \emph{Cauchy convergence criterion}: a sequence $\{a_n\}$ of real numbers converges if and only if for every $\varepsilon > 0$ there is an $N \in \mathbb{N}_+$ such that
+\[
+|a_m - a_n| < \varepsilon \qquad \text{whenever } m > n \ge N .
+\]
+Throughout we use the elementary estimate, valid for $m > n \ge 1$,
+\[
+\frac{1}{k^2} \le \frac{1}{k(k-1)} = \frac{1}{k-1} - \frac{1}{k} \quad (k \ge 2),
+\qquad\text{hence}\qquad
+\sum_{k=n+1}^{m} \frac{1}{k^2} \le \sum_{k=n+1}^{m}\Bigl(\frac{1}{k-1}-\frac{1}{k}\Bigr) = \frac{1}{n} - \frac{1}{m} < \frac{1}{n}.
+\]
+\begin{enumerate}[(1)]
+  \item For $m > n \ge 1$,
+  \[
+  |a_m - a_n| = \Bigl|\sum_{k=n+1}^{m} \frac{(-1)^{k-1}}{k^2}\Bigr| \le \sum_{k=n+1}^{m}\frac{1}{k^2} < \frac{1}{n}.
+  \]
+  Given $\varepsilon > 0$, choose $N \in \mathbb{N}_+$ with $N > 1/\varepsilon$. Then for all $m > n \ge N$,
+  \[
+  |a_m - a_n| < \frac{1}{n} \le \frac{1}{N} < \varepsilon .
+  \]
+  Thus $\{a_n\}$ satisfies the Cauchy criterion, and therefore converges.
+  \item Since $|\sin kx| \le 1$ for every $k \in \mathbb{N}_+$ and every $x \in \mathbb{R}$, for $m > n \ge 1$,
+  \[
+  |a_m - a_n| = \Bigl|\sum_{k=n+1}^{m} \frac{\sin kx}{k^2}\Bigr| \le \sum_{k=n+1}^{m}\frac{|\sin kx|}{k^2} \le \sum_{k=n+1}^{m}\frac{1}{k^2} < \frac{1}{n}.
+  \]
+  Given $\varepsilon > 0$, take $N \in \mathbb{N}_+$ with $N > 1/\varepsilon$; then $|a_m - a_n| < \varepsilon$ for all $m > n \ge N$. So $\{a_n\}$ is a Cauchy sequence and hence converges.
+  \item Put $u_k = \dfrac{\sin kx}{k(k+\sin kx)}$ for $k \ge 2$, so that $a_n = \sum_{k=2}^{n} u_k$ for $n \ge 2$ (this is the range of indices for which $a_n$ is defined). For $k \ge 2$,
+  \[
+  k + \sin kx \ge k - 1 > 0,
+  \qquad\text{so}\qquad
+  |u_k| = \frac{|\sin kx|}{k\,(k+\sin kx)} \le \frac{1}{k(k-1)} .
+  \]
+  Hence for $m > n \ge 2$,
+  \[
+  |a_m - a_n| = \Bigl|\sum_{k=n+1}^{m} u_k\Bigr| \le \sum_{k=n+1}^{m}|u_k| \le \sum_{k=n+1}^{m}\frac{1}{k(k-1)} = \frac{1}{n} - \frac{1}{m} < \frac{1}{n}.
+  \]
+  Given $\varepsilon > 0$, choose an integer $N \ge 2$ with $N > 1/\varepsilon$. Then $|a_m - a_n| < 1/n \le 1/N < \varepsilon$ for all $m > n \ge N$, so by the Cauchy criterion $\{a_n\}$ converges.
+\end{enumerate}
+\end{solution}
+
+\begin{solution}{Solution 2.3.14}\label{xs:2.3.14}
+Define, for $n \ge 2$,
+\[
+S_n = |a_2 - a_1| + |a_3 - a_2| + \cdots + |a_n - a_{n-1}| = \sum_{k=2}^{n}|a_k - a_{k-1}| .
+\]
+By hypothesis the sequence $\{S_n\}_{n \ge 2}$ is bounded, say $S_n \le M$ for all $n \ge 2$. Since every term $|a_k - a_{k-1}| \ge 0$, the sequence $\{S_n\}$ is nondecreasing; being nondecreasing and bounded above, it converges (its limit is $\sup_n S_n$). Write $L = \lim_{n\to\infty} S_n$.
+
+We show that $\{a_n\}$ is a Cauchy sequence. For $m > n \ge 2$, the triangle inequality gives
+\[
+|a_m - a_n| = \Bigl|\sum_{k=n+1}^{m}\bigl(a_k - a_{k-1}\bigr)\Bigr|
+\le \sum_{k=n+1}^{m}|a_k - a_{k-1}| = S_m - S_n .
+\]
+Let $\varepsilon > 0$. Since $S_n \to L$, there is $N \ge 2$ with $L - S_N < \varepsilon$. Then for all $m > n \ge N$, using $S_n \ge S_N$ and $S_m \le L$,
+\[
+|a_m - a_n| \le S_m - S_n \le L - S_n \le L - S_N < \varepsilon .
+\]
+Hence $\{a_n\}$ satisfies the Cauchy convergence criterion and therefore converges.
+\end{solution}
+
+\begin{solution}{Solution 2.3.15}\label{xs:2.3.15}
+First observe that $b_n > 0$ for every $n \in \mathbb{N}_+$. Indeed, a strictly decreasing sequence is bounded below by its limit, and here that limit is $0$; hence $b_n \ge 0$ for all $n$, and since $b_n \to 0$ and $\{b_n\}$ is strictly decreasing, in fact $b_n > 0$ for all $n$. In particular $b_n - b_{n-1} < 0$ and $b_n - b_{n-1} \neq 0$ for $n \ge 2$.
+
+\medskip
+\noindent\textbf{Case 1: $A$ is a finite number.}
+Put $u_n = a_n - A b_n$. Then $u_n \to 0 - A\cdot 0 = 0$, and for $n \ge 2$,
+\[
+\frac{u_n - u_{n-1}}{b_n - b_{n-1}}
+= \frac{a_n - a_{n-1}}{b_n - b_{n-1}} - A \longrightarrow 0 .
+\]
+So it suffices to prove the following claim.
+
+\emph{Claim.} If $c_n \to 0$, $b_1 > b_2 > b_3 > \cdots$ with $b_n \to 0$, and
+$\dfrac{c_n - c_{n-1}}{b_n - b_{n-1}} \to 0$, then $\dfrac{c_n}{b_n} \to 0$.
+
+\emph{Proof of the claim.} Let $\varepsilon > 0$. Choose $N$ such that
+\[
+\Bigl|\frac{c_n - c_{n-1}}{b_n - b_{n-1}}\Bigr| < \frac{\varepsilon}{2}
+\qquad \text{for all } n > N,
+\]
+that is, since $b_{n-1} - b_n > 0$,
+\[
+|c_n - c_{n-1}| \le \frac{\varepsilon}{2}\,(b_{n-1} - b_n) \qquad (n > N).
+\]
+For $m > n > N$ the triangle inequality and a telescoping sum give
+\[
+|c_m - c_n| \le \sum_{k=n+1}^{m}|c_k - c_{k-1}|
+\le \frac{\varepsilon}{2}\sum_{k=n+1}^{m}(b_{k-1} - b_k)
+= \frac{\varepsilon}{2}\,(b_n - b_m) < \frac{\varepsilon}{2}\,b_n .
+\]
+Letting $m \to \infty$ and using $c_m \to 0$ yields $|c_n| \le \frac{\varepsilon}{2} b_n$, hence
+\[
+\Bigl|\frac{c_n}{b_n}\Bigr| \le \frac{\varepsilon}{2} < \varepsilon
+\qquad (n > N),
+\]
+which proves the claim. Applying the claim to $c_n = u_n = a_n - A b_n$ gives
+\[
+\frac{a_n}{b_n} - A = \frac{a_n - A b_n}{b_n} = \frac{u_n}{b_n} \longrightarrow 0,
+\qquad\text{so}\qquad \frac{a_n}{b_n} \longrightarrow A .
+\]
+
+\medskip
+\noindent\textbf{Case 2: $A = +\infty$.}
+Let $M > 0$ be given. Since $\dfrac{a_n - a_{n-1}}{b_n - b_{n-1}} \to +\infty$, there is $N$ such that
+\[
+\frac{a_n - a_{n-1}}{b_n - b_{n-1}} > M \qquad (n > N).
+\]
+As $b_n - b_{n-1} < 0$, multiplying by it reverses the inequality:
+\[
+a_n - a_{n-1} < M\,(b_n - b_{n-1})
+\qquad\Longleftrightarrow\qquad
+\bigl(a_n - M b_n\bigr) - \bigl(a_{n-1} - M b_{n-1}\bigr) < 0 .
+\]
+Thus $v_n := a_n - M b_n$ is strictly decreasing for $n \ge N$ (i.e.\ $v_{N} > v_{N+1} > \cdots$), and $v_n \to 0 - M \cdot 0 = 0$. A decreasing sequence is bounded below by its limit, so $v_n \ge 0$ for all $n \ge N$. Hence
+\[
+a_n \ge M b_n, \qquad\text{that is,}\qquad \frac{a_n}{b_n} \ge M \qquad (n \ge N).
+\]
+Since $M > 0$ is arbitrary, $\dfrac{a_n}{b_n} \to +\infty = A$.
+
+\medskip
+\noindent\textbf{Case 3: $A = -\infty$.}
+Let $M > 0$ be given. Choose $N$ such that
+\[
+\frac{a_n - a_{n-1}}{b_n - b_{n-1}} < -M \qquad (n > N).
+\]
+Multiplying by $b_n - b_{n-1} < 0$ reverses the inequality:
+\[
+a_n - a_{n-1} > -M\,(b_n - b_{n-1}) = M\,(b_{n-1} - b_n),
+\]
+that is,
+\[
+\bigl(a_n + M b_n\bigr) - \bigl(a_{n-1} + M b_{n-1}\bigr) > 0 \qquad (n > N).
+\]
+So $w_n := a_n + M b_n$ is strictly increasing for $n \ge N$, and $w_n \to 0$. An increasing sequence is bounded above by its limit, so $w_n \le 0$ for all $n \ge N$. Hence
+\[
+a_n \le -M b_n, \qquad\text{that is,}\qquad \frac{a_n}{b_n} \le -M \qquad (n \ge N).
+\]
+Since $M > 0$ is arbitrary, $\dfrac{a_n}{b_n} \to -\infty = A$. This completes the proof.
+\end{solution}
+
+\begin{solution}{Solution 2.3.16}\label{xs:2.3.16}
+Since $a \le a_n \le b$ for all $n \in \mathbb{N}_+$, the sequence $\{a_n\}$ is bounded. By the Bolzano--Weierstrass theorem, every bounded sequence of real numbers has a convergent subsequence; hence there is a subsequence $a_{n_k}$ and a number $\xi \in \mathbb{R}$ with
+\[
+a_{n_k} \longrightarrow \xi .
+\]
+Because $a \le a_{n_k} \le b$ for all $k$, passing to the limit gives $\xi \in [a,b]$.
+
+Now suppose, for contradiction, that \emph{every} convergent subsequence of $\{a_n\}$ had the limit $\xi$. Then, in particular, the whole sequence could not converge to any number different from $\xi$; and since $\{a_n\}$ diverges by hypothesis, $\{a_n\}$ does not converge to $\xi$ either. We now exhibit a second subsequence with a limit different from $\xi$.
+
+The statement ``$a_n \not\to \xi$'' means that there is an $\varepsilon > 0$ such that for every $N \in \mathbb{N}_+$ there exists an index $n > N$ with
+\[
+|a_n - \xi| \ge \varepsilon .
+\]
+Choose such indices recursively: pick $m_1 \in \mathbb{N}_+$ with $|a_{m_1} - \xi| \ge \varepsilon$; having chosen $m_k$, pick $m_{k+1} > m_k$ with $|a_{m_{k+1}} - \xi| \ge \varepsilon$. Then $(m_k)$ is strictly increasing, so $\{a_{m_k}\}$ is a subsequence of $\{a_n\}$, and
+\[
+|a_{m_k} - \xi| \ge \varepsilon \qquad \text{for all } k.
+\]
+This subsequence is again bounded (all its terms lie in $[a,b]$), so by the Bolzano--Weierstrass theorem it has a convergent subsequence $\{a_{m_{k_j}}\}_{j}$, say $a_{m_{k_j}} \to \eta$. The subsequence $\{a_{m_{k_j}}\}_j$ of $\{a_n\}$ is also a subsequence of $\{a_{m_k}\}$ and satisfies $|a_{m_{k_j}} - \xi| \ge \varepsilon$ for every $j$; letting $j \to \infty$ and using the continuity of the absolute value,
+\[
+|\eta - \xi| \ge \varepsilon > 0, \qquad\text{so}\qquad \eta \neq \xi .
+\]
+Thus $\{a_n\}$ has the subsequence $\{a_{n_k}\}$ converging to $\xi$ and the subsequence $\{a_{m_{k_j}}\}_j$ converging to $\eta \neq \xi$: two subsequences with different limits, as required.
+\end{solution}
+
+\begin{solution}{Solution 2.3.17}\label{xs:2.3.17}
+We recall the Cauchy convergence criterion: $\{a_n\}$ converges if and only if for every $\varepsilon > 0$ there is $N \in \mathbb{N}_+$ such that $|a_m - a_n| < \varepsilon$ whenever $m > n \ge N$.
+
+Let $\{a_n\}$ be monotone and bounded. We treat the nondecreasing case $a_1 \le a_2 \le a_3 \le \cdots$; the nonincreasing case follows by applying the argument to the nondecreasing bounded sequence $\{-a_n\}$.
+
+So suppose $a_1 \le a_2 \le \cdots$ and the set $\{a_n : n \in \mathbb{N}_+\}$ is bounded above. By the least upper bound property of the real numbers, this nonempty bounded-above set has a supremum
+\[
+M = \sup\{a_n : n \in \mathbb{N}_+\} \in \mathbb{R},
+\qquad\text{and}\qquad a_n \le M \ \ \text{for all } n .
+\]
+Let $\varepsilon > 0$. Since $M - \varepsilon$ is not an upper bound of the set, there is $N \in \mathbb{N}_+$ with
+\[
+a_N > M - \varepsilon .
+\]
+For all $m > n \ge N$, monotonicity gives $a_m \ge a_n$, so
+\[
+0 \le a_m - a_n \le M - a_n \le M - a_N < \varepsilon ,
+\]
+where we used $a_n \ge a_N$ (as $n \ge N$) and $a_m \le M$. Hence $|a_m - a_n| < \varepsilon$ for all $m > n \ge N$, i.e.\ $\{a_n\}$ is a Cauchy sequence. By the Cauchy convergence criterion, $\{a_n\}$ converges. (In fact the argument shows $\lim_{n\to\infty} a_n = M$.)
+\end{solution}
+
+\begin{solution}{Solution 2.3.18}\label{xs:2.3.18}
+We use the \emph{nested interval theorem}; for reference we also recall the statement of the \emph{Bolzano--Weierstrass theorem}, which is what has to be proved.
+
+\emph{Nested interval theorem.} If $I_k = [c_k, d_k]$ $(k \in \mathbb{N}_+)$ are closed intervals with
+\[
+I_1 \supseteq I_2 \supseteq I_3 \supseteq \cdots
+\qquad\text{and}\qquad d_k - c_k \longrightarrow 0,
+\]
+then $\bigcap_{k=1}^{\infty} I_k$ consists of exactly one point $\xi$; moreover $c_k \to \xi$ and $d_k \to \xi$.
+
+\emph{Bolzano--Weierstrass theorem.} Every bounded sequence of real numbers has a convergent subsequence.
+
+\medskip
+Let $\{a_n\}$ be an arbitrary bounded sequence: there is $M > 0$ with $|a_n| \le M$ for all $n \in \mathbb{N}_+$, so every term lies in $I_1 := [-M, M]$. We construct closed intervals
+\[
+I_1 \supseteq I_2 \supseteq I_3 \supseteq \cdots
+\]
+with the property
+\[
+(P_k) \qquad a_n \in I_k \ \text{for infinitely many } n .
+\]
+$I_1$ has property $(P_1)$ by the choice of $M$. Suppose $I_k = [c_k, d_k]$ has property $(P_k)$, and let $p_k = \tfrac{1}{2}(c_k + d_k)$ be its midpoint. The two closed halves $[c_k, p_k]$ and $[p_k, d_k]$ cover $I_k$, so
+\[
+\{n : a_n \in I_k\} = \{n : a_n \in [c_k,p_k]\} \cup \{n : a_n \in [p_k,d_k]\},
+\]
+and the set on the left is infinite; hence at least one of the two sets on the right is infinite. Choose that half as $I_{k+1}$; then $I_{k+1} \subseteq I_k$ and $(P_{k+1})$ holds. This completes the recursion.
+
+Each $I_k$ is a nonempty closed interval and
+\[
+d_k - c_k = \frac{d_1 - c_1}{2^{\,k-1}} = \frac{2M}{2^{\,k-1}} \longrightarrow 0 .
+\]
+By the nested interval theorem there is exactly one point $\xi$ with $\xi \in \bigcap_k I_k$, and $c_k \to \xi$, $d_k \to \xi$.
+
+Finally, because the set $\{n : a_n \in I_k\}$ is infinite for every $k$, we may choose indices recursively by
+\[
+n_1 < n_2 < n_3 < \cdots, \qquad a_{n_k} \in I_k \ \ (k \in \mathbb{N}_+):
+\]
+indeed, having chosen $n_k$, the set $\{n : a_n \in I_{k+1}\}$ is infinite, so it contains some $n > n_k$, which we take as $n_{k+1}$. Then $(n_k)$ is strictly increasing, so $\{a_{n_k}\}$ is a subsequence of $\{a_n\}$, and for every $k$,
+\[
+|a_{n_k} - \xi| \le d_k - c_k = \frac{2M}{2^{\,k-1}} \longrightarrow 0 .
+\]
+Hence $a_{n_k} \to \xi$: the bounded sequence $\{a_n\}$ has a convergent subsequence. Since $\{a_n\}$ was an arbitrary bounded sequence, the Bolzano--Weierstrass theorem is proved.
+\end{solution}
+
+\begin{solution}{Solution 2.3.19}\label{xs:2.3.19}
+\emph{Cauchy convergence criterion.} A sequence $\{a_n\}$ of real numbers converges if and only if it is a Cauchy sequence, i.e.\ for every $\varepsilon > 0$ there is $N \in \mathbb{N}_+$ such that $|a_m - a_n| < \varepsilon$ whenever $m, n \ge N$.
+
+We use the nested interval theorem: if $I_k = [c_k,d_k]$ are closed intervals with $I_1 \supseteq I_2 \supseteq \cdots$ and $d_k - c_k \to 0$, then $\bigcap_k I_k$ consists of exactly one point $\xi$, and $c_k \to \xi$, $d_k \to \xi$.
+
+\medskip
+\noindent\emph{Necessity.} Suppose $a_n \to \xi$. Given $\varepsilon > 0$, choose $N$ with $|a_n - \xi| < \varepsilon/2$ for all $n \ge N$. Then for $m, n \ge N$,
+\[
+|a_m - a_n| \le |a_m - \xi| + |\xi - a_n| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon .
+\]
+So every convergent sequence is a Cauchy sequence.
+
+\medskip
+\noindent\emph{Sufficiency.} Let $\{a_n\}$ be a Cauchy sequence.
+
+\emph{Step 1: $\{a_n\}$ is bounded.} Take $N_0$ such that $|a_m - a_n| < 1$ for all $m,n \ge N_0$. Then for every $m \ge N_0$, $|a_m| \le |a_{N_0}| + 1$, so with
+\[
+M = \max\{|a_1|, |a_2|, \dots, |a_{N_0-1}|, |a_{N_0}| + 1\}
+\]
+we have $|a_n| \le M$ for all $n \in \mathbb{N}_+$. In particular every term lies in $I_1 := [-M, M]$.
+
+\emph{Step 2: construction of nested intervals.} We construct closed intervals $I_1 \supseteq I_2 \supseteq \cdots$ such that
+\[
+(Q_k) \qquad a_n \in I_k \ \text{for infinitely many } n .
+\]
+$I_1$ satisfies $(Q_1)$. Suppose $I_k = [c_k,d_k]$ satisfies $(Q_k)$ and let $p_k = \tfrac12(c_k+d_k)$. Since $[c_k,p_k] \cup [p_k,d_k] = I_k$, at least one of the two sets $\{n : a_n \in [c_k,p_k]\}$ and $\{n : a_n \in [p_k,d_k]\}$ is infinite; choose the corresponding half as $I_{k+1}$. Then $I_{k+1} \subseteq I_k$ and $(Q_{k+1})$ holds. Moreover
+\[
+d_k - c_k = \frac{2M}{2^{\,k-1}} \longrightarrow 0 .
+\]
+By the nested interval theorem, $\bigcap_k I_k = \{\xi\}$ for a single point $\xi$, and $c_k \to \xi$, $d_k \to \xi$.
+
+\emph{Step 3: $a_n \to \xi$.} Let $\varepsilon > 0$. Choose $k$ with $d_k - c_k < \varepsilon/2$. Since $\{a_n\}$ is a Cauchy sequence, there is $N \in \mathbb{N}_+$ with
+\[
+|a_m - a_n| < \frac{\varepsilon}{2} \qquad (m, n \ge N).
+\]
+By $(Q_k)$ the set $\{n : a_n \in I_k\}$ is infinite, so we may choose an index $m \ge N$ with $a_m \in I_k$. Then $|a_m - \xi| \le d_k - c_k < \varepsilon/2$. Consequently, for every $n \ge N$,
+\[
+|a_n - \xi| \le |a_n - a_m| + |a_m - \xi| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon .
+\]
+Hence $a_n \to \xi$: every Cauchy sequence of real numbers converges. Together with the necessity part, this is the Cauchy convergence criterion.
+\end{solution}
+
+\begin{solution}{Solution 2.3.20}\label{xs:2.3.20}
+Set
+\[
+S_n = \sum_{k=1}^{n} x_k^2 \qquad (n \in \mathbb{N}_+), \qquad S_0 = 0 .
+\]
+Then $S_n - S_{n-1} = x_n^2 \ge 0$ for every $n \ge 1$, so $\{S_n\}$ is nondecreasing, and the hypothesis reads
+\[
+x_n S_n \longrightarrow 1 .
+\]
+
+\emph{Step 1: $S_n \to +\infty$.} If $\{S_n\}$ were bounded, then, being nondecreasing and bounded, it would converge to some $S \in \mathbb{R}$; then $x_n^2 = S_n - S_{n-1} \to 0$, hence $x_n \to 0$ and $x_n S_n \to 0 \cdot S = 0$, contradicting $x_n S_n \to 1$. Therefore $S_n \to +\infty$.
+
+\emph{Step 2: $x_n \to 0$ and $S_{n-1}/S_n \to 1$.} Since $x_n S_n \to 1$, the sequence $\{x_n S_n\}$ is bounded, say $|x_n S_n| \le C$ for all $n$. As $S_n \to +\infty$,
+\[
+|x_n| = \frac{|x_n S_n|}{S_n} \le \frac{C}{S_n} \longrightarrow 0 ,
+\]
+so $x_n \to 0$, and then $x_n^2 = S_n - S_{n-1} \to 0$ as well. Also
+\[
+\Bigl|\frac{x_n}{S_n}\Bigr| = \frac{|x_n S_n|}{S_n^{2}} \le \frac{C}{S_n^{2}} \longrightarrow 0 ,
+\qquad\text{so}\qquad
+\Bigl|\frac{x_n^2}{S_n}\Bigr| = |x_n| \cdot \Bigl|\frac{x_n}{S_n}\Bigr| \longrightarrow 0 .
+\]
+Consequently
+\[
+\frac{S_{n-1}}{S_n} = 1 - \frac{x_n^2}{S_n} \longrightarrow 1 .
+\]
+
+\emph{Step 3: $S_n^3 - S_{n-1}^3 \to 3$.} For $n \ge 1$,
+\[
+S_n^3 - S_{n-1}^3 = \bigl(S_n - S_{n-1}\bigr)\bigl(S_n^2 + S_n S_{n-1} + S_{n-1}^2\bigr)
+= (x_n S_n)^2\Bigl(1 + \frac{S_{n-1}}{S_n} + \Bigl(\frac{S_{n-1}}{S_n}\Bigr)^2\Bigr).
+\]
+By Steps 1--2, $(x_n S_n)^2 \to 1$ and $S_{n-1}/S_n \to 1$; hence
+\[
+S_n^3 - S_{n-1}^3 \longrightarrow 1\cdot(1 + 1 + 1) = 3 .
+\]
+
+\emph{Step 4: $S_n^3/n \to 3$.} Write $d_n = S_n^3 - S_{n-1}^3$, so that $d_n \to 3$. Given $\varepsilon > 0$, choose $N$ with $|d_n - 3| < \varepsilon$ for all $n > N$. For $n > N$, summation over $k = N+1, \dots, n$ gives
+\[
+S_n^3 - S_N^3 - 3(n-N) = \sum_{k=N+1}^{n}(d_k - 3),
+\qquad\text{hence}\qquad
+\bigl|S_n^3 - S_N^3 - 3(n-N)\bigr| \le \varepsilon\,(n-N).
+\]
+Dividing by $n > 0$,
+\[
+\Bigl|\frac{S_n^3}{n} - 3\Bigr| \le \varepsilon\,\frac{n-N}{n} + \frac{|S_N^3 - 3N|}{n} \le \varepsilon + \frac{|S_N^3 - 3N|}{n},
+\]
+and letting $n \to \infty$ yields $\limsup_{n\to\infty}\bigl|S_n^3/n - 3\bigr| \le \varepsilon$. Since $\varepsilon > 0$ is arbitrary, $S_n^3/n \to 3$.
+
+\emph{Step 5: conclusion.} Since $S_n \to +\infty$, we have $S_n > 0$ for all sufficiently large $n$, and therefore
+\[
+\frac{S_n}{\sqrt[3]{3n}} = \Bigl(\frac{S_n^3}{3n}\Bigr)^{1/3} \longrightarrow \Bigl(\frac{3}{3}\Bigr)^{1/3} = 1
+\]
+by Step 4 and the continuity of the cube root. Finally, for such $n$,
+\[
+\sqrt[3]{3n}\; x_n = (x_n S_n)\cdot \frac{\sqrt[3]{3n}}{S_n}
+= (x_n S_n)\cdot \Bigl(\frac{S_n}{\sqrt[3]{3n}}\Bigr)^{-1} \longrightarrow 1 \cdot 1^{-1} = 1 ,
+\]
+which is the required limit.
+\end{solution}
+
+\begin{solution}{Solution 2.3.21}\label{xs:2.3.21}
+\begin{enumerate}[(1)]
+  \item We prove by induction that $a_n \ge 3$ for all $n \ge 0$. Indeed, $a_0 = 3$, and if $a_{n-1} \ge 3$ then
+  \[
+  a_n = a_{n-1}^2 - 2 \ge 3^2 - 2 = 7 \ge 3 .
+  \]
+  Consequently, for every $n \ge 1$,
+  \[
+  a_n - a_{n-1} = a_{n-1}^2 - 2 - a_{n-1} = (a_{n-1} - 2)(a_{n-1} + 1) \ge (3-2)(3+1) = 4 .
+  \]
+  Summing these inequalities from $n = 1$ to $N$ gives, for all $N \in \mathbb{N}_+$,
+  \[
+  a_N \ge a_0 + 4N = 3 + 4N .
+  \]
+  Hence for every $G > 0$, every $N > (G-3)/4$ satisfies $a_N > G$; that is, $\lim_{n\to\infty} a_n = +\infty$.
+  \item Put
+  \[
+  t = \frac{3+\sqrt{5}}{2} > 1 .
+  \]
+  Then $t^{-1} = \dfrac{2}{3+\sqrt5} = \dfrac{2(3-\sqrt5)}{(3+\sqrt5)(3-\sqrt5)} = \dfrac{3-\sqrt5}{2}$, so that
+  \[
+  t + t^{-1} = 3, \qquad t - t^{-1} = \sqrt{5} .
+  \]
+  \emph{Closed form of $a_n$.} We claim that
+  \[
+  a_n = t^{\,2^n} + t^{-2^n} \qquad (n \ge 0).
+  \]
+  For $n = 0$ this is $t + t^{-1} = 3 = a_0$. If $a_{n-1} = t^{\,2^{n-1}} + t^{-2^{n-1}}$, then, using $2\cdot 2^{n-1} = 2^n$,
+  \[
+  a_n = a_{n-1}^2 - 2 = \bigl(t^{\,2^{n-1}} + t^{-2^{n-1}}\bigr)^2 - 2 = t^{\,2^n} + 2 + t^{-2^n} - 2 = t^{\,2^n} + t^{-2^n},
+  \]
+  which proves the claim by induction. In particular $a_n \ge 3 > 0$ for all $n$, so the quotient in (2) is well defined.
+
+  \emph{A telescoping product.} For every $k \ge 0$, applying $(u - u^{-1})(u + u^{-1}) = u^2 - u^{-2}$ with $u = t^{\,2^k} \neq 1$ (note $t > 1$) gives
+  \[
+  t^{\,2^k} + t^{-2^k} = \frac{t^{\,2^{k+1}} - t^{-2^{k+1}}}{t^{\,2^k} - t^{-2^k}} .
+  \]
+  Multiplying these identities for $k = 0, 1, \dots, n-1$ (the denominators cancel successively) yields the telescoping formula
+  \[
+  a_0 a_1 \cdots a_{n-1} = \prod_{k=0}^{n-1}\bigl(t^{\,2^k} + t^{-2^k}\bigr)
+  = \frac{t^{\,2^n} - t^{-2^n}}{t - t^{-1}}
+  = \frac{t^{\,2^n} - t^{-2^n}}{\sqrt5} .
+  \]
+  Therefore, using the closed form of $a_n$,
+  \[
+  \frac{a_n}{a_0 a_1 \cdots a_{n-1}}
+  = \sqrt5\;\frac{t^{\,2^n} + t^{-2^n}}{t^{\,2^n} - t^{-2^n}}
+  = \sqrt5\;\frac{1 + t^{-2^{n+1}}}{1 - t^{-2^{n+1}}} ,
+  \]
+  where the last expression is obtained by dividing numerator and denominator by $t^{\,2^n}$ and using $t^{-2^n}/t^{\,2^n} = t^{-2^{n+1}}$.
+
+  \emph{Limit.} Since $0 < t^{-1} < 1$, we have $t^{-2^{n+1}} = (t^{-1})^{2^{n+1}} \to 0$ as $n \to \infty$. Hence
+  \[
+  \frac{1 + t^{-2^{n+1}}}{1 - t^{-2^{n+1}}} \longrightarrow \frac{1+0}{1-0} = 1 ,
+  \]
+  and consequently
+  \[
+  \lim_{n\to\infty} \frac{a_n}{a_0 a_1 \cdots a_{n-1}} = \sqrt5 .
+  \]
+\end{enumerate}
+\end{solution}
+
+
+\srcline{Exercise set 2.4, problems 1--10}
+
+\begin{solution}{Solution 2.4.1}\label{xs:2.4.1}
+Recall the definitions. Let $A$ be a nonempty set of real numbers. A number $M$ is called the \emph{supremum} (least upper bound) of $A$, written $M = \sup A$, if
+\begin{enumerate}[(i)]
+  \item $x \le M$ for every $x \in A$ (that is, $M$ is an upper bound of $A$), and
+  \item $M \le M'$ for every upper bound $M'$ of $A$ (that is, $M$ is the least such bound).
+\end{enumerate}
+Dually, $m$ is the \emph{infimum} (greatest lower bound) of $A$ if $m \le x$ for every $x \in A$ and $m' \le m$ for every lower bound $m'$ of $A$.
+
+\medskip
+\noindent\textbf{Uniqueness of the supremum.} Suppose $M_1$ and $M_2$ both satisfy (i) and (ii). Since $M_1$ is an upper bound of $A$ and $M_2$ is a least upper bound, (ii) applied to $M_2$ with the upper bound $M' = M_1$ gives $M_2 \le M_1$. Interchanging the roles of $M_1$ and $M_2$, the same argument gives $M_1 \le M_2$. Hence $M_1 \le M_2$ and $M_2 \le M_1$, and by the trichotomy of the order of $\mathbb{R}$ we get $M_1 = M_2$. Therefore the supremum, if it exists, is unique.
+
+\medskip
+\noindent\textbf{Uniqueness of the infimum.} Suppose $m_1$ and $m_2$ are both infima of $A$. Since $m_2$ is a lower bound of $A$ and $m_1$ is a greatest lower bound, the defining property of $m_1$ gives $m_2 \le m_1$. Symmetrically $m_1 \le m_2$. Hence $m_1 = m_2$, so the infimum, if it exists, is also unique.
+
+\medskip
+For a set that is unbounded above the book adopts the convention $\sup A = +\infty$, and for a set unbounded below the convention $\inf A = -\infty$; these extended values are unique as well, by the same comparison argument. This proves the uniqueness of the supremum and of the infimum in all cases.
+\end{solution}
+
+\begin{solution}{Solution 2.4.2}\label{xs:2.4.2}
+Throughout, $A \ne \varnothing$; we also use that an element $M \in A$ with $x \le M$ for all $x \in A$ is called the maximum of $A$ and is written $M = \max A$, and dually for the minimum.
+
+\medskip
+\noindent\textbf{(1)} 
+
+\emph{Sufficiency.} Suppose $A$ has a maximum $\max A$. Then $\max A \in A$, and by the definition of a maximum, $x \le \max A$ for every $x \in A$; thus $\max A$ is an upper bound of $A$. Let $M'$ be any upper bound of $A$. Since $\max A \in A$, the defining property of an upper bound gives $\max A \le M'$. Hence $\max A$ is the least upper bound of $A$, that is, $\sup A = \max A$, and in particular $\sup A \in A$.
+
+\emph{Necessity.} Suppose $\sup A \in A$. By definition of the supremum, $x \le \sup A$ for every $x \in A$, and $\sup A$ itself belongs to $A$. Therefore $\sup A$ is an element of $A$ that dominates every element of $A$, i.e.\ $A$ has a maximum and $\max A = \sup A$. In particular $\sup A = \max A$, as claimed.
+
+\medskip
+\noindent\textbf{(2)} 
+
+\emph{Sufficiency.} Suppose $A$ has a minimum $\min A$. Then $\min A \in A$ and $\min A \le x$ for every $x \in A$, so $\min A$ is a lower bound of $A$. If $m'$ is any lower bound of $A$, then, since $\min A \in A$, we get $m' \le \min A$. Hence $\min A$ is the greatest lower bound of $A$, that is, $\inf A = \min A$, and $\inf A \in A$.
+
+\emph{Necessity.} Suppose $\inf A \in A$. By definition of the infimum, $\inf A \le x$ for every $x \in A$, and $\inf A \in A$. Hence $\inf A$ is an element of $A$ that is dominated by no element of $A$, i.e.\ $A$ has a minimum and $\min A = \inf A$; in particular $\inf A = \min A$.
+\end{solution}
+
+\begin{solution}{Solution 2.4.3}\label{xs:2.4.3}
+The correct conclusion is
+\[
+\sup S \le a .
+\]
+Indeed, assume that $S$ is nonempty and bounded above, so that $\sup S$ is a real number. Since $x < a$ for every $x \in S$, we have $x \le a$ for every $x \in S$, and therefore $a$ is an upper bound of $S$. By the defining property of the supremum as the \emph{least} upper bound, $\sup S \le a$.
+
+The strict inequality $\sup S < a$ is \emph{not} a valid conclusion. For example, take $S = (0,1)$ and $a = 1$. Then $x < 1$ for every $x \in S$, while $\sup S = 1 = a$, so $\sup S < a$ fails. (Here $S$ is a nonempty set bounded above, and its supremum exists by the supremum principle.) Thus, from the hypothesis $x < a$ for all $x \in S$ one may conclude only $\sup S \le a$; the inequality can degenerate into an equality precisely when $a$ is the least upper bound of $S$ but does not belong to $S$.
+\end{solution}
+
+\begin{solution}{Solution 2.4.4}\label{xs:2.4.4}
+We use the fact that the supremum is the least upper bound and the infimum the greatest lower bound, together with the density of $\mathbb{Q}$ in $\mathbb{R}$ (between any two distinct real numbers there lies a rational number) and the convention $\sup A = +\infty$ for a set unbounded above, $\inf A = -\infty$ for a set unbounded below.
+
+\medskip
+\noindent\textbf{(1)} $S = \{x \in \mathbb{Q} \mid x > \sqrt{2}\}$.
+
+\emph{Infimum.} Since $\sqrt{2} < x$ for every $x \in S$, the number $\sqrt{2}$ is a lower bound of $S$. Let $b$ be any lower bound of $S$ and suppose, for contradiction, that $b > \sqrt{2}$. By the density of $\mathbb{Q}$ in $\mathbb{R}$ there is a rational number $q$ with $\sqrt{2} < q < b$. Then $q \in \mathbb{Q}$ and $q > \sqrt{2}$, so $q \in S$; but $q < b$, contradicting the fact that $b$ is a lower bound of $S$. Hence $b \le \sqrt{2}$ for every lower bound $b$, so $\sqrt{2}$ is the greatest lower bound:
+\[
+\inf S = \sqrt{2}.
+\]
+Note that $\sqrt{2} \notin \mathbb{Q}$, hence $\inf S \notin S$, so $S$ has no minimum.
+
+\emph{Supremum.} $S$ is unbounded above: given any real $M$, choose (by the Archimedean property) a natural number $n$ with $n > \max\{M, 2\}$; then $n \in \mathbb{Q}$ and $n > \sqrt{2}$, that is, $n \in S$ and $n > M$. Hence $S$ has no upper bound and
+\[
+\sup S = +\infty .
+\]
+
+\medskip
+\noindent\textbf{(2)} $S = \{y \in \mathbb{R} \mid y = x^2,\ x \in (-\sqrt{3}, 10)\}$.
+
+Since $x^2 \ge 0$ for all real $x$, we have $y \ge 0$ for all $y \in S$, and $0 \in S$ because $x = 0 \in (-\sqrt{3}, 10)$ gives $y = 0$. Hence $0$ is a lower bound of $S$ that belongs to $S$, so
+\[
+\inf S = 0 = \min S .
+\]
+For the upper end, if $x \in (-\sqrt{3}, 10)$ then $|x| < 10$, hence $y = x^2 < 100$; so $100$ is an upper bound of $S$. Conversely, let $c < 100$. Choose the real number $x = \sqrt{t}$ where $t$ is any number with $\max\{0, c\} < t < 100$ (for instance $t = \frac{\max\{0,c\} + 100}{2}$ if $c < 100$). Then $0 \le t < 100$ gives $x = \sqrt{t} \in [0, 10) \subset (-\sqrt{3}, 10)$, so $y = t \in S$; and, if $c \ge 0$, then $t > c$; if $c < 0$, then $t \ge 0 > c$. In both cases some element of $S$ exceeds $c$, so $c$ is not an upper bound of $S$. Hence $100$ is the least upper bound:
+\[
+\sup S = 100 .
+\]
+Since $x^2 = 100$ would force $x = \pm 10$, and neither of these lies in $(-\sqrt{3}, 10)$, we have $100 \notin S$ and $S$ has no maximum. Thus $S = [0, 100)$.
+
+\medskip
+\noindent\textbf{(3)} $S = \{y \in \mathbb{R} \mid y = \arctan x,\ x \in \mathbb{Q}\}$.
+
+The function $\arctan$ is strictly increasing on $\mathbb{R}$ with $-\frac{\pi}{2} < \arctan x < \frac{\pi}{2}$ for every $x \in \mathbb{R}$. Hence $-\frac{\pi}{2}$ is a lower bound and $\frac{\pi}{2}$ is an upper bound of $S$.
+
+Let $b < \frac{\pi}{2}$. Choose a real number $t$ with $\max\left\{b, -\frac{\pi}{2}\right\} < t < \frac{\pi}{2}$; then $\tan t$ is a real number, and by the density of $\mathbb{Q}$ in $\mathbb{R}$ there is a rational number $q$ with $q > \tan t$. Since $\arctan$ is strictly increasing and $\arctan(\tan t) = t$ for $t \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$,
+\[
+\arctan q > \arctan(\tan t) = t > b .
+\]
+Thus some element $\arctan q$ of $S$ exceeds $b$, so no $b < \frac{\pi}{2}$ is an upper bound of $S$, and therefore
+\[
+\sup S = \frac{\pi}{2} .
+\]
+Similarly, let $c > -\frac{\pi}{2}$ and choose a real number $t$ with $-\frac{\pi}{2} < t < \min\left\{c, \frac{\pi}{2}\right\}$; by density of $\mathbb{Q}$ choose $q \in \mathbb{Q}$ with $q < \tan t$. Then $q \in \mathbb{Q}$ and
+\[
+\arctan q < \arctan(\tan t) = t < c ,
+\]
+so some element of $S$ is smaller than $c$ and $c$ is not a lower bound of $S$. Hence
+\[
+\inf S = -\frac{\pi}{2} .
+\]
+Since $-\frac{\pi}{2} < \arctan q < \frac{\pi}{2}$ for every $q \in \mathbb{Q}$, neither endpoint belongs to $S$ (all elements of $S$ equal $\arctan q$ with $q \in \mathbb{Q}$); in particular $S$ has neither a maximum nor a minimum. So $S$ is a dense subset of the open interval $\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$ whose supremum and infimum are its endpoints.
+
+\medskip
+\noindent\textbf{(4)} $S = \left\{1, \dfrac{1}{2}, \dfrac{2}{3}, \dfrac{3}{4}, \cdots \right\} = \{1\} \cup \left\{\dfrac{n}{n+1} : n \in \mathbb{N}_+\right\}$.
+
+For every $n \in \mathbb{N}_+$ we have $\dfrac{n}{n+1} < 1$, and $1 \in S$; hence $1$ is an element of $S$ that is an upper bound of $S$, so
+\[
+\sup S = 1 = \max S .
+\]
+For the lower end, $\dfrac{n}{n+1} \ge \dfrac{1}{2}$ for every $n \in \mathbb{N}_+$ (equivalently $2n \ge n+1$, which holds for every $n \ge 1$), and $\dfrac{1}{2} \in S$; hence $\dfrac{1}{2}$ is a lower bound of $S$ belonging to $S$, so
+\[
+\inf S = \frac{1}{2} = \min S .
+\]
+Indeed the sequence $\dfrac{n}{n+1}$ is strictly increasing (since $\dfrac{n+1}{n+2} - \dfrac{n}{n+1} = \dfrac{1}{(n+1)(n+2)} > 0$), so its smallest term is $\dfrac{1}{2}$ and its terms approach $1$ from below, which is consistent with the values found above.
+\end{solution}
+
+\begin{solution}{Solution 2.4.5}\label{xs:2.4.5}
+Let $A \ne \varnothing$ and $-A = \{x \mid -x \in A\}$. The map $x \mapsto -x$ is a bijection of $A$ onto $-A$ that reverses the order: for real numbers $u, v$ we have $u \le v \iff -u \ge -v$. We prove both assertions from the definitions.
+
+\medskip
+\noindent\textbf{(1) $\sup(-A) = -\inf A$.}
+
+Assume first that $A$ is bounded below, so that $m = \inf A \in \mathbb{R}$. For every $x \in -A$ we have $-x \in A$, hence $-x \ge m$, that is, $x \le -m$. Thus $-m$ is an upper bound of $-A$. Now let $c$ be any upper bound of $-A$; for every $a \in A$ we have $-a \in -A$, hence $-a \le c$, that is, $a \ge -c$. Therefore $-c$ is a lower bound of $A$, and, since $m = \inf A$ is the greatest lower bound, $m \ge -c$, i.e.\ $c \ge -m$. So $-m$ is the least upper bound of $-A$, giving $\sup(-A) = -m = -\inf A$.
+
+If $A$ is unbounded below, then $\inf A = -\infty$ by convention, and for every real $M$ there exists $a \in A$ with $a < -M$; then $-a \in -A$ and $-a > M$, so $-A$ is unbounded above and $\sup(-A) = +\infty = -(-\infty) = -\inf A$. The identity therefore also holds in the extended sense.
+
+\medskip
+\noindent\textbf{(2) $\inf(-A) = -\sup A$.}
+
+Assume first that $A$ is bounded above, so that $M_0 = \sup A \in \mathbb{R}$. For every $x \in -A$ we have $-x \in A$, hence $-x \le M_0$, that is, $x \ge -M_0$; so $-M_0$ is a lower bound of $-A$. Now let $c$ be any lower bound of $-A$; for every $a \in A$, $-a \in -A$, hence $-a \ge c$, that is, $a \le -c$. Therefore $-c$ is an upper bound of $A$, and, since $M_0 = \sup A$ is the least upper bound, $M_0 \le -c$, i.e.\ $c \le -M_0$. Thus $-M_0$ is the greatest lower bound of $-A$, and $\inf(-A) = -M_0 = -\sup A$.
+
+If $A$ is unbounded above, then $\sup A = +\infty$ and for every real $M$ there is $a \in A$ with $a > -M$, whence $-a \in -A$ and $-a < M$; so $-A$ is unbounded below and $\inf(-A) = -\infty = -(+\infty) = -\sup A$. Again the identity holds in the extended sense.
+\end{solution}
+
+\begin{solution}{Solution 2.4.6}\label{xs:2.4.6}
+Let $A, B$ be nonempty sets of real numbers bounded above, and put
+\[
+A + B = \{x + y \mid x \in A,\ y \in B\}.
+\]
+\emph{Step 1: $\sup A + \sup B$ is an upper bound of $A + B$.} For any $x \in A$ and $y \in B$ we have $x \le \sup A$ and $y \le \sup B$ by the definition of the supremum as an upper bound; adding these inequalities gives
+\[
+x + y \le \sup A + \sup B .
+\]
+Hence every element of $A + B$ is at most $\sup A + \sup B$, so $\sup A + \sup B$ is an upper bound of $A + B$ and therefore
+\[
+\sup(A + B) \le \sup A + \sup B .
+\]
+
+\emph{Step 2: the reverse inequality is also true (so in fact equality holds).} Let $\varepsilon > 0$. By the defining property of the supremum as the \emph{least} upper bound, $\sup A - \frac{\varepsilon}{2}$ is not an upper bound of $A$, so there is $x_0 \in A$ with $x_0 > \sup A - \frac{\varepsilon}{2}$; likewise there is $y_0 \in B$ with $y_0 > \sup B - \frac{\varepsilon}{2}$. Then $x_0 + y_0 \in A + B$ and
+\[
+x_0 + y_0 > \sup A + \sup B - \varepsilon .
+\]
+Since every element of $A + B$ is at most $\sup(A+B)$, this shows that $\sup(A + B) > \sup A + \sup B - \varepsilon$ for every $\varepsilon > 0$, whence $\sup(A+B) \ge \sup A + \sup B$.
+
+Combining the two steps, $\sup(A + B) = \sup A + \sup B$.
+
+\emph{Conclusion for $S$.} Since $S \subset \{x + y \mid x \in A,\ y \in B\} = A + B$, every element of $S$ is an element of $A + B$ and hence is at most $\sup A + \sup B$; thus $\sup A + \sup B$ is an upper bound of $S$, and consequently
+\[
+\sup S \le \sup A + \sup B .
+\]
+
+\emph{The strict inequality need not hold.} Take $A = B = [0,1]$, so that $\sup A = \sup B = 1$ and $\sup A + \sup B = 2$, and take
+\[
+S = \{x + y \mid x \in A,\ y = 1\} = [1, 2] \subset [0, 2] = \{x + y \mid x \in A,\ y \in B\}.
+\]
+Then $\sup S = 2 = \sup A + \sup B$, so the inequality $\sup S \le \sup A + \sup B$ is an equality here; the strict inequality $\sup S < \sup A + \sup B$ is therefore not a valid conclusion.
+\end{solution}
+
+\begin{solution}{Solution 2.4.7}\label{xs:2.4.7}
+Let $A, B$ be nonempty sets of real numbers bounded above, and suppose that the set $S$ satisfies
+\[
+S \supset \{x + y \mid x \in A,\ y \in B\} = A + B .
+\]
+(We also assume $S$ is bounded above, so that $\sup S$ is a real number; otherwise $\sup S = +\infty$ by convention and the inequality $\sup S \ge \sup A + \sup B$ is trivially true.)
+
+\emph{Step 1: every $x + y$ with $x \in A$, $y \in B$ is at most $\sup S$.} Indeed, $x + y \in A + B \subset S$, and $\sup S$ is an upper bound of $S$. Hence
+\[
+x + y \le \sup S \qquad \text{for all } x \in A,\ y \in B. \tag{1}
+\]
+
+\emph{Step 2: $\sup S - \sup B$ is an upper bound of $A$.} Fix $x \in A$. By (1), $x + y \le \sup S$ for every $y \in B$, that is, $y \le \sup S - x$ for every $y \in B$. Hence $\sup S - x$ is an upper bound of $B$, and, since $\sup B$ is the least upper bound of $B$,
+\[
+\sup B \le \sup S - x, \qquad \text{i.e.} \qquad x \le \sup S - \sup B .
+\]
+As $x \in A$ was arbitrary, $\sup S - \sup B$ is an upper bound of $A$.
+
+\emph{Step 3: conclusion.} Since $\sup A$ is the least upper bound of $A$, Step 2 gives $\sup A \le \sup S - \sup B$, that is,
+\[
+\sup S \ge \sup A + \sup B .
+\]
+
+\emph{The strict inequality need not hold.} Take $A = B = [0,1]$ and $S = [0,2]$. Then $\sup A = \sup B = 1$, so $\sup A + \sup B = 2$; and
+\[
+\{x + y \mid x \in A,\ y \in B\} = [0,2] \subset S,
+\]
+while $\sup S = 2 = \sup A + \sup B$. Thus the inequality $\sup S \ge \sup A + \sup B$ becomes an equality in this example, and the strict inequality $\sup S > \sup A + \sup B$ is not a valid conclusion in general. (For comparison, with the same $A$ and $B$ but $S = [0,3]$ one does get the strict inequality $3 > 2$.)
+\end{solution}
+
+\begin{solution}{Solution 2.4.8}\label{xs:2.4.8}
+Let $A, B \ne \varnothing$ be sets of real numbers and let $\alpha \ge 0$. For a set $C$ of real numbers and a real number $\lambda$ write $\lambda C = \{\lambda c \mid c \in C\}$, so that
+\[
+A + \alpha B = \{a + \alpha b \mid a \in A,\ b \in B\} = A + (\alpha B).
+\]
+We first record two lemmas.
+
+\medskip
+\noindent\textbf{Lemma 1 (supremum and infimum of a sum).} If $A, B \ne \varnothing$, then $\sup(A+B) = \sup A + \sup B$ and $\inf(A+B) = \inf A + \inf B$ (in the extended sense).
+
+\emph{Proof of the sup part.} For $a \in A$, $b \in B$ we have $a \le \sup A$ and $b \le \sup B$, hence $a + b \le \sup A + \sup B$; so $\sup A + \sup B$ is an upper bound of $A + B$ and $\sup(A+B) \le \sup A + \sup B$. If, say, $\sup A = +\infty$, then $A + B$ is unbounded above: fix $b_0 \in B$; for every real $R$ there is $a \in A$ with $a > R - b_0$, whence $a + b_0 \in A + B$ and $a + b_0 > R$. Hence $\sup(A+B) = +\infty = \sup A + \sup B$ in that case, and the case $\sup B = +\infty$ is identical. It therefore remains to treat the case in which both suprema are finite. Let $\varepsilon > 0$. Since $\sup A - \frac{\varepsilon}{2}$ is not an upper bound of $A$, there is $a_0 \in A$ with $a_0 > \sup A - \frac{\varepsilon}{2}$, and similarly there is $b_0 \in B$ with $b_0 > \sup B - \frac{\varepsilon}{2}$. Then $a_0 + b_0 \in A + B$ and $a_0 + b_0 > \sup A + \sup B - \varepsilon$, while $a_0 + b_0 \le \sup(A+B)$; hence $\sup(A+B) > \sup A + \sup B - \varepsilon$ for every $\varepsilon > 0$, which forces $\sup(A+B) \ge \sup A + \sup B$.
+
+\emph{Proof of the inf part.} For $a \in A$, $b \in B$ we have $a \ge \inf A$ and $b \ge \inf B$, hence $a + b \ge \inf A + \inf B$; so $\inf A + \inf B$ is a lower bound of $A+B$ and $\inf(A+B) \ge \inf A + \inf B$. If, say, $\inf A = -\infty$, then $A+B$ is unbounded below: fix $b_0 \in B$; for every real $R$ there is $a \in A$ with $a < R - b_0$, whence $a + b_0 \in A + B$ and $a + b_0 < R$. Hence $\inf(A+B) = -\infty = \inf A + \inf B$ in that case, and the case $\inf B = -\infty$ is identical. It therefore remains to treat the case in which both infima are finite. Given $\varepsilon > 0$, the number $\inf A + \frac{\varepsilon}{2}$ is not a lower bound of $A$, so there is $a_0 \in A$ with $a_0 < \inf A + \frac{\varepsilon}{2}$, and likewise there is $b_0 \in B$ with $b_0 < \inf B + \frac{\varepsilon}{2}$. Then $a_0 + b_0 \in A + B$ and $a_0 + b_0 < \inf A + \inf B + \varepsilon$, while $a_0 + b_0 \ge \inf(A+B)$; hence $\inf(A+B) < \inf A + \inf B + \varepsilon$ for every $\varepsilon > 0$, giving $\inf(A+B) \le \inf A + \inf B$. $\square$
+
+\medskip
+\noindent\textbf{Lemma 2 (multiplication by $\alpha \ge 0$).} If $B \ne \varnothing$ and $\alpha \ge 0$, then $\sup(\alpha B) = \alpha \sup B$ and $\inf(\alpha B) = \alpha \inf B$.
+
+\emph{Proof.} If $\alpha > 0$: for $b \in B$ we have $b \le \sup B$, hence $\alpha b \le \alpha \sup B$, so $\alpha \sup B$ is an upper bound of $\alpha B$. (If $\sup B = +\infty$ then $\alpha B$ is unbounded above, so $\sup(\alpha B) = +\infty = \alpha \sup B$; if $\inf B = -\infty$ then $\alpha B$ is unbounded below, so $\inf(\alpha B) = -\infty = \alpha \inf B$. Hence we may suppose both are finite.) Given $\varepsilon > 0$, the number $\sup B - \frac{\varepsilon}{\alpha}$ is not an upper bound of $B$, so there is $b_0 \in B$ with $b_0 > \sup B - \frac{\varepsilon}{\alpha}$, whence $\alpha b_0 \in \alpha B$ and $\alpha b_0 > \alpha \sup B - \varepsilon$. Thus $\sup(\alpha B) = \alpha \sup B$. The analogous argument with lower bounds (for $b \in B$, $b \ge \inf B$ gives $\alpha b \ge \alpha \inf B$; and some $b_0 \in B$ satisfies $b_0 < \inf B + \frac{\varepsilon}{\alpha}$, whence $\alpha b_0 < \alpha \inf B + \varepsilon$) gives $\inf(\alpha B) = \alpha \inf B$. If $\alpha = 0$, then $\alpha B = \{0\}$, so $\sup(\alpha B) = 0 = 0 \cdot \sup B$ and $\inf(\alpha B) = 0 = 0 \cdot \inf B$ (using the usual convention $0 \cdot (\pm\infty) = 0$ in the unbounded case). $\square$
+
+\medskip
+\noindent\textbf{(1)} Since $A + \alpha B = A + (\alpha B)$, Lemma 1 (sup part) and Lemma 2 give
+\[
+\sup(A + \alpha B) = \sup\bigl(A + (\alpha B)\bigr) = \sup A + \sup(\alpha B) = \sup A + \alpha \sup B .
+\]
+
+\medskip
+\noindent\textbf{(2)} Likewise, by Lemma 1 (inf part) and Lemma 2,
+\[
+\inf(A + \alpha B) = \inf\bigl(A + (\alpha B)\bigr) = \inf A + \inf(\alpha B) = \inf A + \alpha \inf B .
+\]
+This completes the proof of both identities. (The hypotheses $\alpha \ge 0$ and $A, B \ne \varnothing$ are exactly what the two lemmas require: without $\alpha \ge 0$ the set $\alpha B$ would be reflected and the formulas for the supremum and infimum would be interchanged.)
+\end{solution}
+
+\begin{solution}{Solution 2.4.9}\label{xs:2.4.9}
+Let $A, B$ be sets of real numbers with $A \subset B$, and assume both are nonempty. (If $A = \varnothing$, then $\sup A = -\infty$ and $\inf A = +\infty$ by the usual convention, and both inequalities are trivially true.)
+
+\medskip
+\noindent\textbf{$\sup A \le \sup B$.} Assume $B$ is bounded above, so that $\sup B \in \mathbb{R}$; otherwise $\sup B = +\infty$ and the inequality is trivial. Let $x \in A$ be arbitrary. Since $A \subset B$, we have $x \in B$, and $\sup B$ is an upper bound of $B$, so $x \le \sup B$. As $x \in A$ was arbitrary, $\sup B$ is an upper bound of $A$. By the defining property of the supremum of $A$ as the \emph{least} upper bound of $A$,
+\[
+\sup A \le \sup B .
+\]
+
+\medskip
+\noindent\textbf{$\inf A \ge \inf B$.} Assume $B$ is bounded below, so that $\inf B \in \mathbb{R}$; otherwise $\inf B = -\infty$ and the inequality is trivial. Let $x \in A$ be arbitrary. Since $A \subset B$, we have $x \in B$, and $\inf B$ is a lower bound of $B$, so $x \ge \inf B$. As $x \in A$ was arbitrary, $\inf B$ is a lower bound of $A$. By the defining property of the infimum of $A$ as the \emph{greatest} lower bound of $A$,
+\[
+\inf A \ge \inf B .
+\]
+Both statements are therefore proved, and they express the obvious fact that enlarging a set can only raise its supremum and lower its infimum.
+\end{solution}
+
+\begin{solution}{Solution 2.4.10}\label{xs:2.4.10}
+Let $A, B$ be sets of real numbers such that
+\[
+x \le y \qquad \text{for every } x \in A \text{ and every } y \in B. \tag{1}
+\]
+Assume $A \ne \varnothing$ and $B \ne \varnothing$ (if $A = \varnothing$, then $\sup A = -\infty$ and the inequality $\sup A \le \inf B$ is trivial; if $B = \varnothing$, then $\inf B = +\infty$ and it is again trivial).
+
+\emph{Step 1: $B$ is bounded below and $A$ is bounded above.} Fix $x_0 \in A$. By (1), $x_0 \le y$ for every $y \in B$; thus $x_0$ is a lower bound of $B$, so $B$ is nonempty and bounded below and, by the supremum principle (applied to the set of lower bounds of $B$), its greatest lower bound $\inf B \in \mathbb{R}$ exists. Similarly, fix $y_0 \in B$; by (1), $x \le y_0$ for every $x \in A$, so $y_0$ is an upper bound of $A$ and $\sup A \in \mathbb{R}$ exists.
+
+\emph{Step 2: $\inf B$ is an upper bound of $A$.} Let $x \in A$. By (1), $x \le y$ for every $y \in B$, so $x$ is a lower bound of $B$. Since $\inf B$ is the greatest lower bound of $B$, we get
+\[
+x \le \inf B .
+\]
+As $x \in A$ was arbitrary, $\inf B$ is an upper bound of the set $A$.
+
+\emph{Step 3: conclusion.} Since $\sup A$ is the least upper bound of $A$ and $\inf B$ is an upper bound of $A$ (Step 2),
+\[
+\sup A \le \inf B ,
+\]
+which is the desired inequality.
+\end{solution}
+
+\end{document}
